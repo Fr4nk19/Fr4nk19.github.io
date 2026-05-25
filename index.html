@@ -270,6 +270,44 @@
       color: var(--muted);
     }
 
+    .changes-panel {
+      margin-bottom: 18px;
+    }
+
+    .changes-controls {
+      display: grid;
+      grid-template-columns: minmax(240px, 1fr) 220px auto;
+      gap: 10px;
+      align-items: end;
+      padding: 16px;
+      border-bottom: 1px solid var(--line);
+      background: #fbfcfe;
+    }
+
+    .changes-summary-row {
+      padding: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .changes-controls .field {
+      margin-top: 0;
+    }
+
+    .changes-table-wrap {
+      max-height: 58vh;
+    }
+
+    .value-cell {
+      max-width: 320px;
+      color: var(--muted);
+      word-break: break-word;
+    }
+
+    .change-type {
+      background: #eef3f7;
+      color: #354154;
+    }
+
     .metric {
       min-height: 112px;
       border: 1px solid var(--line);
@@ -562,6 +600,7 @@
       .summary-grid,
       .comparison-grid,
       .difference-lists,
+      .changes-controls,
       .workspace,
       .chart-row {
         grid-template-columns: 1fr;
@@ -619,6 +658,7 @@
       </div>
       <div class="actions">
         <a class="button" href="campos_nuevos_new_vs_old.md">Ver Markdown</a>
+        <a class="button" href="cambios_schema_new_vs_old.md">Ver cambios</a>
         <a class="button primary" href="campos_nuevos_new_vs_old.csv" download>Descargar CSV</a>
       </div>
     </div>
@@ -627,6 +667,10 @@
   <main>
     <div id="loadError" class="load-error">
       No se pudo cargar <code>campos_nuevos_new_vs_old.csv</code>. Si abriste el archivo directo desde el disco, usa un servidor local o publícalo en GitHub Pages.
+    </div>
+
+    <div id="changesLoadError" class="load-error">
+      No se pudo cargar <code>cambios_schema_new_vs_old.csv</code>. La vista de modificaciones necesita ese archivo generado desde los schemas completos.
     </div>
 
     <section class="summary-grid" aria-label="Resumen">
@@ -693,6 +737,65 @@
       <div class="key-changes">
         <h3>Cambios clave detectados</h3>
         <div id="keyChanges" class="change-items"></div>
+      </div>
+    </section>
+
+    <section class="content-panel changes-panel" aria-label="Modificaciones de campos">
+      <div class="content-title">
+        <div>
+          <h2>Modificaciones de campos</h2>
+          <p><span id="changesVisibleCount">0</span> cambios visibles de <span id="changesTotalCount">0</span></p>
+        </div>
+        <a class="button" href="cambios_schema_new_vs_old.csv" download>Descargar cambios</a>
+      </div>
+
+      <div class="comparison-grid changes-summary-row">
+        <article class="insight">
+          <span>Restricciones modificadas</span>
+          <strong id="restrictionChanges">0</strong>
+          <p>Cambios en enum, pattern, const, longitudes, mínimos, máximos y reglas similares.</p>
+        </article>
+        <article class="insight accent">
+          <span>Campos eliminados</span>
+          <strong id="removedChanges">0</strong>
+          <p>Rutas que estaban en old y ya no aparecen en new.</p>
+        </article>
+        <article class="insight ok">
+          <span>Tipos o requerido</span>
+          <strong id="contractChanges">0</strong>
+          <p>Cambios que pueden impactar validación directa del payload.</p>
+        </article>
+      </div>
+
+      <div class="changes-controls">
+        <div class="field">
+          <label for="changesSearch">Buscar cambios</label>
+          <input id="changesSearch" type="search" placeholder="Campo, schema, valor old o valor new">
+        </div>
+        <div class="field">
+          <label for="changeTypeFilter">Tipo de cambio</label>
+          <select id="changeTypeFilter">
+            <option value="">Todos</option>
+          </select>
+        </div>
+        <button id="clearChangeFilters" class="button" type="button">Limpiar</button>
+      </div>
+
+      <div class="table-wrap changes-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Schema</th>
+              <th>Campo</th>
+              <th>Cambio</th>
+              <th>Propiedad</th>
+              <th>Old</th>
+              <th>New</th>
+            </tr>
+          </thead>
+          <tbody id="changeRows"></tbody>
+        </table>
+        <div id="changesEmptyState" class="empty">No hay cambios que coincidan con los filtros actuales.</div>
       </div>
     </section>
 
@@ -772,16 +875,21 @@
 
   <script>
     const csvUrl = 'campos_nuevos_new_vs_old.csv';
+    const changesCsvUrl = 'cambios_schema_new_vs_old.csv';
     const state = {
       allRows: [],
+      allChanges: [],
       selectedSchemas: new Set(),
       search: '',
       required: '',
-      type: ''
+      type: '',
+      changeSearch: '',
+      changeType: ''
     };
 
     const els = {
       loadError: document.querySelector('#loadError'),
+      changesLoadError: document.querySelector('#changesLoadError'),
       totalFields: document.querySelector('#totalFields'),
       totalSchemas: document.querySelector('#totalSchemas'),
       requiredFields: document.querySelector('#requiredFields'),
@@ -793,6 +901,16 @@
       newOnlySchemasList: document.querySelector('#newOnlySchemasList'),
       existingChangesList: document.querySelector('#existingChangesList'),
       keyChanges: document.querySelector('#keyChanges'),
+      changesVisibleCount: document.querySelector('#changesVisibleCount'),
+      changesTotalCount: document.querySelector('#changesTotalCount'),
+      restrictionChanges: document.querySelector('#restrictionChanges'),
+      removedChanges: document.querySelector('#removedChanges'),
+      contractChanges: document.querySelector('#contractChanges'),
+      changesSearch: document.querySelector('#changesSearch'),
+      changeTypeFilter: document.querySelector('#changeTypeFilter'),
+      clearChangeFilters: document.querySelector('#clearChangeFilters'),
+      changeRows: document.querySelector('#changeRows'),
+      changesEmptyState: document.querySelector('#changesEmptyState'),
       search: document.querySelector('#search'),
       requiredFilter: document.querySelector('#requiredFilter'),
       typeFilter: document.querySelector('#typeFilter'),
@@ -846,7 +964,7 @@
         rows.push(row);
       }
 
-      const headers = rows.shift();
+      const headers = rows.shift().map((header) => header.replace(/^\uFEFF/, ''));
       return rows
         .filter((entry) => entry.length === headers.length)
         .map((entry) => Object.fromEntries(headers.map((header, index) => [header, entry[index] || ''])));
@@ -877,6 +995,18 @@
         if (state.type && row.type !== state.type) return false;
         if (!needle) return true;
         return [row.schema, row.path, row.type, row.required, row.description, row.new_file, row.old_file]
+          .join(' ')
+          .toLowerCase()
+          .includes(needle);
+      });
+    }
+
+    function filteredChanges() {
+      const needle = state.changeSearch.trim().toLowerCase();
+      return state.allChanges.filter((row) => {
+        if (state.changeType && row.change_type !== state.changeType) return false;
+        if (!needle) return true;
+        return [row.schema, row.path, row.change_type, row.property, row.old_value, row.new_value, row.description]
           .join(' ')
           .toLowerCase()
           .includes(needle);
@@ -936,6 +1066,39 @@
           <strong><code>${escapeHtml(row.schema)}</code> agrega <code>${escapeHtml(row.path)}</code></strong>
           <span>${escapeHtml(row.description)} · ${escapeHtml(row.type)} · requerido: ${escapeHtml(row.required)}</span>
         </div>
+      `).join('');
+    }
+
+    function renderChangeSummary() {
+      const changeCounts = groupCount(state.allChanges, 'change_type');
+      const contractTotal = (changeCounts.type_modificado || 0) + (changeCounts.requerido_modificado || 0);
+
+      els.changesTotalCount.textContent = state.allChanges.length.toLocaleString('es-SV');
+      els.restrictionChanges.textContent = (changeCounts.restriccion_modificada || 0).toLocaleString('es-SV');
+      els.removedChanges.textContent = (changeCounts.eliminado || 0).toLocaleString('es-SV');
+      els.contractChanges.textContent = contractTotal.toLocaleString('es-SV');
+    }
+
+    function renderChangeFilters() {
+      const types = [...new Set(state.allChanges.map((row) => row.change_type).filter(Boolean))].sort();
+      els.changeTypeFilter.insertAdjacentHTML('beforeend', types.map((type) => (
+        `<option value="${escapeHtml(type)}">${escapeHtml(type)}</option>`
+      )).join(''));
+    }
+
+    function renderChanges() {
+      const rows = filteredChanges();
+      els.changesVisibleCount.textContent = rows.length.toLocaleString('es-SV');
+      els.changesEmptyState.style.display = rows.length ? 'none' : 'block';
+      els.changeRows.innerHTML = rows.map((row) => `
+        <tr>
+          <td><span class="badge">${escapeHtml(row.schema)}</span></td>
+          <td class="path-cell"><code>${escapeHtml(row.path)}</code></td>
+          <td><span class="badge change-type">${escapeHtml(row.change_type)}</span></td>
+          <td><code>${escapeHtml(row.property)}</code></td>
+          <td class="value-cell"><code>${escapeHtml(row.old_value)}</code></td>
+          <td class="value-cell"><code>${escapeHtml(row.new_value)}</code></td>
+        </tr>
       `).join('');
     }
 
@@ -1051,17 +1214,45 @@
       });
 
       els.exportFiltered.addEventListener('click', downloadFiltered);
+
+      els.changesSearch.addEventListener('input', (event) => {
+        state.changeSearch = event.target.value;
+        renderChanges();
+      });
+
+      els.changeTypeFilter.addEventListener('change', (event) => {
+        state.changeType = event.target.value;
+        renderChanges();
+      });
+
+      els.clearChangeFilters.addEventListener('click', () => {
+        state.changeSearch = '';
+        state.changeType = '';
+        els.changesSearch.value = '';
+        els.changeTypeFilter.value = '';
+        renderChanges();
+      });
     }
 
     async function init() {
       try {
-        const response = await fetch(csvUrl);
+        const [response, changesResponse] = await Promise.all([
+          fetch(csvUrl),
+          fetch(changesCsvUrl)
+        ]);
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        if (!changesResponse.ok) {
+          els.changesLoadError.style.display = 'block';
+        }
         state.allRows = parseCsv(await response.text());
+        state.allChanges = changesResponse.ok ? parseCsv(await changesResponse.text()) : [];
         renderSummary();
         renderDifference();
+        renderChangeSummary();
+        renderChangeFilters();
         renderFilters();
         bindEvents();
+        renderChanges();
         render();
       } catch (error) {
         els.loadError.style.display = 'block';
