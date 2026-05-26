@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Campos nuevos SVFE JSON Schemas</title>
+  <title>Comparador SVFE JSON Schemas - DTE El Salvador</title>
   <style>
     :root {
       color-scheme: light;
@@ -13,631 +13,183 @@
       --panel: #ffffff;
       --soft: #f4f7fb;
       --brand: #1e6b68;
+      --brand-light: #eef7f5;
       --brand-strong: #15504e;
       --accent: #b9482b;
+      --accent-light: #fff6f3;
       --mark: #f7d56f;
       --ok: #1f7a4d;
-      --shadow: 0 16px 40px rgba(29, 36, 48, 0.08);
+      --ok-light: #e8f8ee;
+      --warn: #7a4a00;
+      --warn-light: #fff8e6;
+      --blue: #2563eb;
+      --blue-light: #eff6ff;
+      --shadow: 0 4px 24px rgba(29,36,48,0.07);
+      --radius: 10px;
     }
-
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     body {
-      margin: 0;
-      min-width: 320px;
-      background: var(--soft);
+      margin: 0; min-width: 320px; background: var(--soft);
       color: var(--ink);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.45;
+      line-height: 1.5;
     }
-
-    .topbar {
-      border-bottom: 1px solid var(--line);
-      background: var(--panel);
-    }
-
-    .topbar-inner,
-    main {
-      width: min(1440px, calc(100% - 32px));
-      margin: 0 auto;
-    }
-
-    .topbar-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      min-height: 72px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 0;
-    }
-
-    .brand-mark {
-      display: grid;
-      place-items: center;
-      width: 42px;
-      height: 42px;
-      border-radius: 8px;
-      background: var(--brand);
-      color: white;
-      flex: 0 0 auto;
-      box-shadow: 0 8px 18px rgba(30, 107, 104, 0.22);
-    }
-
-    .brand h1 {
-      margin: 0;
-      font-size: 18px;
-      line-height: 1.1;
-      font-weight: 720;
-    }
-
-    .brand p {
-      margin: 4px 0 0;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      min-height: 38px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: white;
-      color: var(--ink);
-      padding: 0 12px;
-      font-size: 14px;
-      font-weight: 650;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    .button.primary {
-      border-color: var(--brand);
-      background: var(--brand);
-      color: white;
-    }
-
-    main {
-      padding: 28px 0 42px;
-    }
-
-    .summary-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
-      margin-bottom: 18px;
-    }
-
-    .difference-panel {
-      display: grid;
-      gap: 18px;
-      margin-bottom: 18px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--panel);
-      padding: 18px;
-      box-shadow: var(--shadow);
-    }
-
-    .difference-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 18px;
-      border-bottom: 1px solid var(--line);
-      padding-bottom: 16px;
-    }
-
-    .difference-header h2 {
-      margin: 0;
-      font-size: 20px;
-      line-height: 1.2;
-    }
-
-    .difference-header p {
-      margin: 6px 0 0;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .difference-pill {
-      display: inline-flex;
-      align-items: center;
-      min-height: 30px;
-      border-radius: 999px;
-      background: #eef7f5;
-      color: var(--brand-strong);
-      padding: 4px 10px;
-      font-size: 12px;
-      font-weight: 800;
-      white-space: nowrap;
-    }
-
-    .comparison-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .insight {
-      display: grid;
-      gap: 6px;
-      min-height: 104px;
-      border-left: 4px solid var(--brand);
-      background: #f8fbfd;
-      padding: 12px 14px;
-    }
-
-    .insight.accent {
-      border-left-color: var(--accent);
-    }
-
-    .insight.ok {
-      border-left-color: var(--ok);
-    }
-
-    .insight span {
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 750;
-      text-transform: uppercase;
-    }
-
-    .insight strong {
-      font-size: 28px;
-      line-height: 1;
-    }
-
-    .insight p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .difference-lists {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      gap: 18px;
-    }
-
-    .difference-list h3,
-    .key-changes h3 {
-      margin: 0 0 10px;
-      font-size: 14px;
-    }
-
-    .difference-list ul {
-      display: grid;
-      gap: 8px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .difference-list li {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      border-bottom: 1px solid #edf0f5;
-      padding-bottom: 8px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .difference-list code {
-      color: var(--ink);
-      font-weight: 720;
-    }
-
-    .change-items {
-      display: grid;
-      gap: 8px;
-    }
-
-    .change-item {
-      display: grid;
-      gap: 4px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 10px 12px;
-      font-size: 13px;
-    }
-
-    .change-item strong {
-      color: var(--brand-strong);
-    }
-
-    .change-item span {
-      color: var(--muted);
-    }
-
-    .changes-panel {
-      margin-bottom: 18px;
-    }
-
-    .changes-controls {
-      display: grid;
-      grid-template-columns: minmax(240px, 1fr) 220px auto;
-      gap: 10px;
-      align-items: end;
-      padding: 16px;
-      border-bottom: 1px solid var(--line);
-      background: #fbfcfe;
-    }
-
-    .changes-summary-row {
-      padding: 16px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .changes-controls .field {
-      margin-top: 0;
-    }
-
-    .changes-table-wrap {
-      max-height: 58vh;
-    }
-
-    .value-cell {
-      max-width: 320px;
-      color: var(--muted);
-      word-break: break-word;
-    }
-
-    .change-type {
-      background: #eef3f7;
-      color: #354154;
-    }
-
-    .metric {
-      min-height: 112px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--panel);
-      padding: 18px;
-      box-shadow: var(--shadow);
-    }
-
-    .metric span {
-      display: block;
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 650;
-    }
-
-    .metric strong {
-      display: block;
-      margin-top: 8px;
-      font-size: 34px;
-      line-height: 1;
-      letter-spacing: 0;
-    }
-
-    .metric small {
-      display: block;
-      margin-top: 10px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .workspace {
-      display: grid;
-      grid-template-columns: 280px minmax(0, 1fr);
-      gap: 18px;
-      align-items: start;
-    }
-
-    .filters,
-    .content-panel {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--panel);
-      box-shadow: var(--shadow);
-    }
-
-    .filters {
-      position: sticky;
-      top: 14px;
-      padding: 16px;
-    }
-
-    .filters h2,
-    .content-title h2 {
-      margin: 0;
-      font-size: 16px;
-      line-height: 1.2;
-    }
-
-    .field {
-      margin-top: 16px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 7px;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 750;
-      text-transform: uppercase;
-    }
-
-    input,
-    select {
-      width: 100%;
-      min-height: 38px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: white;
-      color: var(--ink);
-      padding: 7px 10px;
-      font: inherit;
-      font-size: 14px;
-    }
-
-    input:focus,
-    select:focus,
-    .button:focus {
-      outline: 3px solid rgba(30, 107, 104, 0.2);
-      outline-offset: 1px;
-      border-color: var(--brand);
-    }
-
-    .schema-list {
-      display: grid;
-      gap: 8px;
-      max-height: 360px;
-      overflow: auto;
-      padding-right: 3px;
-    }
-
-    .schema-option {
-      display: grid;
-      grid-template-columns: 18px minmax(0, 1fr) auto;
-      align-items: center;
-      gap: 8px;
-      padding: 8px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 14px;
-    }
-
-    .schema-option input {
-      width: 16px;
-      min-height: 16px;
-      margin: 0;
-    }
-
-    .schema-option code {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      font-size: 13px;
-    }
-
-    .schema-option span {
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .content-panel {
-      overflow: hidden;
-    }
-
-    .content-title {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      border-bottom: 1px solid var(--line);
-      padding: 16px;
-    }
-
-    .content-title p {
-      margin: 4px 0 0;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .chart-row {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 220px;
-      gap: 16px;
-      padding: 16px;
-      border-bottom: 1px solid var(--line);
-      background: #fbfcfe;
-    }
-
-    .bars {
-      display: grid;
-      gap: 10px;
-    }
-
-    .bar {
-      display: grid;
-      grid-template-columns: 118px minmax(0, 1fr) 44px;
-      align-items: center;
-      gap: 10px;
-      min-height: 24px;
-      font-size: 13px;
-    }
-
-    .bar code {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .track {
-      height: 10px;
-      border-radius: 99px;
-      background: #e5eaf1;
-      overflow: hidden;
-    }
-
-    .fill {
-      height: 100%;
-      border-radius: inherit;
-      background: var(--brand);
-    }
-
-    .legend {
-      display: grid;
-      align-content: center;
-      gap: 8px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .legend strong {
-      color: var(--ink);
-      font-size: 28px;
-      line-height: 1;
-    }
-
-    .table-wrap {
-      overflow: auto;
-      max-height: 70vh;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-      min-width: 980px;
-      font-size: 13px;
-    }
-
-    thead th {
-      position: sticky;
-      top: 0;
-      z-index: 1;
-      border-bottom: 1px solid var(--line);
-      background: #eef3f7;
-      color: #354154;
-      padding: 10px 12px;
-      text-align: left;
-      font-size: 12px;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    tbody td {
-      border-bottom: 1px solid #edf0f5;
-      padding: 10px 12px;
-      vertical-align: top;
-    }
-
-    tbody tr:hover {
-      background: #f8fbfd;
-    }
-
     code {
       font-family: "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
+      font-size: 0.92em;
     }
 
-    .path-cell {
-      font-weight: 720;
-      color: var(--brand-strong);
-    }
+    /* TOPBAR */
+    .topbar { border-bottom: 1px solid var(--line); background: var(--panel); }
+    .topbar-inner, main { width: min(1440px, calc(100% - 32px)); margin: 0 auto; }
+    .topbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 64px; flex-wrap: wrap; padding: 10px 0; }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand-mark { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 8px; background: var(--brand); color: white; flex-shrink: 0; }
+    .brand h1 { margin: 0; font-size: 17px; line-height: 1.2; }
+    .brand p { margin: 2px 0 0; color: var(--muted); font-size: 12px; }
+    .actions { display: flex; gap: 8px; flex-wrap: wrap; }
 
+    /* BUTTONS */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      min-height: 36px; border: 1px solid var(--line); border-radius: 8px;
+      background: white; color: var(--ink); padding: 0 12px; font-size: 13px;
+      font-weight: 600; cursor: pointer; text-decoration: none; white-space: nowrap;
+    }
+    .btn:hover { border-color: var(--brand); }
+    .btn.primary { border-color: var(--brand); background: var(--brand); color: white; }
+    .btn.primary:hover { background: var(--brand-strong); }
+    .btn:focus-visible { outline: 3px solid rgba(30,107,104,0.25); outline-offset: 1px; }
+
+    /* TABS */
+    .tabs { display: flex; gap: 0; border-bottom: 2px solid var(--line); margin-bottom: 20px; }
+    .tab {
+      padding: 10px 20px; font-size: 14px; font-weight: 650; color: var(--muted);
+      cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px;
+      background: none; border-top: 0; border-left: 0; border-right: 0;
+    }
+    .tab:hover { color: var(--ink); }
+    .tab.active { color: var(--brand); border-bottom-color: var(--brand); }
+    .tab .count { background: var(--brand-light); color: var(--brand-strong); border-radius: 99px; padding: 1px 8px; font-size: 12px; margin-left: 6px; }
+
+    /* MAIN */
+    main { padding: 20px 0 40px; }
+
+    /* TAB PANELS */
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* SUMMARY CARDS */
+    .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 20px; }
+    .metric { border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); padding: 16px; box-shadow: var(--shadow); }
+    .metric span { display: block; color: var(--muted); font-size: 12px; font-weight: 650; text-transform: uppercase; }
+    .metric strong { display: block; margin-top: 6px; font-size: 30px; line-height: 1; }
+    .metric small { display: block; margin-top: 8px; color: var(--muted); font-size: 12px; }
+
+    /* CARDS / PANELS */
+    .card { border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); box-shadow: var(--shadow); margin-bottom: 18px; overflow: hidden; }
+    .card-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; border-bottom: 1px solid var(--line); }
+    .card-header h2 { margin: 0; font-size: 16px; }
+    .card-header p { margin: 3px 0 0; color: var(--muted); font-size: 13px; }
+    .card-body { padding: 16px; }
+
+    /* BADGES */
     .badge {
-      display: inline-flex;
-      align-items: center;
-      min-height: 22px;
-      border-radius: 999px;
-      padding: 2px 8px;
-      background: #e8f3f1;
-      color: var(--brand-strong);
-      font-size: 12px;
-      font-weight: 750;
-      white-space: nowrap;
+      display: inline-flex; align-items: center; min-height: 22px; border-radius: 99px;
+      padding: 2px 8px; font-size: 11px; font-weight: 700; white-space: nowrap;
     }
+    .badge.schema { background: #e8f3f1; color: var(--brand-strong); }
+    .badge.required { background: #fff2d3; color: #7a4a00; }
+    .badge.optional { background: #eef3f7; color: #354154; }
+    .badge.added { background: var(--ok-light); color: var(--ok); }
+    .badge.removed { background: var(--accent-light); color: var(--accent); }
+    .badge.modified { background: var(--blue-light); color: var(--blue); }
+    .badge.restriction { background: var(--warn-light); color: var(--warn); }
+    .badge.new-schema { background: #f0e6ff; color: #6b21a8; }
+    .badge.version { background: var(--brand-light); color: var(--brand-strong); font-size: 12px; font-weight: 800; }
 
-    .badge.required {
-      background: #fff2d3;
-      color: #7a4a00;
-    }
+    /* INFO BANNER */
+    .info-banner { display: grid; grid-template-columns: minmax(0,1fr); gap: 12px; background: var(--brand-light); border: 1px solid #c2ddd9; border-radius: var(--radius); padding: 16px; margin-bottom: 18px; }
+    .info-banner h3 { margin: 0 0 6px; font-size: 15px; color: var(--brand-strong); }
+    .info-banner p { margin: 0; font-size: 13px; color: var(--ink); }
+    .info-banner ul { margin: 6px 0 0; padding-left: 18px; font-size: 13px; }
+    .info-banner li { margin-bottom: 3px; }
 
-    .empty {
-      display: none;
-      padding: 36px 16px;
-      color: var(--muted);
-      text-align: center;
+    /* FILTERS */
+    .controls { display: flex; gap: 10px; align-items: end; flex-wrap: wrap; padding: 14px 16px; background: #fbfcfe; border-bottom: 1px solid var(--line); }
+    .field { display: flex; flex-direction: column; gap: 5px; }
+    .field label { color: var(--muted); font-size: 11px; font-weight: 700; text-transform: uppercase; }
+    .field input, .field select {
+      min-height: 36px; border: 1px solid var(--line); border-radius: 8px; background: white;
+      color: var(--ink); padding: 6px 10px; font: inherit; font-size: 13px;
     }
+    .field input:focus, .field select:focus { outline: 3px solid rgba(30,107,104,0.2); border-color: var(--brand); }
+    .field-grow { flex: 1 1 220px; }
 
-    .load-error {
-      display: none;
-      margin-bottom: 18px;
-      border: 1px solid #efb4a5;
-      border-radius: 8px;
-      background: #fff6f3;
-      color: #78321f;
-      padding: 14px 16px;
+    /* TABLES */
+    .table-wrap { overflow: auto; max-height: 70vh; }
+    table { width: 100%; border-collapse: separate; border-spacing: 0; min-width: 900px; font-size: 13px; }
+    thead th {
+      position: sticky; top: 0; z-index: 1; border-bottom: 1px solid var(--line);
+      background: #eef3f7; color: #354154; padding: 9px 12px; text-align: left;
+      font-size: 11px; text-transform: uppercase; white-space: nowrap;
     }
+    tbody td { border-bottom: 1px solid #edf0f5; padding: 9px 12px; vertical-align: top; }
+    tbody tr:hover { background: #f8fbfd; }
+    .path-cell { font-weight: 700; color: var(--brand-strong); }
+    .value-cell { max-width: 300px; color: var(--muted); word-break: break-word; }
+    .empty { display: none; padding: 32px 16px; color: var(--muted); text-align: center; font-size: 14px; }
+
+    /* DIFF HIGHLIGHT */
+    .diff-old { background: #fce8e8; color: #991b1b; padding: 1px 4px; border-radius: 3px; text-decoration: line-through; }
+    .diff-new { background: #d1fae5; color: #065f46; padding: 1px 4px; border-radius: 3px; }
+
+    /* SCHEMA SELECTOR (sidebar) */
+    .workspace { display: grid; grid-template-columns: 260px minmax(0,1fr); gap: 16px; align-items: start; }
+    .sidebar { border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); padding: 14px; box-shadow: var(--shadow); position: sticky; top: 12px; }
+    .sidebar h3 { margin: 0 0 12px; font-size: 14px; }
+    .schema-list { display: grid; gap: 6px; max-height: 400px; overflow: auto; }
+    .schema-opt { display: grid; grid-template-columns: 18px minmax(0,1fr) auto; align-items: center; gap: 8px; padding: 7px 8px; border: 1px solid var(--line); border-radius: 8px; cursor: pointer; font-size: 13px; }
+    .schema-opt input { width: 16px; min-height: 16px; margin: 0; }
+    .schema-opt code { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .schema-opt .cnt { color: var(--muted); font-size: 12px; font-weight: 700; }
+
+    /* CHART BARS */
+    .bars { display: grid; gap: 8px; }
+    .bar { display: grid; grid-template-columns: 140px minmax(0,1fr) 44px; align-items: center; gap: 8px; font-size: 13px; }
+    .bar code { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .track { height: 10px; border-radius: 99px; background: #e5eaf1; overflow: hidden; }
+    .fill { height: 100%; border-radius: inherit; background: var(--brand); }
+
+    /* SCHEMA MAPPING TABLE */
+    .mapping-grid { display: grid; gap: 8px; }
+    .mapping-row { display: grid; grid-template-columns: minmax(0,1fr) 40px minmax(0,1fr); align-items: center; gap: 8px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 8px; font-size: 13px; }
+    .mapping-row .arrow { text-align: center; color: var(--brand); font-weight: 800; font-size: 16px; }
+    .mapping-row code { font-size: 12px; }
+    .mapping-row .name { font-weight: 700; }
+
+    /* INSIGHT BOXES */
+    .insights { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 18px; }
+    .insight { border-left: 4px solid var(--brand); background: #f8fbfd; padding: 12px 14px; }
+    .insight.accent { border-left-color: var(--accent); }
+    .insight.ok { border-left-color: var(--ok); }
+    .insight.blue { border-left-color: var(--blue); }
+    .insight span { color: var(--muted); font-size: 11px; font-weight: 700; text-transform: uppercase; }
+    .insight strong { display: block; font-size: 26px; line-height: 1.2; }
+    .insight p { margin: 4px 0 0; color: var(--muted); font-size: 12px; }
+
+    .load-error { display: none; margin-bottom: 18px; border: 1px solid #efb4a5; border-radius: 8px; background: #fff6f3; color: #78321f; padding: 12px 16px; font-size: 13px; }
 
     @media (max-width: 980px) {
-      .summary-grid,
-      .comparison-grid,
-      .difference-lists,
-      .changes-controls,
-      .workspace,
-      .chart-row {
-        grid-template-columns: 1fr;
-      }
-
-      .filters {
-        position: static;
-      }
+      .workspace { grid-template-columns: 1fr; }
+      .sidebar { position: static; }
+      .controls { flex-direction: column; }
+      .field-grow { flex: 1 1 100%; }
     }
-
-    @media (max-width: 720px) {
-      .topbar-inner {
-        align-items: flex-start;
-        flex-direction: column;
-        padding: 14px 0;
-      }
-
-      .actions {
-        justify-content: stretch;
-        width: 100%;
-      }
-
-      .button {
-        flex: 1 1 auto;
-      }
-
-      .difference-header {
-        flex-direction: column;
-      }
-
-      .summary-grid {
-        gap: 10px;
-      }
-
-      .metric strong {
-        font-size: 28px;
-      }
+    @media (max-width: 600px) {
+      .topbar-inner { flex-direction: column; align-items: flex-start; }
+      .tabs { overflow-x: auto; }
+      .summary-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -646,617 +198,519 @@
     <div class="topbar-inner">
       <div class="brand">
         <div class="brand-mark" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
             <path d="M6 4.8h12v14.4H6z" stroke="currentColor" stroke-width="1.8"/>
             <path d="M9 8h6M9 12h6M9 16h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
           </svg>
         </div>
         <div>
-          <h1>Campos nuevos SVFE JSON Schemas</h1>
-          <p>Comparación de carpetas <code>new</code> vs <code>old</code></p>
+          <h1>Comparador SVFE JSON Schemas</h1>
+          <p>Normativa DTE v2.0 vs v1.2 &mdash; El Salvador</p>
         </div>
       </div>
       <div class="actions">
-        <a class="button" href="campos_nuevos_new_vs_old.md">Ver Markdown</a>
-        <a class="button" href="cambios_schema_new_vs_old.md">Ver cambios</a>
-        <a class="button primary" href="campos_nuevos_new_vs_old.csv" download>Descargar CSV</a>
+        <a class="btn" href="campos_nuevos_new_vs_old.csv" download>CSV campos nuevos</a>
+        <a class="btn" href="cambios_schema_new_vs_old.csv" download>CSV cambios</a>
+        <a class="btn primary" href="campos_nuevos_new_vs_old.md">Markdown</a>
       </div>
     </div>
   </header>
 
   <main>
-    <div id="loadError" class="load-error">
-      No se pudo cargar <code>campos_nuevos_new_vs_old.csv</code>. Si abriste el archivo directo desde el disco, usa un servidor local o publícalo en GitHub Pages.
+    <div id="loadError" class="load-error">No se pudo cargar los datos. Si abriste el archivo desde disco, usa un servidor local o GitHub Pages.</div>
+
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-tab="overview" role="tab">Resumen</button>
+      <button class="tab" data-tab="changes" role="tab">Cambios<span class="count" id="tabChangesCount">0</span></button>
+      <button class="tab" data-tab="new-fields" role="tab">Campos nuevos<span class="count" id="tabNewCount">0</span></button>
+      <button class="tab" data-tab="mapping" role="tab">Mapeo de schemas</button>
     </div>
 
-    <div id="changesLoadError" class="load-error">
-      No se pudo cargar <code>cambios_schema_new_vs_old.csv</code>. La vista de modificaciones necesita ese archivo generado desde los schemas completos.
-    </div>
-
-    <section class="summary-grid" aria-label="Resumen">
-      <article class="metric">
-        <span>Campos nuevos</span>
-        <strong id="totalFields">0</strong>
-        <small>Rutas nuevas detectadas</small>
-      </article>
-      <article class="metric">
-        <span>Schemas comparados</span>
-        <strong id="totalSchemas">0</strong>
-        <small>Incluye schemas sin equivalente anterior</small>
-      </article>
-      <article class="metric">
-        <span>Campos requeridos</span>
-        <strong id="requiredFields">0</strong>
-        <small>Marcados como requeridos en el schema nuevo</small>
-      </article>
-      <article class="metric">
-        <span>Sin equivalente old</span>
-        <strong id="newSchemas">0</strong>
-        <small>Schemas nuevos completos</small>
-      </article>
-    </section>
-
-    <section class="difference-panel" aria-label="Diferencia entre versión nueva y antigua">
-      <div class="difference-header">
+    <!-- TAB: OVERVIEW -->
+    <div id="panel-overview" class="tab-panel active">
+      <div class="info-banner">
         <div>
-          <h2>Diferencia entre versión nueva y antigua</h2>
-          <p id="impactSummary">Cargando comparación...</p>
+          <h3>Cambios principales en la Normativa DTE v2.0 (mayo 2026)</h3>
+          <ul>
+            <li><strong>Nuevos eventos:</strong> Evento de Retorno (fe-eret), Evento de Operaciones Especiales (fe-eop), Evento de Gesti&oacute;n (fe-eges)</li>
+            <li><strong>Evento de Invalidaci&oacute;n:</strong> Ahora reemplaza al "anulacion-schema" con estructura actualizada (invalidacion-schema-v3)</li>
+            <li><strong>Nuevas secciones DTE:</strong> Compra por cuenta de terceros (FEXE), campo "Fusiones y otros", transferencia de bienes no onerosa</li>
+            <li><strong>NCE y NDE:</strong> Cambios en estructura de Nota de Cr&eacute;dito y Nota de D&eacute;bito</li>
+            <li><strong>Cat&aacute;logo Tributos:</strong> Actualizaci&oacute;n en la aplicaci&oacute;n del cat&aacute;logo</li>
+            <li><strong>Documentos relacionados:</strong> Actualizaci&oacute;n en la secci&oacute;n de documentos relacionados</li>
+          </ul>
         </div>
-        <span class="difference-pill">new vs old</span>
       </div>
 
-      <div class="comparison-grid">
-        <article class="insight">
-          <span>Schemas completamente nuevos</span>
-          <strong id="newOnlyFields">0</strong>
-          <p>Campos que vienen de archivos sin equivalente en la versión antigua.</p>
+      <div class="summary-grid">
+        <article class="metric">
+          <span>Schemas comparados</span>
+          <strong id="totalSchemas">0</strong>
+          <small>Total de archivos JSON analizados</small>
         </article>
-        <article class="insight accent">
-          <span>Campos añadidos a schemas existentes</span>
-          <strong id="updatedSchemaFields">0</strong>
-          <p>Diferencias dentro de schemas que sí tienen archivo old comparable.</p>
+        <article class="metric">
+          <span>Schemas nuevos</span>
+          <strong id="newOnlySchemas">0</strong>
+          <small>Sin equivalente en versi&oacute;n anterior</small>
         </article>
-        <article class="insight ok">
-          <span>Campos opcionales nuevos</span>
-          <strong id="optionalFields">0</strong>
-          <p>El resto de campos nuevos está marcado como requerido.</p>
+        <article class="metric">
+          <span>Total cambios</span>
+          <strong id="totalChanges">0</strong>
+          <small>Modificaciones en schemas existentes</small>
+        </article>
+        <article class="metric">
+          <span>Campos nuevos</span>
+          <strong id="totalNewFields">0</strong>
+          <small>Rutas nuevas detectadas</small>
+        </article>
+        <article class="metric">
+          <span>Campos eliminados</span>
+          <strong id="totalRemoved">0</strong>
+          <small>Rutas que ya no existen en new</small>
         </article>
       </div>
 
-      <div class="difference-lists">
-        <div class="difference-list">
-          <h3>Schemas nuevos sin equivalente old</h3>
-          <ul id="newOnlySchemasList"></ul>
-        </div>
-        <div class="difference-list">
-          <h3>Schemas existentes con más cambios</h3>
-          <ul id="existingChangesList"></ul>
-        </div>
-      </div>
-
-      <div class="key-changes">
-        <h3>Cambios clave detectados</h3>
-        <div id="keyChanges" class="change-items"></div>
-      </div>
-    </section>
-
-    <section class="content-panel changes-panel" aria-label="Modificaciones de campos">
-      <div class="content-title">
-        <div>
-          <h2>Modificaciones de campos</h2>
-          <p><span id="changesVisibleCount">0</span> cambios visibles de <span id="changesTotalCount">0</span></p>
-        </div>
-        <a class="button" href="cambios_schema_new_vs_old.csv" download>Descargar cambios</a>
-      </div>
-
-      <div class="comparison-grid changes-summary-row">
+      <div class="insights">
         <article class="insight">
           <span>Restricciones modificadas</span>
-          <strong id="restrictionChanges">0</strong>
-          <p>Cambios en enum, pattern, const, longitudes, mínimos, máximos y reglas similares.</p>
+          <strong id="ovRestrictions">0</strong>
+          <p>enum, pattern, longitudes, const y reglas similares</p>
         </article>
         <article class="insight accent">
-          <span>Campos eliminados</span>
-          <strong id="removedChanges">0</strong>
-          <p>Rutas que estaban en old y ya no aparecen en new.</p>
+          <span>Campos agregados</span>
+          <strong id="ovAdded">0</strong>
+          <p>Nuevas rutas en schemas existentes</p>
         </article>
         <article class="insight ok">
-          <span>Tipos o requerido</span>
-          <strong id="contractChanges">0</strong>
-          <p>Cambios que pueden impactar validación directa del payload.</p>
+          <span>Tipos modificados</span>
+          <strong id="ovTypes">0</strong>
+          <p>Cambios en el tipo de dato del campo</p>
+        </article>
+        <article class="insight blue">
+          <span>Requerido modificado</span>
+          <strong id="ovRequired">0</strong>
+          <p>Campos que cambiaron de opcional a requerido o viceversa</p>
         </article>
       </div>
 
-      <div class="changes-controls">
-        <div class="field">
-          <label for="changesSearch">Buscar cambios</label>
-          <input id="changesSearch" type="search" placeholder="Campo, schema, valor old o valor new">
-        </div>
-        <div class="field">
-          <label for="changeTypeFilter">Tipo de cambio</label>
-          <select id="changeTypeFilter">
-            <option value="">Todos</option>
-          </select>
-        </div>
-        <button id="clearChangeFilters" class="button" type="button">Limpiar</button>
-      </div>
-
-      <div class="table-wrap changes-table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Schema</th>
-              <th>Campo</th>
-              <th>Cambio</th>
-              <th>Propiedad</th>
-              <th>Old</th>
-              <th>New</th>
-            </tr>
-          </thead>
-          <tbody id="changeRows"></tbody>
-        </table>
-        <div id="changesEmptyState" class="empty">No hay cambios que coincidan con los filtros actuales.</div>
-      </div>
-    </section>
-
-    <section class="workspace">
-      <aside class="filters" aria-label="Filtros">
-        <h2>Filtros</h2>
-
-        <div class="field">
-          <label for="search">Búsqueda</label>
-          <input id="search" type="search" placeholder="Campo, schema, tipo o descripción">
-        </div>
-
-        <div class="field">
-          <label for="requiredFilter">Requerido</label>
-          <select id="requiredFilter">
-            <option value="">Todos</option>
-            <option value="si">Sí</option>
-            <option value="no">No</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="typeFilter">Tipo</label>
-          <select id="typeFilter">
-            <option value="">Todos</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label>Schemas</label>
-          <div id="schemaList" class="schema-list"></div>
-        </div>
-
-        <div class="field">
-          <button id="clearFilters" class="button" type="button">Limpiar filtros</button>
-        </div>
-      </aside>
-
-      <section class="content-panel">
-        <div class="content-title">
+      <div class="card">
+        <div class="card-header">
           <div>
-            <h2>Detalle de campos</h2>
-            <p><span id="visibleCount">0</span> campos visibles</p>
-          </div>
-          <button id="exportFiltered" class="button" type="button">Exportar vista</button>
-        </div>
-
-        <div class="chart-row">
-          <div id="bars" class="bars"></div>
-          <div class="legend">
-            <span>Schema con más cambios</span>
-            <strong id="topSchema">-</strong>
-            <span id="topSchemaCount">0 campos</span>
+            <h2>Cambios por schema</h2>
+            <p>Distribuci&oacute;n de modificaciones en schemas existentes</p>
           </div>
         </div>
+        <div class="card-body">
+          <div id="overviewBars" class="bars"></div>
+        </div>
+      </div>
+    </div>
 
+    <!-- TAB: CHANGES -->
+    <div id="panel-changes" class="tab-panel">
+      <div class="insights">
+        <article class="insight">
+          <span>Restricciones</span>
+          <strong id="chRestrictions">0</strong>
+          <p>Cambios en validaciones y patrones</p>
+        </article>
+        <article class="insight accent">
+          <span>Eliminados</span>
+          <strong id="chRemoved">0</strong>
+          <p>Campos que ya no existen</p>
+        </article>
+        <article class="insight ok">
+          <span>Agregados</span>
+          <strong id="chAdded">0</strong>
+          <p>Campos nuevos en schemas existentes</p>
+        </article>
+        <article class="insight blue">
+          <span>Tipo / Requerido</span>
+          <strong id="chContract">0</strong>
+          <p>Cambios de contrato</p>
+        </article>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2>Modificaciones de campos</h2>
+            <p><span id="chVisible">0</span> de <span id="chTotal">0</span> cambios</p>
+          </div>
+          <a class="btn" href="cambios_schema_new_vs_old.csv" download>Descargar CSV</a>
+        </div>
+        <div class="controls">
+          <div class="field field-grow">
+            <label for="chSearch">Buscar</label>
+            <input id="chSearch" type="search" placeholder="Campo, schema, valor...">
+          </div>
+          <div class="field">
+            <label for="chTypeFilter">Tipo de cambio</label>
+            <select id="chTypeFilter"><option value="">Todos</option></select>
+          </div>
+          <div class="field">
+            <label for="chSchemaFilter">Schema</label>
+            <select id="chSchemaFilter"><option value="">Todos</option></select>
+          </div>
+          <button id="chClear" class="btn" type="button">Limpiar</button>
+        </div>
         <div class="table-wrap">
           <table>
             <thead>
               <tr>
                 <th>Schema</th>
                 <th>Campo</th>
-                <th>Tipo</th>
-                <th>Requerido</th>
-                <th>Descripción</th>
-                <th>Archivo new</th>
-                <th>Archivo old</th>
+                <th>Cambio</th>
+                <th>Propiedad</th>
+                <th>Valor Old</th>
+                <th>Valor New</th>
               </tr>
             </thead>
-            <tbody id="rows"></tbody>
+            <tbody id="chRows"></tbody>
           </table>
-          <div id="emptyState" class="empty">No hay campos que coincidan con los filtros actuales.</div>
+          <div id="chEmpty" class="empty">No hay cambios que coincidan con los filtros.</div>
         </div>
-      </section>
-    </section>
+      </div>
+    </div>
+
+    <!-- TAB: NEW FIELDS -->
+    <div id="panel-new-fields" class="tab-panel">
+      <div class="workspace">
+        <aside class="sidebar">
+          <h3>Filtros</h3>
+          <div class="field" style="margin-bottom:12px">
+            <label for="nfSearch">B&uacute;squeda</label>
+            <input id="nfSearch" type="search" placeholder="Campo, schema, tipo..." style="width:100%">
+          </div>
+          <div class="field" style="margin-bottom:12px">
+            <label for="nfRequired">Requerido</label>
+            <select id="nfRequired" style="width:100%">
+              <option value="">Todos</option>
+              <option value="si">S&iacute;</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+          <div class="field" style="margin-bottom:12px">
+            <label for="nfType">Tipo</label>
+            <select id="nfType" style="width:100%"><option value="">Todos</option></select>
+          </div>
+          <div class="field" style="margin-bottom:12px">
+            <label>Schemas</label>
+            <div id="nfSchemaList" class="schema-list"></div>
+          </div>
+          <button id="nfClear" class="btn" type="button" style="width:100%">Limpiar filtros</button>
+        </aside>
+
+        <div class="card" style="margin-bottom:0">
+          <div class="card-header">
+            <div>
+              <h2>Detalle de campos nuevos</h2>
+              <p><span id="nfVisible">0</span> campos visibles</p>
+            </div>
+            <button id="nfExport" class="btn" type="button">Exportar vista</button>
+          </div>
+          <div style="padding:14px 16px; border-bottom:1px solid var(--line); background:#fbfcfe;">
+            <div id="nfBars" class="bars"></div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Schema</th>
+                  <th>Campo</th>
+                  <th>Tipo</th>
+                  <th>Requerido</th>
+                  <th>Descripci&oacute;n</th>
+                  <th>Archivo new</th>
+                  <th>Archivo old</th>
+                </tr>
+              </thead>
+              <tbody id="nfRows"></tbody>
+            </table>
+            <div id="nfEmpty" class="empty">No hay campos que coincidan con los filtros.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: MAPPING -->
+    <div id="panel-mapping" class="tab-panel">
+      <div class="info-banner">
+        <div>
+          <h3>Mapeo de schemas: Old &rarr; New</h3>
+          <p>Relaci&oacute;n entre los archivos JSON de la versi&oacute;n anterior y la nueva. Los schemas marcados como "Nuevo" no tienen equivalente en la versi&oacute;n antigua.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div><h2>Correspondencia de archivos</h2></div></div>
+        <div class="card-body">
+          <div id="mappingGrid" class="mapping-grid"></div>
+        </div>
+      </div>
+    </div>
   </main>
 
   <script>
-    const csvUrl = 'campos_nuevos_new_vs_old.csv';
-    const changesCsvUrl = 'cambios_schema_new_vs_old.csv';
     const state = {
-      allRows: [],
-      allChanges: [],
-      selectedSchemas: new Set(),
-      search: '',
-      required: '',
-      type: '',
-      changeSearch: '',
-      changeType: ''
-    };
-
-    const els = {
-      loadError: document.querySelector('#loadError'),
-      changesLoadError: document.querySelector('#changesLoadError'),
-      totalFields: document.querySelector('#totalFields'),
-      totalSchemas: document.querySelector('#totalSchemas'),
-      requiredFields: document.querySelector('#requiredFields'),
-      newSchemas: document.querySelector('#newSchemas'),
-      newOnlyFields: document.querySelector('#newOnlyFields'),
-      updatedSchemaFields: document.querySelector('#updatedSchemaFields'),
-      optionalFields: document.querySelector('#optionalFields'),
-      impactSummary: document.querySelector('#impactSummary'),
-      newOnlySchemasList: document.querySelector('#newOnlySchemasList'),
-      existingChangesList: document.querySelector('#existingChangesList'),
-      keyChanges: document.querySelector('#keyChanges'),
-      changesVisibleCount: document.querySelector('#changesVisibleCount'),
-      changesTotalCount: document.querySelector('#changesTotalCount'),
-      restrictionChanges: document.querySelector('#restrictionChanges'),
-      removedChanges: document.querySelector('#removedChanges'),
-      contractChanges: document.querySelector('#contractChanges'),
-      changesSearch: document.querySelector('#changesSearch'),
-      changeTypeFilter: document.querySelector('#changeTypeFilter'),
-      clearChangeFilters: document.querySelector('#clearChangeFilters'),
-      changeRows: document.querySelector('#changeRows'),
-      changesEmptyState: document.querySelector('#changesEmptyState'),
-      search: document.querySelector('#search'),
-      requiredFilter: document.querySelector('#requiredFilter'),
-      typeFilter: document.querySelector('#typeFilter'),
-      schemaList: document.querySelector('#schemaList'),
-      clearFilters: document.querySelector('#clearFilters'),
-      exportFiltered: document.querySelector('#exportFiltered'),
-      visibleCount: document.querySelector('#visibleCount'),
-      rows: document.querySelector('#rows'),
-      bars: document.querySelector('#bars'),
-      topSchema: document.querySelector('#topSchema'),
-      topSchemaCount: document.querySelector('#topSchemaCount'),
-      emptyState: document.querySelector('#emptyState')
+      newFields: [],
+      changes: [],
+      nfSelectedSchemas: new Set(),
+      nfSearch: '', nfRequired: '', nfType: '',
+      chSearch: '', chType: '', chSchema: ''
     };
 
     function parseCsv(text) {
-      const rows = [];
-      let row = [];
-      let value = '';
-      let quoted = false;
-
-      for (let i = 0; i < text.length; i += 1) {
-        const char = text[i];
-        const next = text[i + 1];
-
-        if (quoted) {
-          if (char === '"' && next === '"') {
-            value += '"';
-            i += 1;
-          } else if (char === '"') {
-            quoted = false;
-          } else {
-            value += char;
-          }
-        } else if (char === '"') {
-          quoted = true;
-        } else if (char === ',') {
-          row.push(value);
-          value = '';
-        } else if (char === '\n') {
-          row.push(value);
-          rows.push(row);
-          row = [];
-          value = '';
-        } else if (char !== '\r') {
-          value += char;
-        }
+      const rows = []; let row = []; let val = ''; let q = false;
+      for (let i = 0; i < text.length; i++) {
+        const c = text[i], n = text[i+1];
+        if (q) { if (c==='"'&&n==='"'){val+='"';i++}else if(c==='"'){q=false}else{val+=c} }
+        else if (c==='"') q=true;
+        else if (c===',') { row.push(val); val=''; }
+        else if (c==='\n') { row.push(val); rows.push(row); row=[]; val=''; }
+        else if (c!=='\r') val+=c;
       }
-
-      if (value || row.length) {
-        row.push(value);
-        rows.push(row);
-      }
-
-      const headers = rows.shift().map((header) => header.replace(/^\uFEFF/, ''));
-      return rows
-        .filter((entry) => entry.length === headers.length)
-        .map((entry) => Object.fromEntries(headers.map((header, index) => [header, entry[index] || ''])));
+      if (val||row.length) { row.push(val); rows.push(row); }
+      const h = rows.shift().map(s=>s.replace(/^﻿/,''));
+      return rows.filter(r=>r.length===h.length).map(r=>Object.fromEntries(h.map((k,i)=>[k,r[i]||''])));
     }
 
-    function groupCount(rows, key) {
-      return rows.reduce((acc, row) => {
-        acc[row[key]] = (acc[row[key]] || 0) + 1;
-        return acc;
-      }, {});
-    }
+    function esc(v) { return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
-    function escapeHtml(value) {
-      return String(value).replace(/[&<>"']/g, (char) => ({
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        '"': '&quot;',
-        "'": '&#39;'
-      })[char]);
-    }
+    function groupCount(arr,k) { return arr.reduce((a,r)=>{a[r[k]]=(a[r[k]]||0)+1;return a},{}); }
 
-    function filteredRows() {
-      const needle = state.search.trim().toLowerCase();
-      return state.allRows.filter((row) => {
-        if (state.selectedSchemas.size && !state.selectedSchemas.has(row.schema)) return false;
-        if (state.required && row.required !== state.required) return false;
-        if (state.type && row.type !== state.type) return false;
-        if (!needle) return true;
-        return [row.schema, row.path, row.type, row.required, row.description, row.new_file, row.old_file]
-          .join(' ')
-          .toLowerCase()
-          .includes(needle);
-      });
+    function badgeClass(type) {
+      if (type==='agregado') return 'added';
+      if (type==='eliminado') return 'removed';
+      if (type==='restriccion_modificada') return 'restriction';
+      return 'modified';
     }
 
     function filteredChanges() {
-      const needle = state.changeSearch.trim().toLowerCase();
-      return state.allChanges.filter((row) => {
-        if (state.changeType && row.change_type !== state.changeType) return false;
-        if (!needle) return true;
-        return [row.schema, row.path, row.change_type, row.property, row.old_value, row.new_value, row.description]
-          .join(' ')
-          .toLowerCase()
-          .includes(needle);
+      const s = state.chSearch.trim().toLowerCase();
+      return state.changes.filter(r => {
+        if (state.chType && r.change_type!==state.chType) return false;
+        if (state.chSchema && r.schema!==state.chSchema) return false;
+        if (!s) return true;
+        return [r.schema,r.path,r.change_type,r.property,r.old_value,r.new_value,r.description].join(' ').toLowerCase().includes(s);
       });
     }
 
-    function renderSummary() {
-      const schemaCounts = groupCount(state.allRows, 'schema');
-      const schemas = Object.keys(schemaCounts);
-      const newOnly = new Set(state.allRows
-        .filter((row) => row.old_file === '(sin equivalente old)')
-        .map((row) => row.schema));
-
-      els.totalFields.textContent = state.allRows.length.toLocaleString('es-SV');
-      els.totalSchemas.textContent = schemas.length.toLocaleString('es-SV');
-      els.requiredFields.textContent = state.allRows.filter((row) => row.required === 'si').length.toLocaleString('es-SV');
-      els.newSchemas.textContent = newOnly.size.toLocaleString('es-SV');
+    function filteredNewFields() {
+      const s = state.nfSearch.trim().toLowerCase();
+      return state.newFields.filter(r => {
+        if (state.nfSelectedSchemas.size && !state.nfSelectedSchemas.has(r.schema)) return false;
+        if (state.nfRequired && r.required!==state.nfRequired) return false;
+        if (state.nfType && r.type!==state.nfType) return false;
+        if (!s) return true;
+        return [r.schema,r.path,r.type,r.required,r.description,r.new_file,r.old_file].join(' ').toLowerCase().includes(s);
+      });
     }
 
-    function topEntries(counts, limit = 5) {
-      return Object.entries(counts)
-        .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
-        .slice(0, limit);
-    }
+    function renderOverview() {
+      const nf = state.newFields, ch = state.changes;
+      const schemas = [...new Set([...nf.map(r=>r.schema),...ch.map(r=>r.schema)])];
+      const newOnly = [...new Set(nf.filter(r=>r.old_file==='(sin equivalente old)').map(r=>r.schema))];
+      const ct = groupCount(ch,'change_type');
 
-    function renderCompactList(element, entries) {
-      element.innerHTML = entries.map(([name, count]) => `
-        <li>
-          <code>${escapeHtml(name)}</code>
-          <span>${count.toLocaleString('es-SV')} campos</span>
-        </li>
-      `).join('');
-    }
+      document.getElementById('totalSchemas').textContent = schemas.length;
+      document.getElementById('newOnlySchemas').textContent = newOnly.length;
+      document.getElementById('totalChanges').textContent = ch.length.toLocaleString('es-SV');
+      document.getElementById('totalNewFields').textContent = nf.length.toLocaleString('es-SV');
+      document.getElementById('totalRemoved').textContent = (ct.eliminado||0).toLocaleString('es-SV');
+      document.getElementById('tabChangesCount').textContent = ch.length.toLocaleString('es-SV');
+      document.getElementById('tabNewCount').textContent = nf.length.toLocaleString('es-SV');
 
-    function renderDifference() {
-      const newOnlyRows = state.allRows.filter((row) => row.old_file === '(sin equivalente old)');
-      const existingRows = state.allRows.filter((row) => row.old_file !== '(sin equivalente old)');
-      const optionalRows = state.allRows.filter((row) => row.required === 'no');
-      const requiredRows = state.allRows.filter((row) => row.required === 'si');
+      document.getElementById('ovRestrictions').textContent = (ct.restriccion_modificada||0).toLocaleString('es-SV');
+      document.getElementById('ovAdded').textContent = (ct.agregado||0).toLocaleString('es-SV');
+      document.getElementById('ovTypes').textContent = (ct.type_modificado||0).toLocaleString('es-SV');
+      document.getElementById('ovRequired').textContent = (ct.requerido_modificado||0).toLocaleString('es-SV');
 
-      els.newOnlyFields.textContent = newOnlyRows.length.toLocaleString('es-SV');
-      els.updatedSchemaFields.textContent = existingRows.length.toLocaleString('es-SV');
-      els.optionalFields.textContent = optionalRows.length.toLocaleString('es-SV');
-      els.impactSummary.textContent = `La versión nueva agrega ${state.allRows.length.toLocaleString('es-SV')} campos: ${newOnlyRows.length.toLocaleString('es-SV')} pertenecen a schemas completamente nuevos y ${existingRows.length.toLocaleString('es-SV')} son campos añadidos a schemas ya existentes. ${requiredRows.length.toLocaleString('es-SV')} de esos campos son requeridos.`;
-
-      renderCompactList(els.newOnlySchemasList, topEntries(groupCount(newOnlyRows, 'schema')));
-      renderCompactList(els.existingChangesList, topEntries(groupCount(existingRows, 'schema')));
-
-      const keyRows = state.allRows.filter((row) => (
-        row.schema === 'invalidacion-schema' ||
-        row.schema === 'contingencia-schema' ||
-        row.required === 'no'
-      ));
-
-      els.keyChanges.innerHTML = keyRows.slice(0, 10).map((row) => `
-        <div class="change-item">
-          <strong><code>${escapeHtml(row.schema)}</code> agrega <code>${escapeHtml(row.path)}</code></strong>
-          <span>${escapeHtml(row.description)} · ${escapeHtml(row.type)} · requerido: ${escapeHtml(row.required)}</span>
-        </div>
-      `).join('');
-    }
-
-    function renderChangeSummary() {
-      const changeCounts = groupCount(state.allChanges, 'change_type');
-      const contractTotal = (changeCounts.type_modificado || 0) + (changeCounts.requerido_modificado || 0);
-
-      els.changesTotalCount.textContent = state.allChanges.length.toLocaleString('es-SV');
-      els.restrictionChanges.textContent = (changeCounts.restriccion_modificada || 0).toLocaleString('es-SV');
-      els.removedChanges.textContent = (changeCounts.eliminado || 0).toLocaleString('es-SV');
-      els.contractChanges.textContent = contractTotal.toLocaleString('es-SV');
-    }
-
-    function renderChangeFilters() {
-      const types = [...new Set(state.allChanges.map((row) => row.change_type).filter(Boolean))].sort();
-      els.changeTypeFilter.insertAdjacentHTML('beforeend', types.map((type) => (
-        `<option value="${escapeHtml(type)}">${escapeHtml(type)}</option>`
-      )).join(''));
+      const bySch = Object.entries(groupCount(ch,'schema')).sort((a,b)=>b[1]-a[1]);
+      const max = bySch[0]?bySch[0][1]:1;
+      document.getElementById('overviewBars').innerHTML = bySch.map(([s,c])=>`
+        <div class="bar">
+          <code title="${esc(s)}">${esc(s)}</code>
+          <div class="track"><div class="fill" style="width:${(c/max)*100}%"></div></div>
+          <strong>${c}</strong>
+        </div>`).join('');
     }
 
     function renderChanges() {
       const rows = filteredChanges();
-      els.changesVisibleCount.textContent = rows.length.toLocaleString('es-SV');
-      els.changesEmptyState.style.display = rows.length ? 'none' : 'block';
-      els.changeRows.innerHTML = rows.map((row) => `
-        <tr>
-          <td><span class="badge">${escapeHtml(row.schema)}</span></td>
-          <td class="path-cell"><code>${escapeHtml(row.path)}</code></td>
-          <td><span class="badge change-type">${escapeHtml(row.change_type)}</span></td>
-          <td><code>${escapeHtml(row.property)}</code></td>
-          <td class="value-cell"><code>${escapeHtml(row.old_value)}</code></td>
-          <td class="value-cell"><code>${escapeHtml(row.new_value)}</code></td>
-        </tr>
-      `).join('');
+      document.getElementById('chVisible').textContent = rows.length.toLocaleString('es-SV');
+      document.getElementById('chTotal').textContent = state.changes.length.toLocaleString('es-SV');
+      const ct = groupCount(state.changes,'change_type');
+      document.getElementById('chRestrictions').textContent = (ct.restriccion_modificada||0).toLocaleString('es-SV');
+      document.getElementById('chRemoved').textContent = (ct.eliminado||0).toLocaleString('es-SV');
+      document.getElementById('chAdded').textContent = (ct.agregado||0).toLocaleString('es-SV');
+      document.getElementById('chContract').textContent = ((ct.type_modificado||0)+(ct.requerido_modificado||0)).toLocaleString('es-SV');
+
+      const el = document.getElementById('chRows');
+      const empty = document.getElementById('chEmpty');
+      empty.style.display = rows.length ? 'none' : 'block';
+      el.innerHTML = rows.slice(0, 500).map(r => `<tr>
+        <td><span class="badge schema">${esc(r.schema)}</span></td>
+        <td class="path-cell"><code>${esc(r.path)}</code></td>
+        <td><span class="badge ${badgeClass(r.change_type)}">${esc(r.change_type)}</span></td>
+        <td><code>${esc(r.property)}</code></td>
+        <td class="value-cell">${r.old_value ? `<code class="diff-old">${esc(r.old_value)}</code>` : '<span style="color:#aaa">-</span>'}</td>
+        <td class="value-cell">${r.new_value ? `<code class="diff-new">${esc(r.new_value)}</code>` : '<span style="color:#aaa">-</span>'}</td>
+      </tr>`).join('') + (rows.length > 500 ? `<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:16px">Mostrando 500 de ${rows.length} resultados. Usa los filtros para refinar.</td></tr>` : '');
     }
 
-    function renderFilters() {
-      const schemaCounts = groupCount(state.allRows, 'schema');
-      const sortedSchemas = Object.entries(schemaCounts).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
-      els.schemaList.innerHTML = sortedSchemas.map(([schema, count]) => `
-        <label class="schema-option">
-          <input type="checkbox" value="${escapeHtml(schema)}">
-          <code>${escapeHtml(schema)}</code>
-          <span>${count}</span>
-        </label>
-      `).join('');
+    function renderNewFields() {
+      const rows = filteredNewFields();
+      document.getElementById('nfVisible').textContent = rows.length.toLocaleString('es-SV');
+      const empty = document.getElementById('nfEmpty');
+      empty.style.display = rows.length ? 'none' : 'block';
 
-      const types = [...new Set(state.allRows.map((row) => row.type).filter(Boolean))].sort();
-      els.typeFilter.insertAdjacentHTML('beforeend', types.map((type) => (
-        `<option value="${escapeHtml(type)}">${escapeHtml(type)}</option>`
-      )).join(''));
-    }
-
-    function renderBars(rows) {
-      const schemaCounts = Object.entries(groupCount(rows, 'schema')).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
-      const top = schemaCounts[0] || ['-', 0];
-      const max = top[1] || 1;
-
-      els.topSchema.textContent = top[0];
-      els.topSchemaCount.textContent = `${top[1].toLocaleString('es-SV')} campos`;
-      els.bars.innerHTML = schemaCounts.slice(0, 8).map(([schema, count]) => `
+      const bySch = Object.entries(groupCount(rows,'schema')).sort((a,b)=>b[1]-a[1]);
+      const max = bySch[0]?bySch[0][1]:1;
+      document.getElementById('nfBars').innerHTML = bySch.slice(0,8).map(([s,c])=>`
         <div class="bar">
-          <code title="${escapeHtml(schema)}">${escapeHtml(schema)}</code>
-          <div class="track"><div class="fill" style="width: ${(count / max) * 100}%"></div></div>
-          <strong>${count}</strong>
-        </div>
-      `).join('');
+          <code title="${esc(s)}">${esc(s)}</code>
+          <div class="track"><div class="fill" style="width:${(c/max)*100}%"></div></div>
+          <strong>${c}</strong>
+        </div>`).join('');
+
+      document.getElementById('nfRows').innerHTML = rows.slice(0,500).map(r => `<tr>
+        <td><span class="badge ${r.old_file==='(sin equivalente old)' ? 'new-schema' : 'schema'}">${esc(r.schema)}</span></td>
+        <td class="path-cell"><code>${esc(r.path)}</code></td>
+        <td><code>${esc(r.type)}</code></td>
+        <td><span class="badge ${r.required==='si'?'required':'optional'}">${esc(r.required)}</span></td>
+        <td>${esc(r.description)}</td>
+        <td><code style="font-size:11px">${esc(r.new_file)}</code></td>
+        <td><code style="font-size:11px">${esc(r.old_file)}</code></td>
+      </tr>`).join('');
     }
 
-    function renderTable(rows) {
-      els.visibleCount.textContent = rows.length.toLocaleString('es-SV');
-      els.emptyState.style.display = rows.length ? 'none' : 'block';
-      els.rows.innerHTML = rows.map((row) => `
-        <tr>
-          <td><span class="badge">${escapeHtml(row.schema)}</span></td>
-          <td class="path-cell"><code>${escapeHtml(row.path)}</code></td>
-          <td><code>${escapeHtml(row.type)}</code></td>
-          <td><span class="badge ${row.required === 'si' ? 'required' : ''}">${escapeHtml(row.required)}</span></td>
-          <td>${escapeHtml(row.description)}</td>
-          <td><code>${escapeHtml(row.new_file)}</code></td>
-          <td><code>${escapeHtml(row.old_file)}</code></td>
-        </tr>
-      `).join('');
+    function renderMapping() {
+      const pairs = new Map();
+      for (const r of state.newFields) {
+        if (!pairs.has(r.schema)) pairs.set(r.schema, { newFile: r.new_file, oldFile: r.old_file });
+      }
+      for (const r of state.changes) {
+        if (!pairs.has(r.schema)) pairs.set(r.schema, { newFile: r.new_file, oldFile: r.old_file });
+      }
+
+      const names = {
+        'fe-f':'Factura Electrónica','fe-ccf':'Comprobante de Crédito Fiscal',
+        'fe-nc':'Nota de Crédito','fe-nd':'Nota de Débito','fe-nr':'Nota de Remisión',
+        'fe-cr':'Comprobante de Retención','fe-cl':'Comprobante de Liquidación',
+        'fe-dcl':'Doc. Contable de Liquidación','fe-fex':'Factura de Exportación',
+        'fe-fse':'Factura Sujeto Excluido','fe-cd':'Comprobante de Donación',
+        'contingencia-schema':'Evento de Contingencia','invalidacion-schema':'Evento de Invalidación',
+        'fe-eret':'Evento de Retorno','fe-eop':'Evento de Operaciones Especiales','fe-eges':'Evento de Gestión'
+      };
+
+      const grid = document.getElementById('mappingGrid');
+      grid.innerHTML = [...pairs.entries()].sort((a,b)=>a[0].localeCompare(b[0])).map(([schema, {newFile, oldFile}]) => {
+        const isNew = oldFile === '(sin equivalente old)';
+        return `<div class="mapping-row">
+          <div>
+            <div class="name">${esc(names[schema]||schema)}</div>
+            <code>${esc(oldFile === '(sin equivalente old)' ? '(no existe)' : oldFile)}</code>
+          </div>
+          <div class="arrow">&rarr;</div>
+          <div>
+            <div class="name">${esc(names[schema]||schema)} ${isNew ? '<span class="badge new-schema">Nuevo</span>' : ''}</div>
+            <code>${esc(newFile)}</code>
+          </div>
+        </div>`;
+      }).join('');
     }
 
-    function render() {
-      const rows = filteredRows();
-      renderBars(rows);
-      renderTable(rows);
-    }
+    function setupFilters() {
+      const chTypes = [...new Set(state.changes.map(r=>r.change_type).filter(Boolean))].sort();
+      const chSchemas = [...new Set(state.changes.map(r=>r.schema).filter(Boolean))].sort();
+      const sel = document.getElementById('chTypeFilter');
+      sel.innerHTML = '<option value="">Todos</option>' + chTypes.map(t=>`<option value="${esc(t)}">${esc(t)}</option>`).join('');
+      const sSel = document.getElementById('chSchemaFilter');
+      sSel.innerHTML = '<option value="">Todos</option>' + chSchemas.map(t=>`<option value="${esc(t)}">${esc(t)}</option>`).join('');
 
-    function toCsv(rows) {
-      const headers = ['schema', 'new_file', 'old_file', 'path', 'type', 'required', 'description'];
-      const quote = (value) => `"${String(value || '').replace(/"/g, '""')}"`;
-      return [headers.join(','), ...rows.map((row) => headers.map((header) => quote(row[header])).join(','))].join('\n');
-    }
+      const nfSchCounts = Object.entries(groupCount(state.newFields,'schema')).sort((a,b)=>b[1]-a[1]);
+      document.getElementById('nfSchemaList').innerHTML = nfSchCounts.map(([s,c])=>`
+        <label class="schema-opt">
+          <input type="checkbox" value="${esc(s)}">
+          <code>${esc(s)}</code>
+          <span class="cnt">${c}</span>
+        </label>`).join('');
 
-    function downloadFiltered() {
-      const blob = new Blob([toCsv(filteredRows())], { type: 'text/csv;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = 'campos_filtrados_new_vs_old.csv';
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      URL.revokeObjectURL(url);
+      const nfTypes = [...new Set(state.newFields.map(r=>r.type).filter(Boolean))].sort();
+      const tSel = document.getElementById('nfType');
+      tSel.innerHTML = '<option value="">Todos</option>' + nfTypes.map(t=>`<option value="${esc(t)}">${esc(t)}</option>`).join('');
     }
 
     function bindEvents() {
-      els.search.addEventListener('input', (event) => {
-        state.search = event.target.value;
-        render();
+      document.querySelectorAll('.tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+          document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+          tab.classList.add('active');
+          document.getElementById('panel-'+tab.dataset.tab).classList.add('active');
+        });
       });
 
-      els.requiredFilter.addEventListener('change', (event) => {
-        state.required = event.target.value;
-        render();
+      document.getElementById('chSearch').addEventListener('input', e => { state.chSearch=e.target.value; renderChanges(); });
+      document.getElementById('chTypeFilter').addEventListener('change', e => { state.chType=e.target.value; renderChanges(); });
+      document.getElementById('chSchemaFilter').addEventListener('change', e => { state.chSchema=e.target.value; renderChanges(); });
+      document.getElementById('chClear').addEventListener('click', () => {
+        state.chSearch=''; state.chType=''; state.chSchema='';
+        document.getElementById('chSearch').value='';
+        document.getElementById('chTypeFilter').value='';
+        document.getElementById('chSchemaFilter').value='';
+        renderChanges();
       });
 
-      els.typeFilter.addEventListener('change', (event) => {
-        state.type = event.target.value;
-        render();
-      });
-
-      els.schemaList.addEventListener('change', (event) => {
-        if (event.target.matches('input[type="checkbox"]')) {
-          if (event.target.checked) state.selectedSchemas.add(event.target.value);
-          else state.selectedSchemas.delete(event.target.value);
-          render();
+      document.getElementById('nfSearch').addEventListener('input', e => { state.nfSearch=e.target.value; renderNewFields(); });
+      document.getElementById('nfRequired').addEventListener('change', e => { state.nfRequired=e.target.value; renderNewFields(); });
+      document.getElementById('nfType').addEventListener('change', e => { state.nfType=e.target.value; renderNewFields(); });
+      document.getElementById('nfSchemaList').addEventListener('change', e => {
+        if (e.target.matches('input[type="checkbox"]')) {
+          if (e.target.checked) state.nfSelectedSchemas.add(e.target.value);
+          else state.nfSelectedSchemas.delete(e.target.value);
+          renderNewFields();
         }
       });
-
-      els.clearFilters.addEventListener('click', () => {
-        state.selectedSchemas.clear();
-        state.search = '';
-        state.required = '';
-        state.type = '';
-        els.search.value = '';
-        els.requiredFilter.value = '';
-        els.typeFilter.value = '';
-        els.schemaList.querySelectorAll('input').forEach((input) => {
-          input.checked = false;
-        });
-        render();
+      document.getElementById('nfClear').addEventListener('click', () => {
+        state.nfSelectedSchemas.clear(); state.nfSearch=''; state.nfRequired=''; state.nfType='';
+        document.getElementById('nfSearch').value='';
+        document.getElementById('nfRequired').value='';
+        document.getElementById('nfType').value='';
+        document.getElementById('nfSchemaList').querySelectorAll('input').forEach(i=>i.checked=false);
+        renderNewFields();
       });
-
-      els.exportFiltered.addEventListener('click', downloadFiltered);
-
-      els.changesSearch.addEventListener('input', (event) => {
-        state.changeSearch = event.target.value;
-        renderChanges();
-      });
-
-      els.changeTypeFilter.addEventListener('change', (event) => {
-        state.changeType = event.target.value;
-        renderChanges();
-      });
-
-      els.clearChangeFilters.addEventListener('click', () => {
-        state.changeSearch = '';
-        state.changeType = '';
-        els.changesSearch.value = '';
-        els.changeTypeFilter.value = '';
-        renderChanges();
+      document.getElementById('nfExport').addEventListener('click', () => {
+        const rows = filteredNewFields();
+        const h = ['schema','new_file','old_file','path','type','required','description'];
+        const q = v => `"${String(v||'').replace(/"/g,'""')}"`;
+        const csv = [h.join(','), ...rows.map(r=>h.map(k=>q(r[k])).join(','))].join('\n');
+        const blob = new Blob([csv], {type:'text/csv;charset=utf-8'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a'); a.href=url; a.download='campos_filtrados.csv';
+        document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
       });
     }
 
     async function init() {
       try {
-        const [response, changesResponse] = await Promise.all([
-          fetch(csvUrl),
-          fetch(changesCsvUrl)
+        const [nfRes, chRes] = await Promise.all([
+          fetch('campos_nuevos_new_vs_old.csv'),
+          fetch('cambios_schema_new_vs_old.csv')
         ]);
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        if (!changesResponse.ok) {
-          els.changesLoadError.style.display = 'block';
-        }
-        state.allRows = parseCsv(await response.text());
-        state.allChanges = changesResponse.ok ? parseCsv(await changesResponse.text()) : [];
-        renderSummary();
-        renderDifference();
-        renderChangeSummary();
-        renderChangeFilters();
-        renderFilters();
+        if (!nfRes.ok) throw new Error('Failed to load campos CSV');
+        state.newFields = parseCsv(await nfRes.text());
+        state.changes = chRes.ok ? parseCsv(await chRes.text()) : [];
+
+        setupFilters();
         bindEvents();
+        renderOverview();
         renderChanges();
-        render();
-      } catch (error) {
-        els.loadError.style.display = 'block';
-        console.error(error);
+        renderNewFields();
+        renderMapping();
+      } catch (err) {
+        document.getElementById('loadError').style.display = 'block';
+        console.error(err);
       }
     }
 
