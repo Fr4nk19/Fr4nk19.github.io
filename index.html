@@ -220,6 +220,71 @@
     .chat-related-btn { font-size: 11px; padding: 4px 10px; border: 1px solid var(--line); border-radius: 99px; background: white; color: var(--brand-strong); cursor: pointer; }
     .chat-related-btn:hover { background: var(--brand-light); border-color: var(--brand); }
 
+    /* PDF Upload & AI */
+    .pdf-upload-label {
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      min-height: 42px; border: 1px solid var(--line); border-radius: 10px;
+      background: white; color: var(--muted); padding: 0 14px; font-size: 13px;
+      font-weight: 600; cursor: pointer; white-space: nowrap; transition: all 0.15s;
+    }
+    .pdf-upload-label:hover { border-color: var(--brand); color: var(--brand); background: var(--brand-light); }
+    .pdf-upload-label svg { flex-shrink: 0; }
+    .chat-pdf-info {
+      display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+      background: var(--blue-light); border: 1px solid #bfdbfe; border-radius: 10px;
+      font-size: 13px; color: var(--blue);
+    }
+    .chat-pdf-info svg { flex-shrink: 0; }
+    .chat-pdf-info .pdf-name { font-weight: 700; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .chat-pdf-info .pdf-size { color: var(--muted); font-size: 12px; }
+    .chat-pdf-info .pdf-remove {
+      background: none; border: none; color: var(--muted); cursor: pointer; padding: 2px;
+      border-radius: 4px; display: flex; align-items: center;
+    }
+    .chat-pdf-info .pdf-remove:hover { color: var(--accent); background: var(--accent-light); }
+    .chat-typing {
+      display: inline-flex; align-items: center; gap: 4px; padding: 8px 0;
+    }
+    .chat-typing span {
+      width: 8px; height: 8px; border-radius: 50%; background: var(--brand);
+      animation: typing 1.4s infinite ease-in-out;
+    }
+    .chat-typing span:nth-child(2) { animation-delay: 0.2s; }
+    .chat-typing span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typing {
+      0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
+      40% { opacity: 1; transform: scale(1); }
+    }
+    .api-key-bar {
+      display: flex; align-items: center; gap: 8px; padding: 10px 16px;
+      background: var(--warn-light); border-bottom: 1px solid #f0d88a; font-size: 13px;
+    }
+    .api-key-bar input {
+      flex: 1; min-height: 32px; border: 1px solid #e0c86a; border-radius: 6px;
+      padding: 4px 10px; font: inherit; font-size: 13px; background: white;
+    }
+    .api-key-bar button { min-height: 32px; font-size: 12px; }
+    .chat-pdf-attached {
+      display: flex; gap: 8px; padding: 8px 16px 0;
+    }
+    .chat-mode-indicator {
+      display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px;
+      border-radius: 99px; font-size: 11px; font-weight: 700; background: #f0e6ff; color: #6b21a8;
+    }
+    .chat-mode-toggle {
+      display: flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; font-size: 12px; font-weight: 600;
+    }
+    .chat-mode-toggle button {
+      padding: 6px 12px; border: none; background: white; color: var(--muted); cursor: pointer; white-space: nowrap;
+    }
+    .chat-mode-toggle button.active { background: var(--brand); color: white; }
+    .chat-mode-toggle button:hover:not(.active) { background: var(--soft); }
+    .chat-mode-bar {
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+      padding: 8px 16px; border-bottom: 1px solid var(--line); background: #fbfcfe; font-size: 12px;
+    }
+    .chat-mode-bar .mode-info { color: var(--muted); font-size: 11px; }
+
     @media (max-width: 980px) {
       .workspace { grid-template-columns: 1fr; }
       .sidebar { position: static; }
@@ -493,6 +558,19 @@
     <!-- TAB: CHAT -->
     <div id="panel-chat" class="tab-panel">
       <div class="chat-container">
+        <div class="chat-mode-bar">
+          <div class="chat-mode-toggle">
+            <button id="modeLocal" class="active" type="button">Base Local</button>
+            <button id="modeIA" type="button">IA + Manuales</button>
+          </div>
+          <span class="mode-info" id="modeInfo">Respuestas desde la base de conocimiento local</span>
+        </div>
+        <div id="apiKeyBar" class="api-key-bar" style="display:none">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.78 7.78 5.5 5.5 0 0 1 7.78-7.78zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+          <span>API Key de Claude:</span>
+          <input id="apiKeyInput" type="password" placeholder="sk-ant-..." autocomplete="off">
+          <button id="apiKeySave" class="btn" type="button">Guardar</button>
+        </div>
         <div id="chatMessages" class="chat-messages">
           <div class="chat-msg bot">
             <strong>Asistente DTE</strong>
@@ -505,7 +583,7 @@
               <li>Tributos, descuentos, pagos y campos especiales</li>
               <li>Diferencias en los JSON schemas</li>
             </ul>
-            <p>Escribe tu pregunta o selecciona una de las sugerencias.</p>
+            <p><strong>Modo IA + Manuales:</strong> Activa el modo "IA + Manuales" para consultas avanzadas usando Claude con el contenido completo del Manual Funcional V2.0 y V1.2 como contexto. Tambi&eacute;n puedes subir un PDF adicional para analizar.</p>
           </div>
         </div>
         <div id="chatSuggestions" class="chat-suggestions">
@@ -518,7 +596,22 @@
           <button class="chat-suggestion" data-q="Cuales son los tipos de DTE?">Tipos de DTE</button>
           <button class="chat-suggestion" data-q="Como se aplica el Catalogo de Tributos?">Cat&aacute;logo Tributos</button>
         </div>
+        <div id="pdfAttached" class="chat-pdf-attached" style="display:none">
+          <div class="chat-pdf-info" style="flex:1">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            <span class="pdf-name" id="pdfFileName"></span>
+            <span class="pdf-size" id="pdfFileSize"></span>
+            <button class="pdf-remove" id="pdfRemove" title="Quitar PDF">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+        </div>
         <div class="chat-input-row">
+          <label class="pdf-upload-label" title="Subir PDF para analizar">
+            <input type="file" id="pdfUpload" accept=".pdf" hidden>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 12 15 15"/></svg>
+            PDF
+          </label>
           <input id="chatInput" type="text" placeholder="Escribe tu pregunta sobre facturaci&oacute;n electr&oacute;nica..." autocomplete="off">
           <button id="chatSend" class="btn primary" type="button">Enviar</button>
         </div>
@@ -793,6 +886,7 @@
     init();
   </script>
   <script src="knowledge-base.js"></script>
+  <script src="manuals-data.js"></script>
   <script>
     (function() {
       const chatMessages = document.getElementById('chatMessages');
@@ -955,6 +1049,7 @@
       }
 
       function send() {
+        if (window.__dteAiMode) return;
         const q = chatInput.value.trim();
         if (!q) return;
         chatInput.value = '';
@@ -973,6 +1068,343 @@
         const btn = e.target.closest('[data-q]');
         if (btn) handleQuery(btn.dataset.q);
       });
+    })();
+  </script>
+
+  <script>
+    (function() {
+      const CLAUDE_MODEL = 'claude-sonnet-4-6';
+      const MAX_PDF_SIZE_MB = 25;
+
+      function buildSystemPrompt() {
+        let prompt = `Eres un experto en facturacion electronica DTE de El Salvador.
+Tienes acceso al contenido completo de los Manuales Funcionales del Sistema de Transmision del Ministerio de Hacienda.
+
+Instrucciones:
+- Responde siempre en espanol
+- Estructura tu respuesta con secciones claras usando markdown
+- Cita las secciones relevantes del manual cuando respondas
+- Si la pregunta involucra plazos, condiciones o procesos, se preciso con las reglas
+- Si el usuario sube un PDF adicional, analiza su contenido en el contexto de facturacion electronica DTE
+- Usa terminologia tecnica DTE: FE, CCFE, NCE, NDE, NRE, CRE, CLE, DCLE, FEXE, FSEE, CDE, EOE, ER
+
+=== MANUAL FUNCIONAL V2.0 (Normativa DTE v2.0 - Mayo 2026) ===
+`;
+        if (window.MANUAL_V2) prompt += window.MANUAL_V2;
+        prompt += `
+
+=== MANUAL FUNCIONAL V1.2 (Version anterior - Octubre 2025) ===
+`;
+        if (window.MANUAL_V1) prompt += window.MANUAL_V1;
+        return prompt;
+      }
+
+      let pdfState = { file: null, base64: null, name: '', size: 0 };
+      let conversationHistory = [];
+      let isProcessing = false;
+      let aiModeActive = false;
+
+      const chatMessages = document.getElementById('chatMessages');
+      const chatInput = document.getElementById('chatInput');
+      const chatSend = document.getElementById('chatSend');
+      const pdfUpload = document.getElementById('pdfUpload');
+      const pdfAttached = document.getElementById('pdfAttached');
+      const pdfFileName = document.getElementById('pdfFileName');
+      const pdfFileSize = document.getElementById('pdfFileSize');
+      const pdfRemove = document.getElementById('pdfRemove');
+      const apiKeyBar = document.getElementById('apiKeyBar');
+      const apiKeyInput = document.getElementById('apiKeyInput');
+      const apiKeySave = document.getElementById('apiKeySave');
+      const modeLocal = document.getElementById('modeLocal');
+      const modeIA = document.getElementById('modeIA');
+      const modeInfo = document.getElementById('modeInfo');
+
+      function getApiKey() {
+        return localStorage.getItem('claude_api_key') || '';
+      }
+
+      function setAiMode(active) {
+        aiModeActive = active;
+        modeLocal.classList.toggle('active', !active);
+        modeIA.classList.toggle('active', active);
+        modeInfo.textContent = active
+          ? 'IA Claude con Manual V2.0 y V1.2 como contexto'
+          : 'Respuestas desde la base de conocimiento local';
+        if (active && !getApiKey()) {
+          apiKeyBar.style.display = 'flex';
+        } else {
+          apiKeyBar.style.display = 'none';
+        }
+        chatInput.placeholder = active
+          ? 'Pregunta sobre DTE, invalidacion, tributos, contingencia...'
+          : 'Escribe tu pregunta sobre facturacion electronica...';
+        updateAiMode();
+      }
+
+      modeLocal.addEventListener('click', () => setAiMode(false));
+      modeIA.addEventListener('click', () => setAiMode(true));
+
+      function initApiKeyBar() {
+        apiKeySave.addEventListener('click', () => {
+          const key = apiKeyInput.value.trim();
+          if (key) {
+            localStorage.setItem('claude_api_key', key);
+            apiKeyBar.style.display = 'none';
+            addMsg('<strong>Asistente DTE</strong><p>API Key guardada. Ya puedes hacer consultas con IA.</p>', false);
+          }
+        });
+        apiKeyInput.addEventListener('keydown', e => {
+          if (e.key === 'Enter') apiKeySave.click();
+        });
+      }
+
+      function formatSize(bytes) {
+        if (bytes < 1024) return bytes + ' B';
+        if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+        return (bytes / 1048576).toFixed(1) + ' MB';
+      }
+
+      function addMsg(html, isUser) {
+        const div = document.createElement('div');
+        div.className = 'chat-msg ' + (isUser ? 'user' : 'bot');
+        if (isUser) div.textContent = html;
+        else div.innerHTML = html;
+        chatMessages.appendChild(div);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        return div;
+      }
+
+      function addTypingIndicator() {
+        const div = document.createElement('div');
+        div.className = 'chat-msg bot';
+        div.id = 'typingIndicator';
+        div.innerHTML = '<span class="chat-mode-indicator">IA Claude</span><div class="chat-typing"><span></span><span></span><span></span></div>';
+        chatMessages.appendChild(div);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        return div;
+      }
+
+      function removeTypingIndicator() {
+        const el = document.getElementById('typingIndicator');
+        if (el) el.remove();
+      }
+
+      function mdToHtmlAI(text) {
+        let html = esc(text);
+        html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+        html = html.replace(/`(.+?)`/g, '<code>$1</code>');
+        html = html.replace(/^### (.+)$/gm, '<h4>$1</h4>');
+        html = html.replace(/^## (.+)$/gm, '<h3 style="font-size:15px;margin:12px 0 6px">$1</h3>');
+        html = html.replace(/^# (.+)$/gm, '<h3 style="font-size:16px;margin:14px 0 8px">$1</h3>');
+        html = html.replace(/\n\n/g, '</p><p>');
+        html = html.replace(/\n- /g, '\n<li>');
+        html = html.replace(/\n(\d+)\. /g, '\n<li>');
+        if (html.includes('<li>')) {
+          html = html.replace(/(<li>.*?)(?=<\/p>|<h[34]|$)/gs, (match) => {
+            const items = match.split('<li>').filter(Boolean).map(i => '<li>' + i.trim() + '</li>');
+            return '<ul>' + items.join('') + '</ul>';
+          });
+        }
+        return '<p>' + html + '</p>';
+      }
+
+      function updateAiMode() {
+        window.__dteAiMode = !!(aiModeActive || pdfState.base64 || conversationHistory.length > 0);
+      }
+
+      pdfUpload.addEventListener('change', e => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        if (file.size > MAX_PDF_SIZE_MB * 1024 * 1024) {
+          addMsg(`<strong>Error:</strong> El PDF excede el limite de ${MAX_PDF_SIZE_MB} MB. Selecciona un archivo mas pequeno.`, false);
+          pdfUpload.value = '';
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = () => {
+          const base64 = reader.result.split(',')[1];
+          pdfState = { file, base64, name: file.name, size: file.size };
+          pdfFileName.textContent = file.name;
+          pdfFileSize.textContent = formatSize(file.size);
+          pdfAttached.style.display = 'flex';
+          conversationHistory = [];
+          chatInput.placeholder = 'Pregunta sobre el PDF o presiona Enviar para analizarlo...';
+          updateAiMode();
+        };
+        reader.readAsDataURL(file);
+      });
+
+      pdfRemove.addEventListener('click', () => {
+        pdfState = { file: null, base64: null, name: '', size: 0 };
+        pdfUpload.value = '';
+        pdfAttached.style.display = 'none';
+        conversationHistory = [];
+        chatInput.placeholder = 'Escribe tu pregunta sobre facturacion electronica...';
+        updateAiMode();
+      });
+
+      async function callClaudeAPI(messages) {
+        const apiKey = getApiKey();
+        if (!apiKey) {
+          apiKeyBar.style.display = 'flex';
+          throw new Error('API_KEY_MISSING');
+        }
+
+        const response = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': apiKey,
+            'anthropic-version': '2023-06-01',
+            'anthropic-dangerous-direct-browser-access': 'true'
+          },
+          body: JSON.stringify({
+            model: CLAUDE_MODEL,
+            max_tokens: 4096,
+            system: buildSystemPrompt(),
+            stream: true,
+            messages
+          })
+        });
+
+        if (!response.ok) {
+          const err = await response.json().catch(() => ({}));
+          if (response.status === 401) throw new Error('API key invalida. Verifica tu key de Anthropic.');
+          if (response.status === 429) throw new Error('Limite de uso alcanzado. Espera un momento e intenta de nuevo.');
+          throw new Error(err.error?.message || `Error ${response.status} del API`);
+        }
+
+        return response;
+      }
+
+      async function streamResponse(response, msgDiv) {
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        let fullText = '';
+        let buffer = '';
+
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+
+          buffer += decoder.decode(value, { stream: true });
+          const lines = buffer.split('\n');
+          buffer = lines.pop() || '';
+
+          for (const line of lines) {
+            if (!line.startsWith('data: ')) continue;
+            const data = line.slice(6);
+            if (data === '[DONE]') continue;
+
+            try {
+              const event = JSON.parse(data);
+              if (event.type === 'content_block_delta' && event.delta?.text) {
+                fullText += event.delta.text;
+                msgDiv.innerHTML = '<span class="chat-mode-indicator">IA Claude</span>' + mdToHtmlAI(fullText);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+              }
+            } catch {}
+          }
+        }
+
+        return fullText;
+      }
+
+      async function handleAIQuery(userText) {
+        if (isProcessing) return;
+        isProcessing = true;
+
+        const isFirstPdfMessage = pdfState.base64 && !conversationHistory.some(m => m.role === 'user' && Array.isArray(m.content) && m.content.some(c => c.type === 'document'));
+        const hasPdf = pdfState.base64 && isFirstPdfMessage;
+
+        if (userText) addMsg(userText, true);
+        else if (hasPdf) addMsg('Analizar PDF: ' + pdfState.name, true);
+        else if (!userText) { isProcessing = false; return; }
+
+        const userContent = [];
+
+        if (hasPdf) {
+          userContent.push({
+            type: 'document',
+            source: { type: 'base64', media_type: 'application/pdf', data: pdfState.base64 }
+          });
+        }
+
+        const promptText = userText || (hasPdf
+          ? 'Analiza este PDF y explica su contenido de forma detallada. Si contiene informacion relacionada con facturacion electronica DTE de El Salvador, destaca los puntos mas importantes y compara con lo que dice el Manual Funcional V2.0.'
+          : '');
+
+        if (promptText) {
+          userContent.push({ type: 'text', text: promptText });
+        }
+
+        conversationHistory.push({ role: 'user', content: userContent });
+        updateAiMode();
+
+        const typingEl = addTypingIndicator();
+
+        try {
+          const response = await callClaudeAPI(conversationHistory);
+          removeTypingIndicator();
+
+          const msgDiv = addMsg('<span class="chat-mode-indicator">IA Claude</span><p>...</p>', false);
+          const fullText = await streamResponse(response, msgDiv);
+
+          conversationHistory.push({ role: 'assistant', content: fullText });
+
+          if (hasPdf) {
+            pdfAttached.style.display = 'none';
+            chatInput.placeholder = 'Haz una pregunta de seguimiento sobre el PDF...';
+          }
+
+          if (conversationHistory.length > 2) {
+            const resetBtn = document.createElement('button');
+            resetBtn.className = 'chat-suggestion';
+            resetBtn.textContent = 'Limpiar conversacion';
+            resetBtn.style.marginTop = '8px';
+            resetBtn.addEventListener('click', () => {
+              pdfState = { file: null, base64: null, name: '', size: 0 };
+              pdfUpload.value = '';
+              pdfAttached.style.display = 'none';
+              conversationHistory = [];
+              updateAiMode();
+              addMsg('<strong>Asistente DTE</strong><p>Conversacion reiniciada. Puedes seguir preguntando.</p>', false);
+            });
+            msgDiv.appendChild(resetBtn);
+          }
+        } catch (err) {
+          removeTypingIndicator();
+          if (err.message === 'API_KEY_MISSING') {
+            addMsg('<strong>API Key requerida</strong><p>Para usar el analisis con IA, ingresa tu API key de Anthropic en la barra superior. Puedes obtener una en <a href="https://console.anthropic.com/" target="_blank" rel="noopener">console.anthropic.com</a>.</p>', false);
+          } else {
+            addMsg('<strong>Error</strong><p>' + esc(err.message) + '</p>', false);
+            conversationHistory.pop();
+          }
+        }
+
+        isProcessing = false;
+      }
+
+      function aiSend() {
+        if (!window.__dteAiMode) return;
+        const q = chatInput.value.trim();
+        const isFirstPdfMessage = pdfState.base64 && !conversationHistory.some(m => m.role === 'user' && Array.isArray(m.content) && m.content.some(c => c.type === 'document'));
+        if (!q && !isFirstPdfMessage) return;
+        chatInput.value = '';
+        handleAIQuery(q);
+      }
+
+      chatSend.addEventListener('click', aiSend);
+      chatInput.addEventListener('keydown', e => {
+        if (e.key === 'Enter' && window.__dteAiMode) {
+          e.stopImmediatePropagation();
+          aiSend();
+        }
+      });
+
+      initApiKeyBar();
     })();
   </script>
 </body>
