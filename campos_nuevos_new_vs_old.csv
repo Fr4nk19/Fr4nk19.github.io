@@ -1,360 +1,376 @@
-﻿schema,new_file,old_file,path,type,required,description
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),identificacion,object,si,Identificación
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),identificacion.version,integer,si,Versión
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),identificacion.ambiente,string,si,Ambiente de destino
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),identificacion.codigoGeneracion,string,si,Código de Generación
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),identificacion.tipoEvento,string,si,Tipo de Evento
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),identificacion.fecEmi,string,si,Fecha del evento
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),identificacion.horEmi,string,si,Hora del evento
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),identificacion.fusion,string|null,si,Fusiones y otros
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),identificacion.tipoMoneda,string,si,Tipo de Moneda
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),emisor,object,si,Información del Emisor
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),emisor.nit,string,si,NIT (Emisor)
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),emisor.nombre,string,si,Nombre (Emisor)
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),emisor.codEstableMH,string,si,Código del establecimiento asignado por el MH
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),emisor.codEstable,string|null,no,Código del establecimiento asignado por el contribuyente (Opcional)
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),emisor.codPuntoVentaMH,string,si,Código del Punto de Venta (Emisor) asignado por el MH
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),emisor.codPuntoVenta,string|null,no,Código del Punto de Venta (Emisor) asignado por el contribuyente (Opcional)
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),documento,object|null,si,Informacion del Documento a aplicar el evento
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),documento.tipoDte,string,si,Tipo de DTE
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),documento.tipoGeneracion,integer,si,Tipo de Generacion del Documento Tributario relacionado
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),documento.numeroDocumento,string,si,Numero de documento tributario relacionado
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),documento.fecEmi,string,si,Fecha del evento
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),documento.numeroDocumentoC,string|null,si,Numero del documento de complemento
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),documento.tipoDocumento,string|null,si,Tipo de documento de identificación (Receptor)
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),documento.numDocumento,string|null,si,Número de documento de Identificación (Receptor)
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),documento.nombre,string|null,si,Nombre (Receptor)
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),documento.telefono,string|null,no,Teléfono (Receptor) (Opcional)
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),documento.correo,string|null,si,Correo electrónico (Receptor)
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),ventaTercero,object|null,si,Ventas por Cuenta de Terceros
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),ventaTercero.nit,string|null,si,NIT por cuenta de Terceros
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),ventaTercero.nombre,string|null,si,"Nombre, denominación o razón social del Tercero"
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),ventaTercero.codDomiciliado,integer|null,si,Domicilio Fiscal
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),cuerpoDocumento,array,si,Cuerpo del Documento
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),cuerpoDocumento[].numItem,integer,si,N° de ítem
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),cuerpoDocumento[].tipoItem,integer,si,Tipo de ítem
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),cuerpoDocumento[].cantidad,number,si,Cantidad
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),cuerpoDocumento[].codigo,string|null,si,codigo
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),cuerpoDocumento[].uniMedida,integer,si,Unidad de Medida
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),cuerpoDocumento[].descripcion,string|null,si,Descripcion
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),cuerpoDocumento[].codigoS,string|null,si,Codigo del bien en sustitución
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),cuerpoDocumento[].descripcionS,string|null,si,Descripcion del bien en sustitución
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),cuerpoDocumento[].precioUni,number,si,Precio Unitario
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),cuerpoDocumento[].montoDescu,number,si,Descuento por ítem
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),cuerpoDocumento[].ventaNoSuj,number,si,Ventas no Sujetas
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),cuerpoDocumento[].ventaExenta,number,si,Ventas Exentas
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),cuerpoDocumento[].ventaGravada,number,si,Ventas Gravadas
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),cuerpoDocumento[].noGravado,number,si,Cargos/Abonos que no afectan la base imponible
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),resumen,object,si,Resumen
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),resumen.totalNoSuj,number,si,Total de Operaciones no Sujetas
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),resumen.totalExenta,number,si,Total de Operaciones exentas
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),resumen.totalGravada,number,si,Suma de Operaciones sin Impuestos
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),resumen.subTotalVentas,number,si,Suma de Operaciones sin Impuestos
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),resumen.seguro,number,si,Seguro
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),resumen.flete,number,si,Flete
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),resumen.subTotal,number,si,Subtotal
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),resumen.totalNoGravado,number,si,Total Cargos/Abonos que no afectan la base imponible
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),resumen.montoTotalOperacion,number,si,Monto Total de la Operación
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),resumen.totalLetras,string|null,si,Valor en Letras
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),resumen.pagos,array|null,si,Pagos
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),resumen.pagos[].plazo,string,si,Plazo
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),resumen.pagos[].periodo,number,si,Período de plazo
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),resumen.fecha,string,si,Fecha de vencimiento de la garantia
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),motivo,object,si,Datos del motivo de Anulacion
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),motivo.tipoAnulacion,integer,si,Tipo de Gestion
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),motivo.motivoAnulacion,string,si,Motivo de anulacion
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),motivo.nombreResponsable,string,si,Nombre de la persona responsable de anular el DTE
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),motivo.tipDocResponsable,integer,si,"Tipo documento de identificación: 1 - NIT, 2 - DUI, 3 - Carnet de residente, 4 - PASAPORTE, 5 - OTRO"
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),motivo.numDocResponsable,string,si,Número de documento de identificación 
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),motivo.nombreSolicita,string,si,Nombre de la persona que solicita anular el DTE
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),motivo.tipDocSolicita,integer,si,"Tipo documento de identificación solicitante: 1 - NIT, 2 - DUI, 3 - Carnet de residente, 4 - PASAPORTE, 5 - OTRO"
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),motivo.numDocSolicita,string,si,Número de documento de identificación solicitante.
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),apendice,array|null,si,Apéndice
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),apendice[].campo,string,si,Nombre del campo
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),apendice[].etiqueta,string,si,Descripción
-fe-eges,svfe-json-schemas-new\v1\fe-eges-v1.json,(sin equivalente old),apendice[].valor,string,si,Valor/Dato
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),identificacion,object,si,Identificación
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),identificacion.version,integer,si,Versión
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),identificacion.ambiente,string,si,Ambiente de destino
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),identificacion.tipoModelo,integer,si,Modelo de Facturación
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),identificacion.tipoOperacion,integer,si,Tipo de Transmisión
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),identificacion.tipoEvento,string,si,Tipo de evento
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),identificacion.codigoGeneracion,string,si,Código de Generación
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),identificacion.fecEmi,string,si,Fecha del Evento
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),identificacion.horEmi,string,si,Hora del Evento
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),identificacion.tipoMoneda,string,si,Tipo de Moneda
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),emisor,object,si,Información del Emisor
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),emisor.nit,string,si,NIT (Emisor)
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),emisor.nombre,string,si,Nombre (Emisor)
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),cuerpoDocumento,array,si,Cuerpo del Documento
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),cuerpoDocumento[].numItem,integer,si,N° de ítem
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),cuerpoDocumento[].codigoGeneracionRef,string|null,si,Código de generación del EOE de Referencia
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),cuerpoDocumento[].tipoDocumento,string,si,Tipo de documento
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),cuerpoDocumento[].numDocumento,string|null,si,Documento origen
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),cuerpoDocumento[].fechaEmision,string|null,si,Fecha documento origen
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),cuerpoDocumento[].cantidad,integer,si,Cantidad
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),cuerpoDocumento[].descripcion,string,si,Descripcion
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),cuerpoDocumento[].docDel,string|null,si,Doc. Del
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),cuerpoDocumento[].docAl,string|null,si,Doc. Al
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),cuerpoDocumento[].precioUni,number,si,Precio Unitario
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),cuerpoDocumento[].ventaNoSuj,number,si,Ventas no Sujetas
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),cuerpoDocumento[].ventaExenta,number,si,Ventas Exentas
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),cuerpoDocumento[].ventaGravada,number,si,Ventas Gravadas
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),cuerpoDocumento[].tributos,array|null,si,Código del Tributo
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),resumen,object,si,Resumen
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),resumen.totalNoSuj,number,si,Total de Operaciones no Sujetas
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),resumen.totalExenta,number,si,Total de Operaciones exentas
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),resumen.totalGravada,number,si,Suma de Operaciones sin Impuestos
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),resumen.subTotal,number,si,Sub-total
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),resumen.tributos,array|null,si,Resumen Código de Tributo
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),resumen.tributos[].codigo,string,si,Resumen Código de Tributo
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),resumen.tributos[].descripcion,string,si,Nombre del Tributo
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),resumen.tributos[].valor,number,si,Valor del Tributo
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),resumen.total,number,si,Total
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),resumen.totalLetras,string|null,si,Valor en Letras
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),apendice,array|null,si,Apéndice
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),apendice[].campo,string,si,Nombre del campo
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),apendice[].etiqueta,string,si,Descripción
-fe-eop,svfe-json-schemas-new\v1\fe-eop-v1.json,(sin equivalente old),apendice[].valor,string,si,Valor/Dato
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),identificacion,object,si,Identificación
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),identificacion.version,integer,si,Versión
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),identificacion.ambiente,string,si,Ambiente de destino
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),identificacion.tipoModelo,number,si,Modelo de Facturación
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),identificacion.tipoOperacion,integer,si,Tipo de Transmisión
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),identificacion.tipoEvento,string,si,Tipo de Evento
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),identificacion.tipoContingencia,integer|null,si,Tipo de Contingencia
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),identificacion.motivoContin,string|null,si,Motivo de Contingencia
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),identificacion.codigoGeneracion,string,si,Código de Generación
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),identificacion.fecEmi,string,si,Fecha de Generación
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),identificacion.horEmi,string,si,Hora de Generación
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),identificacion.fusion,string|null,si,Fusiones y otros
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),identificacion.tipoMoneda,string,si,Tipo de Moneda
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),documentoRelacionado,array,si,Documentos Relacionados
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),documentoRelacionado[].tipoDocumento,string,si,Tipo de DTE
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),documentoRelacionado[].codigoGeneracion,string,si,Código de Generación del DTE
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),documentoRelacionado[].fechaEmision,string,si,Fecha de Generación del DTE
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),emisor,object,si,Información del Emisor
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),emisor.nit,string,si,NIT (Emisor)
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),emisor.nombre,string,si,Nombre (Emisor)
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),emisor.codEstableMH,string,si,Código del establecimiento asignado por el MH
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),emisor.codEstable,string|null,si,Código del establecimiento asignado por el contribuyente
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),emisor.codPuntoVentaMH,string,si,Código del Punto de Venta (Emisor) asignado por el MH
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),emisor.codPuntoVenta,string|null,si,Código del Punto de Venta (Emisor) asignado por el contribuyente
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),emisor.recintoFiscal,string|null,si,Recinto Fiscal
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),emisor.tipoRegimen,string|null,si,Tipo de Regimen
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),emisor.regimen,string|null,si,Régimen de exportación
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),emisor.tipoItemExpor,integer|null,si,Tipo de exportacion
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),documento,object|null,si,Información del documento
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),documento.tipoDocumento,string|null,si,Tipo de documento de identificación (Receptor)
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),documento.numDocumento,null|string,si,Número de documento de Identificación (Receptor)
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),documento.nombre,null|string,si,Nombre (Receptor)
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),documento.codPais,null|string,si,Código de país (receptor)
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),documento.nombrePais,null|string,si,País destino de la exportación (receptor)
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),documento.telefono,null|string,si,Teléfono (Receptor)
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),documento.correo,null|string,si,Correo electrónico (Receptor)
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),ventaTercero,object|null,si,Ventas por Cuenta de Terceros
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),ventaTercero.nit,string|null,si,NIT por Cuenta de Terceros
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),ventaTercero.nombre,string|null,si,"Nombre, denominación o razón social del Tercero"
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),ventaTercero.codDomiciliado,integer|null,si,Domicilio Fiscal
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),compraTercero,object|null,si,Información de Compras por cuenta de terceros
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),compraTercero.numDocumento,string|null,si,Número de documento de Identificación del tercero
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),compraTercero.nombre,string|null,si,Nombre del Tercero
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),cuerpoDocumento,array,si,Cuerpo del Documento
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),cuerpoDocumento[].numItem,integer,si,N° de ítem
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),cuerpoDocumento[].tipoItem,integer,si,Tipo de ítem
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),cuerpoDocumento[].codigoGeneracion,string,si,Código de Generación del DTE
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),cuerpoDocumento[].cantidad,number,si,Cantidad
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),cuerpoDocumento[].precioUni,number,si,Precio Unitario
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),cuerpoDocumento[].descripcion,string,si,Descripcion
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),cuerpoDocumento[].codigo,string|null,no,Código
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),cuerpoDocumento[].uniMedida,integer,no,Unidad de Medida
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),cuerpoDocumento[].montoDescu,number,si,Descuento por ítem
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),cuerpoDocumento[].codTributo,string|null,si,Tributo sujeto a cálculo de IVA
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),cuerpoDocumento[].ventaNoSuj,number,si,Ventas no Sujetas
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),cuerpoDocumento[].ventaExenta,number,si,Ventas Exentas
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),cuerpoDocumento[].ventaGravada,number,si,Ventas Gravadas
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),cuerpoDocumento[].compra,number,si,Ventas
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),cuerpoDocumento[].tributos,array|null,si,Código del Tributo
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),cuerpoDocumento[].psv,number,si,Precio Sugerido de Venta
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),cuerpoDocumento[].ivaItem,number,si,IVA por ítem
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),cuerpoDocumento[].noGravado,number,si,Cargos/Abonos que no afectan la base imponible
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),cuerpoDocumento[].seguro,number,si,Seguro
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),cuerpoDocumento[].flete,number,si,Flete
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),cuerpoDocumento[].ivaRete,number,si,IVA Retenido
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),cuerpoDocumento[].reteRenta,number,si,Retención Renta
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),resumen,object,si,Resumen
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),resumen.totalNoSuj,number,si,Total de Operaciones no Sujetas
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),resumen.totalExenta,number,si,Total de Operaciones exentas
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),resumen.totalGravada,number,si,Total de Operaciones Gravadas
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),resumen.totalCompraExcluidos,number,si,Total Compras a Sujetos Excluidos 
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),resumen.subTotalVentas,number,si,Suma de Operaciones sin Impuestos
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),resumen.tributos,array|null,si,Resumen Código de Tributo
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),resumen.tributos[].codigo,string,si,Resumen Código de Tributo
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),resumen.tributos[].descripcion,string,si,Nombre del Tributo
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),resumen.tributos[].valor,number,si,Valor del Tributo
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),resumen.totalSeguro,number|null,si,Seguro
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),resumen.totalFlete,number|null,si,Flete
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),resumen.montoTotalOperacion,number,si,Monto Total de la Operación
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),resumen.ivaRete,number,si,IVA Retenido
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),resumen.reteRenta,number|null,si,Retencion Renta
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),resumen.totalNoGravado,number,si,Total Cargos/Abonos que no afectan la base imponible
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),resumen.totalPagar,number,si,Total a Pagar
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),resumen.totalLetras,string|null,si,Valor en Letras
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),resumen.totalNoOnerosas,number,si,Transferencias de bienes no onerosas
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),resumen.totalIva,number,si,IVA 13%
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),resumen.saldoFavor,number,si,Saldo a Favor
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),apendice,array|null,si,Apéndice
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),apendice[].campo,string,si,Nombre del campo
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),apendice[].etiqueta,string,si,Descripción
-fe-eret,svfe-json-schemas-new\v1\fe-eret-v1.json,(sin equivalente old),apendice[].valor,string,si,Valor/Dato
-fe-cd,svfe-json-schemas-new\v2\fe-cd-v2.json,svfe-json-schemas-old\fe-cd-v1.json,emisor,object,si,Emisor/Donatario
-fe-cd,svfe-json-schemas-new\v2\fe-cd-v2.json,svfe-json-schemas-old\fe-cd-v1.json,emisor.tipoDocumento,string,si,Tipo de documento de identificación (Emisor) 
-fe-cd,svfe-json-schemas-new\v2\fe-cd-v2.json,svfe-json-schemas-old\fe-cd-v1.json,emisor.numDocumento,string,si,Número de documento de Identificación (Emisor)
-fe-cd,svfe-json-schemas-new\v2\fe-cd-v2.json,svfe-json-schemas-old\fe-cd-v1.json,emisor.nrc,string|null,si,NRC (Emisor)
-fe-cd,svfe-json-schemas-new\v2\fe-cd-v2.json,svfe-json-schemas-old\fe-cd-v1.json,emisor.nombre,string,si,Nombre (Emisor)
-fe-cd,svfe-json-schemas-new\v2\fe-cd-v2.json,svfe-json-schemas-old\fe-cd-v1.json,emisor.codActividad,string,si,Código de Actividad Económica (Emisor)
-fe-cd,svfe-json-schemas-new\v2\fe-cd-v2.json,svfe-json-schemas-old\fe-cd-v1.json,emisor.descActividad,string,si,Actividad Económica (Emisor)
-fe-cd,svfe-json-schemas-new\v2\fe-cd-v2.json,svfe-json-schemas-old\fe-cd-v1.json,emisor.nombreComercial,string|null,si,Nombre Comercial (Emisor)
-fe-cd,svfe-json-schemas-new\v2\fe-cd-v2.json,svfe-json-schemas-old\fe-cd-v1.json,emisor.direccion,object,si,Dirección (Emisor)
-fe-cd,svfe-json-schemas-new\v2\fe-cd-v2.json,svfe-json-schemas-old\fe-cd-v1.json,emisor.direccion.departamento,string,si,Dirección Departamento (Emisor)
-fe-cd,svfe-json-schemas-new\v2\fe-cd-v2.json,svfe-json-schemas-old\fe-cd-v1.json,emisor.direccion.municipio,string,si,Dirección Municipio (Emisor)
-fe-cd,svfe-json-schemas-new\v2\fe-cd-v2.json,svfe-json-schemas-old\fe-cd-v1.json,emisor.direccion.distrito,string,si,Dirección Distrito (Emisor)
-fe-cd,svfe-json-schemas-new\v2\fe-cd-v2.json,svfe-json-schemas-old\fe-cd-v1.json,emisor.direccion.complemento,string,si,Dirección complemento (Emisor)
-fe-cd,svfe-json-schemas-new\v2\fe-cd-v2.json,svfe-json-schemas-old\fe-cd-v1.json,emisor.telefono,string,si,Teléfono (Emisor)
-fe-cd,svfe-json-schemas-new\v2\fe-cd-v2.json,svfe-json-schemas-old\fe-cd-v1.json,emisor.correo,string,si,Correo electrónico (Emisor)
-fe-cd,svfe-json-schemas-new\v2\fe-cd-v2.json,svfe-json-schemas-old\fe-cd-v1.json,emisor.codEstable,string|null,si,Código del establecimiento asignado por el contribuyente
-fe-cd,svfe-json-schemas-new\v2\fe-cd-v2.json,svfe-json-schemas-old\fe-cd-v1.json,emisor.codPuntoVenta,string|null,si,Código del Punto de Venta (Emisor) asignado por el contribuyente
-fe-cd,svfe-json-schemas-new\v2\fe-cd-v2.json,svfe-json-schemas-old\fe-cd-v1.json,receptor,object,si,Receptor/Donante
-fe-cd,svfe-json-schemas-new\v2\fe-cd-v2.json,svfe-json-schemas-old\fe-cd-v1.json,receptor.tipoDocumento,string,si,Tipo de documento de identificación (Receptor)
-fe-cd,svfe-json-schemas-new\v2\fe-cd-v2.json,svfe-json-schemas-old\fe-cd-v1.json,receptor.numDocumento,string,si,Número de documento de Identificación (Receptor)
-fe-cd,svfe-json-schemas-new\v2\fe-cd-v2.json,svfe-json-schemas-old\fe-cd-v1.json,receptor.nrc,string|null,si,NRC (Receptor)
-fe-cd,svfe-json-schemas-new\v2\fe-cd-v2.json,svfe-json-schemas-old\fe-cd-v1.json,receptor.nombre,string,si,Nombre (Receptor)
-fe-cd,svfe-json-schemas-new\v2\fe-cd-v2.json,svfe-json-schemas-old\fe-cd-v1.json,receptor.codActividad,string|null,si,Código de Actividad Económica (Receptor)
-fe-cd,svfe-json-schemas-new\v2\fe-cd-v2.json,svfe-json-schemas-old\fe-cd-v1.json,receptor.descActividad,string|null,si,Actividad Económica (Receptor)
-fe-cd,svfe-json-schemas-new\v2\fe-cd-v2.json,svfe-json-schemas-old\fe-cd-v1.json,receptor.direccion,null|object,si,Dirección (Receptor)
-fe-cd,svfe-json-schemas-new\v2\fe-cd-v2.json,svfe-json-schemas-old\fe-cd-v1.json,receptor.direccion.departamento,string,si,Dirección Departamento (Emisor)
-fe-cd,svfe-json-schemas-new\v2\fe-cd-v2.json,svfe-json-schemas-old\fe-cd-v1.json,receptor.direccion.municipio,string,si,Dirección Municipio (Receptor)
-fe-cd,svfe-json-schemas-new\v2\fe-cd-v2.json,svfe-json-schemas-old\fe-cd-v1.json,receptor.direccion.distrito,string,si,Dirección Distrito (Receptor)
-fe-cd,svfe-json-schemas-new\v2\fe-cd-v2.json,svfe-json-schemas-old\fe-cd-v1.json,receptor.direccion.complemento,string,si,Dirección complemento (Receptor)
-fe-cd,svfe-json-schemas-new\v2\fe-cd-v2.json,svfe-json-schemas-old\fe-cd-v1.json,receptor.telefono,null|string,si,Teléfono (Receptor)
-fe-cd,svfe-json-schemas-new\v2\fe-cd-v2.json,svfe-json-schemas-old\fe-cd-v1.json,receptor.correo,null|string,si,Correo electrónico (Receptor)
-fe-cd,svfe-json-schemas-new\v2\fe-cd-v2.json,svfe-json-schemas-old\fe-cd-v1.json,receptor.codDomiciliado,integer,si,Domicilio Fiscal
-fe-cd,svfe-json-schemas-new\v2\fe-cd-v2.json,svfe-json-schemas-old\fe-cd-v1.json,receptor.codPais,string,si,Codigo de país de nacionalidad del (Receptor)
-fe-cd,svfe-json-schemas-new\v2\fe-cd-v2.json,svfe-json-schemas-old\fe-cd-v1.json,cuerpoDocumento[].tipoDepreciacion,number,si,Depreciación
-fe-cl,svfe-json-schemas-new\v2\fe-cl-v2.json,svfe-json-schemas-old\fe-cl-v1.json,identificacion.fusion,string|null,si,Fusiónes y otros
-fe-cl,svfe-json-schemas-new\v2\fe-cl-v2.json,svfe-json-schemas-old\fe-cl-v1.json,emisor.direccion.distrito,string,si,Dirección Distrito (Emisor)
-fe-cl,svfe-json-schemas-new\v2\fe-cl-v2.json,svfe-json-schemas-old\fe-cl-v1.json,receptor.tipoDocumento,string,si,Tipo de documento de identificación (Receptor)
-fe-cl,svfe-json-schemas-new\v2\fe-cl-v2.json,svfe-json-schemas-old\fe-cl-v1.json,receptor.numDocumento,string,si,Número de documento de Identificación (Receptor)
-fe-cl,svfe-json-schemas-new\v2\fe-cl-v2.json,svfe-json-schemas-old\fe-cl-v1.json,receptor.codDomiciliado,integer,si,Domicilio Fiscal
-fe-cl,svfe-json-schemas-new\v2\fe-cl-v2.json,svfe-json-schemas-old\fe-cl-v1.json,receptor.direccion.distrito,string,si,Dirección Distrito (Receptor)
-fe-cl,svfe-json-schemas-new\v2\fe-cl-v2.json,svfe-json-schemas-old\fe-cl-v1.json,cuerpoDocumento[].fechaEmision,string,si,Fecha de generación del Documento relacionado
-fe-cl,svfe-json-schemas-new\v2\fe-cl-v2.json,svfe-json-schemas-old\fe-cl-v1.json,cuerpoDocumento[].observaciones,string|null,si,Observaciones por ítem
-fe-cl,svfe-json-schemas-new\v2\fe-cl-v2.json,svfe-json-schemas-old\fe-cl-v1.json,resumen.exportacion,number,si,Total de Operaciones Exportación
-fe-cl,svfe-json-schemas-new\v2\fe-cl-v2.json,svfe-json-schemas-old\fe-cl-v1.json,resumen.observaciones,string|null,si,Observaciones
-fe-cr,svfe-json-schemas-new\v2\fe-cr-v2.json,svfe-json-schemas-old\fe-cr-v1.json,identificacion.fusion,string|null,no,Fusiónes y otros
-fe-cr,svfe-json-schemas-new\v2\fe-cr-v2.json,svfe-json-schemas-old\fe-cr-v1.json,emisor.direccion.distrito,string,si,Dirección Distrito (Emisor)
-fe-cr,svfe-json-schemas-new\v2\fe-cr-v2.json,svfe-json-schemas-old\fe-cr-v1.json,emisor.codEstable,string|null,si,Código del establecimiento asignado por el contribuyente
-fe-cr,svfe-json-schemas-new\v2\fe-cr-v2.json,svfe-json-schemas-old\fe-cr-v1.json,emisor.codPuntoVenta,string|null,si,Código del Punto de Venta (Emisor) asignado por el contribuyente
-fe-cr,svfe-json-schemas-new\v2\fe-cr-v2.json,svfe-json-schemas-old\fe-cr-v1.json,receptor.direccion.distrito,string,si,Dirección: Distrito (Receptor)
-fe-cr,svfe-json-schemas-new\v2\fe-cr-v2.json,svfe-json-schemas-old\fe-cr-v1.json,cuerpoDocumento[].tipoGeneracion,null|integer,si,Tipo de generación del documento relacionado
-fe-cr,svfe-json-schemas-new\v2\fe-cr-v2.json,svfe-json-schemas-old\fe-cr-v1.json,resumen.totalIva,number,si,IVA 13%
-fe-cr,svfe-json-schemas-new\v2\fe-cr-v2.json,svfe-json-schemas-old\fe-cr-v1.json,resumen.totalIvaRetenido,number,si,Total IVA Retenido
-fe-cr,svfe-json-schemas-new\v2\fe-cr-v2.json,svfe-json-schemas-old\fe-cr-v1.json,resumen.totalLetras,null|string,si,Valor en letras
-fe-cr,svfe-json-schemas-new\v2\fe-cr-v2.json,svfe-json-schemas-old\fe-cr-v1.json,resumen.observaciones,string|null,si,Observaciones
-fe-dcl,svfe-json-schemas-new\v2\fe-dcl-v2.json,svfe-json-schemas-old\fe-dcl-v1.json,emisor.direccion.distrito,string,si,Dirección Distrito (Emisor)
-fe-dcl,svfe-json-schemas-new\v2\fe-dcl-v2.json,svfe-json-schemas-old\fe-dcl-v1.json,emisor.puntoVenta,string|null,si,Codigo del punto de venta:(Emisor) asignado por el contribuyente
-fe-dcl,svfe-json-schemas-new\v2\fe-dcl-v2.json,svfe-json-schemas-old\fe-dcl-v1.json,receptor.direccion.distrito,string,si,Dirección Distrito (Emisor)
-fe-f,svfe-json-schemas-new\v2\fe-f-v2.json,svfe-json-schemas-old\fe-fc-v1.json,emisor.direccion.distrito,string,si,Dirección Distrito (Emisor)
-fe-f,svfe-json-schemas-new\v2\fe-f-v2.json,svfe-json-schemas-old\fe-fc-v1.json,receptor.direccion.distrito,string,si,Dirección Distrito (Receptor)
-fe-f,svfe-json-schemas-new\v2\fe-f-v2.json,svfe-json-schemas-old\fe-fc-v1.json,ventaTercero.codDomiciliado,integer|null,si,Domicilio Fiscal
-fe-f,svfe-json-schemas-new\v2\fe-f-v2.json,svfe-json-schemas-old\fe-fc-v1.json,resumen.ivaRete,number,si,IVA Retenido
-fe-f,svfe-json-schemas-new\v2\fe-f-v2.json,svfe-json-schemas-old\fe-fc-v1.json,resumen.observaciones,string|null,si,Observaciones
-fe-fse,svfe-json-schemas-new\v2\fe-fse-v2.json,svfe-json-schemas-old\fe-fse-v1.json,emisor.direccion.distrito,string,si,Dirección Distrito (Emisor)
-fe-fse,svfe-json-schemas-new\v2\fe-fse-v2.json,svfe-json-schemas-old\fe-fse-v1.json,receptor,object,si,Sujeto Excluido (Receptor)
-fe-fse,svfe-json-schemas-new\v2\fe-fse-v2.json,svfe-json-schemas-old\fe-fse-v1.json,receptor.tipoDocumento,string,si,Tipo de documento de identificación (Receptor)
-fe-fse,svfe-json-schemas-new\v2\fe-fse-v2.json,svfe-json-schemas-old\fe-fse-v1.json,receptor.numDocumento,string,si,Número de documento de Identificación (Receptor)
-fe-fse,svfe-json-schemas-new\v2\fe-fse-v2.json,svfe-json-schemas-old\fe-fse-v1.json,receptor.nombre,string,si,Nombre (Receptor)
-fe-fse,svfe-json-schemas-new\v2\fe-fse-v2.json,svfe-json-schemas-old\fe-fse-v1.json,receptor.codActividad,string|null,si,Código de Actividad Económica (Receptor)
-fe-fse,svfe-json-schemas-new\v2\fe-fse-v2.json,svfe-json-schemas-old\fe-fse-v1.json,receptor.descActividad,string|null,si,Actividad Económica (Receptor)
-fe-fse,svfe-json-schemas-new\v2\fe-fse-v2.json,svfe-json-schemas-old\fe-fse-v1.json,receptor.direccion,object,si,Dirección (Receptor)
-fe-fse,svfe-json-schemas-new\v2\fe-fse-v2.json,svfe-json-schemas-old\fe-fse-v1.json,receptor.direccion.departamento,string,si,Dirección: Departamento (Receptor)
-fe-fse,svfe-json-schemas-new\v2\fe-fse-v2.json,svfe-json-schemas-old\fe-fse-v1.json,receptor.direccion.municipio,string,si,Dirección: Municipio (Receptor)
-fe-fse,svfe-json-schemas-new\v2\fe-fse-v2.json,svfe-json-schemas-old\fe-fse-v1.json,receptor.direccion.distrito,string,si,Dirección Distrito (Receptor)
-fe-fse,svfe-json-schemas-new\v2\fe-fse-v2.json,svfe-json-schemas-old\fe-fse-v1.json,receptor.direccion.complemento,string,si,Dirección: complemento (Receptor)
-fe-fse,svfe-json-schemas-new\v2\fe-fse-v2.json,svfe-json-schemas-old\fe-fse-v1.json,receptor.telefono,string|null,si,Teléfono (Receptor)
-fe-fse,svfe-json-schemas-new\v2\fe-fse-v2.json,svfe-json-schemas-old\fe-fse-v1.json,receptor.correo,string|null,si,Correo electrónico (Receptor)
-fe-fex,svfe-json-schemas-new\v3\fe-fex-v3.json,svfe-json-schemas-old\fe-fex-v1.json,identificacion.motivoContin,string|null,si,Motivo de Contingencia
-fe-fex,svfe-json-schemas-new\v3\fe-fex-v3.json,svfe-json-schemas-old\fe-fex-v1.json,documentoRelacionado,array|null,si,Documentos Relacionados
-fe-fex,svfe-json-schemas-new\v3\fe-fex-v3.json,svfe-json-schemas-old\fe-fex-v1.json,documentoRelacionado[].tipoDocumento,string,si,Tipo de Documento Relacionado
-fe-fex,svfe-json-schemas-new\v3\fe-fex-v3.json,svfe-json-schemas-old\fe-fex-v1.json,documentoRelacionado[].tipoGeneracion,integer,si,Tipo de Generación del Documento relacionado
-fe-fex,svfe-json-schemas-new\v3\fe-fex-v3.json,svfe-json-schemas-old\fe-fex-v1.json,documentoRelacionado[].numeroDocumento,string,si,Número de documento relacionado
-fe-fex,svfe-json-schemas-new\v3\fe-fex-v3.json,svfe-json-schemas-old\fe-fex-v1.json,documentoRelacionado[].fechaEmision,string,si,Fecha de Generación del Documento Relacionado
-fe-fex,svfe-json-schemas-new\v3\fe-fex-v3.json,svfe-json-schemas-old\fe-fex-v1.json,emisor.direccion.distrito,string,si,Dirección Distrito (Emisor)
-fe-fex,svfe-json-schemas-new\v3\fe-fex-v3.json,svfe-json-schemas-old\fe-fex-v1.json,emisor.tipoRegimen,string|null,si,Tipo Régimen
-fe-fex,svfe-json-schemas-new\v3\fe-fex-v3.json,svfe-json-schemas-old\fe-fex-v1.json,ventaTercero.codDomiciliado,integer|null,si,Domicilio Fiscal
-fe-fex,svfe-json-schemas-new\v3\fe-fex-v3.json,svfe-json-schemas-old\fe-fex-v1.json,compraTercero,object|null,si,Compras por cuenta de terceros
-fe-fex,svfe-json-schemas-new\v3\fe-fex-v3.json,svfe-json-schemas-old\fe-fex-v1.json,compraTercero.numDocumento,string,si,Número de documento de Identificación del Tercero
-fe-fex,svfe-json-schemas-new\v3\fe-fex-v3.json,svfe-json-schemas-old\fe-fex-v1.json,compraTercero.nombre,string,si,Nombre del Tercero
-fe-fex,svfe-json-schemas-new\v3\fe-fex-v3.json,svfe-json-schemas-old\fe-fex-v1.json,cuerpoDocumento[].tipoItem,integer,si,Tipo de ítem
-fe-fex,svfe-json-schemas-new\v3\fe-fex-v3.json,svfe-json-schemas-old\fe-fex-v1.json,cuerpoDocumento[].numeroDocumento,string|null,si,Número de Documento Relacionado
-fe-fex,svfe-json-schemas-new\v3\fe-fex-v3.json,svfe-json-schemas-old\fe-fex-v1.json,cuerpoDocumento[].codTributo,string|null,si,Tributo sujeto a cálculo de IVA
-fe-fex,svfe-json-schemas-new\v3\fe-fex-v3.json,svfe-json-schemas-old\fe-fex-v1.json,resumen.descuGravada,number,si,Descuento global a ventas gravadas
-fe-fex,svfe-json-schemas-new\v3\fe-fex-v3.json,svfe-json-schemas-old\fe-fex-v1.json,resumen.tributos,array|null,si,Resumen Codigo de Tributos
-fe-fex,svfe-json-schemas-new\v3\fe-fex-v3.json,svfe-json-schemas-old\fe-fex-v1.json,resumen.tributos[].codigo,string,si,Resumen Código de Tributo
-fe-fex,svfe-json-schemas-new\v3\fe-fex-v3.json,svfe-json-schemas-old\fe-fex-v1.json,resumen.tributos[].descripcion,string,si,Nombre del Tributo
-fe-fex,svfe-json-schemas-new\v3\fe-fex-v3.json,svfe-json-schemas-old\fe-fex-v1.json,resumen.tributos[].valor,number,si,Valor del Tributo
-fe-fex,svfe-json-schemas-new\v3\fe-fex-v3.json,svfe-json-schemas-old\fe-fex-v1.json,resumen.totalNoOnerosas,number,si,Transferencias de bienes no onerosas
-fe-fex,svfe-json-schemas-new\v3\fe-fex-v3.json,svfe-json-schemas-old\fe-fex-v1.json,resumen.saldoFavor,number,si,Saldo a Favor
-invalidacion-schema,svfe-json-schemas-new\v3\invalidacion-schema-v3.json,svfe-json-schemas-old\anulacion-schema-v2.json,identificacion.fecEmi,string,si,Fecha del Evento 
-invalidacion-schema,svfe-json-schemas-new\v3\invalidacion-schema-v3.json,svfe-json-schemas-old\anulacion-schema-v2.json,identificacion.horEmi,string,si,Hora del Evento
-invalidacion-schema,svfe-json-schemas-new\v3\invalidacion-schema-v3.json,svfe-json-schemas-old\anulacion-schema-v2.json,identificacion.fusion,string|null,si,Fusiónes y otros
-contingencia-schema,svfe-json-schemas-new\v4\contingencia-schema-v4.json,svfe-json-schemas-old\contingencia-schema-v3.json,emisor.codPuntoVentaMH,string|null,si,Código del Punto de Venta (Emisor) Asignado por el MH
-fe-ccf,svfe-json-schemas-new\v4\fe-ccf-v4.json,svfe-json-schemas-old\fe-ccf-v3.json,emisor.direccion.distrito,string,si,Dirección Distrito (Emisor)
-fe-ccf,svfe-json-schemas-new\v4\fe-ccf-v4.json,svfe-json-schemas-old\fe-ccf-v3.json,receptor.direccion.distrito,string,si,Dirección Distrito (Receptor)
-fe-ccf,svfe-json-schemas-new\v4\fe-ccf-v4.json,svfe-json-schemas-old\fe-ccf-v3.json,ventaTercero.codDomiciliado,integer|null,si,Domicilio Fiscal
-fe-ccf,svfe-json-schemas-new\v4\fe-ccf-v4.json,svfe-json-schemas-old\fe-ccf-v3.json,resumen.ivaPerci,number,si,IVA Percibido
-fe-ccf,svfe-json-schemas-new\v4\fe-ccf-v4.json,svfe-json-schemas-old\fe-ccf-v3.json,resumen.ivaRete,number,si,IVA Retenido
-fe-ccf,svfe-json-schemas-new\v4\fe-ccf-v4.json,svfe-json-schemas-old\fe-ccf-v3.json,resumen.observaciones,string|null,si,Observaciones
-fe-nc,svfe-json-schemas-new\v4\fe-nc-v4.json,svfe-json-schemas-old\fe-nc-v3.json,identificacion.fusion,string|null,si,Fusiónes y otros
-fe-nc,svfe-json-schemas-new\v4\fe-nc-v4.json,svfe-json-schemas-old\fe-nc-v3.json,emisor.direccion.distrito,string,si,Dirección Distrito (Emisor)
-fe-nc,svfe-json-schemas-new\v4\fe-nc-v4.json,svfe-json-schemas-old\fe-nc-v3.json,receptor.tipoDocumento,string,si,Tipo de Documento identificacion (Receptor)
-fe-nc,svfe-json-schemas-new\v4\fe-nc-v4.json,svfe-json-schemas-old\fe-nc-v3.json,receptor.numDocumento,string,si,Número de documento de Identificacion (Receptor)
-fe-nc,svfe-json-schemas-new\v4\fe-nc-v4.json,svfe-json-schemas-old\fe-nc-v3.json,receptor.direccion.distrito,string,si,Dirección Distrito (Receptor)
-fe-nc,svfe-json-schemas-new\v4\fe-nc-v4.json,svfe-json-schemas-old\fe-nc-v3.json,ventaTercero.codDomiciliado,integer|null,si,Domicilio Fiscal
-fe-nc,svfe-json-schemas-new\v4\fe-nc-v4.json,svfe-json-schemas-old\fe-nc-v3.json,cuerpoDocumento[].noGravado,number,si,Cargos/Abonos que no afectan la base imponible
-fe-nc,svfe-json-schemas-new\v4\fe-nc-v4.json,svfe-json-schemas-old\fe-nc-v3.json,cuerpoDocumento[].ivaPerci,number,si,IVA percibido
-fe-nc,svfe-json-schemas-new\v4\fe-nc-v4.json,svfe-json-schemas-old\fe-nc-v3.json,cuerpoDocumento[].totalIva,number,si,IVA 13%
-fe-nc,svfe-json-schemas-new\v4\fe-nc-v4.json,svfe-json-schemas-old\fe-nc-v3.json,cuerpoDocumento[].ivaRete,number,si, IVA retenido
-fe-nc,svfe-json-schemas-new\v4\fe-nc-v4.json,svfe-json-schemas-old\fe-nc-v3.json,resumen.ivaPerci,number,si,IVA Percibido
-fe-nc,svfe-json-schemas-new\v4\fe-nc-v4.json,svfe-json-schemas-old\fe-nc-v3.json,resumen.totalIva,number,si,IVA 13%
-fe-nc,svfe-json-schemas-new\v4\fe-nc-v4.json,svfe-json-schemas-old\fe-nc-v3.json,resumen.ivaRete,number,si,IVA Retenido
-fe-nc,svfe-json-schemas-new\v4\fe-nc-v4.json,svfe-json-schemas-old\fe-nc-v3.json,resumen.totalNoGravado,number,si,Total Cargos/Abonos que no afectan la base imponible
-fe-nc,svfe-json-schemas-new\v4\fe-nc-v4.json,svfe-json-schemas-old\fe-nc-v3.json,resumen.totalPagar,number,si,Total a Pagar
-fe-nc,svfe-json-schemas-new\v4\fe-nc-v4.json,svfe-json-schemas-old\fe-nc-v3.json,resumen.observaciones,string|null,si,Observaciones
-fe-nc,svfe-json-schemas-new\v4\fe-nc-v4.json,svfe-json-schemas-old\fe-nc-v3.json,resumen.codigoRetencionMH,string|null,si,Código retención MH
-fe-nd,svfe-json-schemas-new\v4\fe-nd-v4.json,svfe-json-schemas-old\fe-nd-v3.json,identificacion.fusion,string|null,si,Fusiónes y otros
-fe-nd,svfe-json-schemas-new\v4\fe-nd-v4.json,svfe-json-schemas-old\fe-nd-v3.json,emisor.direccion.distrito,string,si,Dirección Distrito (Emisor)
-fe-nd,svfe-json-schemas-new\v4\fe-nd-v4.json,svfe-json-schemas-old\fe-nd-v3.json,receptor.tipoDocumento,string,si,Tipo de documento de identificación (Receptor)
-fe-nd,svfe-json-schemas-new\v4\fe-nd-v4.json,svfe-json-schemas-old\fe-nd-v3.json,receptor.numDocumento,string,si,Número de documento de Identificación (Receptor)
-fe-nd,svfe-json-schemas-new\v4\fe-nd-v4.json,svfe-json-schemas-old\fe-nd-v3.json,receptor.direccion.distrito,string,si,Dirección Distrito (Receptor)
-fe-nd,svfe-json-schemas-new\v4\fe-nd-v4.json,svfe-json-schemas-old\fe-nd-v3.json,ventaTercero.codDomiciliado,integer|null,si,Domicilio Fiscal
-fe-nd,svfe-json-schemas-new\v4\fe-nd-v4.json,svfe-json-schemas-old\fe-nd-v3.json,cuerpoDocumento[].,array|null,si,Código del Tributo
-fe-nd,svfe-json-schemas-new\v4\fe-nd-v4.json,svfe-json-schemas-old\fe-nd-v3.json,cuerpoDocumento[].noGravado,number,si,Cargos/Abonos que no afectan la base imponible
-fe-nd,svfe-json-schemas-new\v4\fe-nd-v4.json,svfe-json-schemas-old\fe-nd-v3.json,cuerpoDocumento[].ivaPerci,number,si,IVA percibido
-fe-nd,svfe-json-schemas-new\v4\fe-nd-v4.json,svfe-json-schemas-old\fe-nd-v3.json,cuerpoDocumento[].totalIva,number,si,IVA 13%
-fe-nd,svfe-json-schemas-new\v4\fe-nd-v4.json,svfe-json-schemas-old\fe-nd-v3.json,cuerpoDocumento[].ivaRete,number,si, IVA retenido
-fe-nd,svfe-json-schemas-new\v4\fe-nd-v4.json,svfe-json-schemas-old\fe-nd-v3.json,resumen.,array|null,si,Resumen de 
-fe-nd,svfe-json-schemas-new\v4\fe-nd-v4.json,svfe-json-schemas-old\fe-nd-v3.json,resumen.[].codigo,string,si,Resumen Código de Tributo
-fe-nd,svfe-json-schemas-new\v4\fe-nd-v4.json,svfe-json-schemas-old\fe-nd-v3.json,resumen.[].descripcion,string,si,Nombre del Tributo
-fe-nd,svfe-json-schemas-new\v4\fe-nd-v4.json,svfe-json-schemas-old\fe-nd-v3.json,resumen.[].valor,number,si,Valor del Tributo
-fe-nd,svfe-json-schemas-new\v4\fe-nd-v4.json,svfe-json-schemas-old\fe-nd-v3.json,resumen.ivaPerci,number,si,IVA Percibido
-fe-nd,svfe-json-schemas-new\v4\fe-nd-v4.json,svfe-json-schemas-old\fe-nd-v3.json,resumen.totalIva,number,si,IVA 13%
-fe-nd,svfe-json-schemas-new\v4\fe-nd-v4.json,svfe-json-schemas-old\fe-nd-v3.json,resumen.ivaRete,number,si,IVA Retenido
-fe-nd,svfe-json-schemas-new\v4\fe-nd-v4.json,svfe-json-schemas-old\fe-nd-v3.json,resumen.totalNoGravado,number,si,Total Cargos/Abonos que no afectan la base imponible
-fe-nd,svfe-json-schemas-new\v4\fe-nd-v4.json,svfe-json-schemas-old\fe-nd-v3.json,resumen.totalPagar,number,si,Total a Pagar
-fe-nd,svfe-json-schemas-new\v4\fe-nd-v4.json,svfe-json-schemas-old\fe-nd-v3.json,resumen.observaciones,string|null,si,Observaciones
-fe-nd,svfe-json-schemas-new\v4\fe-nd-v4.json,svfe-json-schemas-old\fe-nd-v3.json,resumen.codigoRetencionMH,string|null,si,Código retención MH
-fe-nr,svfe-json-schemas-new\v4\fe-nr-v4.json,svfe-json-schemas-old\fe-nr-v3.json,emisor.direccion.distrito,string,si,Dirección Distrito (Emisor)
-fe-nr,svfe-json-schemas-new\v4\fe-nr-v4.json,svfe-json-schemas-old\fe-nr-v3.json,receptor.direccion.distrito,string,si,Dirección Distrito (Emisor)
-fe-nr,svfe-json-schemas-new\v4\fe-nr-v4.json,svfe-json-schemas-old\fe-nr-v3.json,ventaTercero.codDomiciliado,integer|null,si,Domicilio Fiscal
-fe-nr,svfe-json-schemas-new\v4\fe-nr-v4.json,svfe-json-schemas-old\fe-nr-v3.json,resumen.observaciones,string|null,si,Observaciones
+schema,new_file,old_file,path,type,required,description
+"contingencia-schema","svfe-json-schemas-new/v4/contingencia-schema-v4.json","svfe-json-schemas-old/contingencia-schema-v3.json","emisor.codPuntoVentaMH","string|null","si","Código del Punto de Venta (Emisor) Asignado por el MH"
+"fe-ccf","svfe-json-schemas-new/v4/fe-ccf-v4.json","svfe-json-schemas-old/fe-ccf-v3.json","emisor.direccion.distrito","string","si","Dirección Distrito (Emisor)"
+"fe-ccf","svfe-json-schemas-new/v4/fe-ccf-v4.json","svfe-json-schemas-old/fe-ccf-v3.json","receptor.direccion.distrito","string","si","Dirección Distrito (Receptor)"
+"fe-ccf","svfe-json-schemas-new/v4/fe-ccf-v4.json","svfe-json-schemas-old/fe-ccf-v3.json","ventaTercero.codDomiciliado","integer|null","si","Domicilio Fiscal"
+"fe-ccf","svfe-json-schemas-new/v4/fe-ccf-v4.json","svfe-json-schemas-old/fe-ccf-v3.json","resumen.ivaPerci","number","si","IVA Percibido"
+"fe-ccf","svfe-json-schemas-new/v4/fe-ccf-v4.json","svfe-json-schemas-old/fe-ccf-v3.json","resumen.ivaRete","number","si","IVA Retenido"
+"fe-ccf","svfe-json-schemas-new/v4/fe-ccf-v4.json","svfe-json-schemas-old/fe-ccf-v3.json","resumen.observaciones","string|null","si","Observaciones"
+"fe-cd","svfe-json-schemas-new/v2/fe-cd-v2.json","svfe-json-schemas-old/fe-cd-v1.json","emisor","object","si","Emisor/Donatario"
+"fe-cd","svfe-json-schemas-new/v2/fe-cd-v2.json","svfe-json-schemas-old/fe-cd-v1.json","emisor.tipoDocumento","string","si","Tipo de documento de identificación (Emisor) "
+"fe-cd","svfe-json-schemas-new/v2/fe-cd-v2.json","svfe-json-schemas-old/fe-cd-v1.json","emisor.numDocumento","string","si","Número de documento de Identificación (Emisor)"
+"fe-cd","svfe-json-schemas-new/v2/fe-cd-v2.json","svfe-json-schemas-old/fe-cd-v1.json","emisor.nrc","string|null","si","NRC (Emisor)"
+"fe-cd","svfe-json-schemas-new/v2/fe-cd-v2.json","svfe-json-schemas-old/fe-cd-v1.json","emisor.nombre","string","si","Nombre (Emisor)"
+"fe-cd","svfe-json-schemas-new/v2/fe-cd-v2.json","svfe-json-schemas-old/fe-cd-v1.json","emisor.codActividad","string","si","Código de Actividad Económica (Emisor)"
+"fe-cd","svfe-json-schemas-new/v2/fe-cd-v2.json","svfe-json-schemas-old/fe-cd-v1.json","emisor.descActividad","string","si","Actividad Económica (Emisor)"
+"fe-cd","svfe-json-schemas-new/v2/fe-cd-v2.json","svfe-json-schemas-old/fe-cd-v1.json","emisor.nombreComercial","string|null","si","Nombre Comercial (Emisor)"
+"fe-cd","svfe-json-schemas-new/v2/fe-cd-v2.json","svfe-json-schemas-old/fe-cd-v1.json","emisor.direccion","object","si","Dirección (Emisor)"
+"fe-cd","svfe-json-schemas-new/v2/fe-cd-v2.json","svfe-json-schemas-old/fe-cd-v1.json","emisor.direccion.departamento","string","si","Dirección Departamento (Emisor)"
+"fe-cd","svfe-json-schemas-new/v2/fe-cd-v2.json","svfe-json-schemas-old/fe-cd-v1.json","emisor.direccion.municipio","string","si","Dirección Municipio (Emisor)"
+"fe-cd","svfe-json-schemas-new/v2/fe-cd-v2.json","svfe-json-schemas-old/fe-cd-v1.json","emisor.direccion.distrito","string","si","Dirección Distrito (Emisor)"
+"fe-cd","svfe-json-schemas-new/v2/fe-cd-v2.json","svfe-json-schemas-old/fe-cd-v1.json","emisor.direccion.complemento","string","si","Dirección complemento (Emisor)"
+"fe-cd","svfe-json-schemas-new/v2/fe-cd-v2.json","svfe-json-schemas-old/fe-cd-v1.json","emisor.telefono","string","si","Teléfono (Emisor)"
+"fe-cd","svfe-json-schemas-new/v2/fe-cd-v2.json","svfe-json-schemas-old/fe-cd-v1.json","emisor.correo","string","si","Correo electrónico (Emisor)"
+"fe-cd","svfe-json-schemas-new/v2/fe-cd-v2.json","svfe-json-schemas-old/fe-cd-v1.json","emisor.codEstable","string|null","si","Código del establecimiento asignado por el contribuyente"
+"fe-cd","svfe-json-schemas-new/v2/fe-cd-v2.json","svfe-json-schemas-old/fe-cd-v1.json","emisor.codPuntoVenta","string|null","si","Código del Punto de Venta (Emisor) asignado por el contribuyente"
+"fe-cd","svfe-json-schemas-new/v2/fe-cd-v2.json","svfe-json-schemas-old/fe-cd-v1.json","receptor","object","si","Receptor/Donante"
+"fe-cd","svfe-json-schemas-new/v2/fe-cd-v2.json","svfe-json-schemas-old/fe-cd-v1.json","receptor.tipoDocumento","string","si","Tipo de documento de identificación (Receptor)"
+"fe-cd","svfe-json-schemas-new/v2/fe-cd-v2.json","svfe-json-schemas-old/fe-cd-v1.json","receptor.numDocumento","string","si","Número de documento de Identificación (Receptor)"
+"fe-cd","svfe-json-schemas-new/v2/fe-cd-v2.json","svfe-json-schemas-old/fe-cd-v1.json","receptor.nrc","string|null","si","NRC (Receptor)"
+"fe-cd","svfe-json-schemas-new/v2/fe-cd-v2.json","svfe-json-schemas-old/fe-cd-v1.json","receptor.nombre","string","si","Nombre (Receptor)"
+"fe-cd","svfe-json-schemas-new/v2/fe-cd-v2.json","svfe-json-schemas-old/fe-cd-v1.json","receptor.codActividad","string|null","si","Código de Actividad Económica (Receptor)"
+"fe-cd","svfe-json-schemas-new/v2/fe-cd-v2.json","svfe-json-schemas-old/fe-cd-v1.json","receptor.descActividad","string|null","si","Actividad Económica (Receptor)"
+"fe-cd","svfe-json-schemas-new/v2/fe-cd-v2.json","svfe-json-schemas-old/fe-cd-v1.json","receptor.direccion","null|object","si","Dirección (Receptor)"
+"fe-cd","svfe-json-schemas-new/v2/fe-cd-v2.json","svfe-json-schemas-old/fe-cd-v1.json","receptor.direccion.departamento","string","si","Dirección Departamento (Emisor)"
+"fe-cd","svfe-json-schemas-new/v2/fe-cd-v2.json","svfe-json-schemas-old/fe-cd-v1.json","receptor.direccion.municipio","string","si","Dirección Municipio (Receptor)"
+"fe-cd","svfe-json-schemas-new/v2/fe-cd-v2.json","svfe-json-schemas-old/fe-cd-v1.json","receptor.direccion.distrito","string","si","Dirección Distrito (Receptor)"
+"fe-cd","svfe-json-schemas-new/v2/fe-cd-v2.json","svfe-json-schemas-old/fe-cd-v1.json","receptor.direccion.complemento","string","si","Dirección complemento (Receptor)"
+"fe-cd","svfe-json-schemas-new/v2/fe-cd-v2.json","svfe-json-schemas-old/fe-cd-v1.json","receptor.telefono","null|string","si","Teléfono (Receptor)"
+"fe-cd","svfe-json-schemas-new/v2/fe-cd-v2.json","svfe-json-schemas-old/fe-cd-v1.json","receptor.correo","null|string","si","Correo electrónico (Receptor)"
+"fe-cd","svfe-json-schemas-new/v2/fe-cd-v2.json","svfe-json-schemas-old/fe-cd-v1.json","receptor.codDomiciliado","integer","si","Domicilio Fiscal"
+"fe-cd","svfe-json-schemas-new/v2/fe-cd-v2.json","svfe-json-schemas-old/fe-cd-v1.json","receptor.codPais","string","si","Codigo de país de nacionalidad del (Receptor)"
+"fe-cd","svfe-json-schemas-new/v2/fe-cd-v2.json","svfe-json-schemas-old/fe-cd-v1.json","cuerpoDocumento[].tipoDepreciacion","number","si","Depreciación"
+"fe-cl","svfe-json-schemas-new/v2/fe-cl-v2.json","svfe-json-schemas-old/fe-cl-v1.json","identificacion.fusion","string|null","si","Fusiónes y otros"
+"fe-cl","svfe-json-schemas-new/v2/fe-cl-v2.json","svfe-json-schemas-old/fe-cl-v1.json","emisor.direccion.distrito","string","si","Dirección Distrito (Emisor)"
+"fe-cl","svfe-json-schemas-new/v2/fe-cl-v2.json","svfe-json-schemas-old/fe-cl-v1.json","receptor.tipoDocumento","string","si","Tipo de documento de identificación (Receptor)"
+"fe-cl","svfe-json-schemas-new/v2/fe-cl-v2.json","svfe-json-schemas-old/fe-cl-v1.json","receptor.numDocumento","string","si","Número de documento de Identificación (Receptor)"
+"fe-cl","svfe-json-schemas-new/v2/fe-cl-v2.json","svfe-json-schemas-old/fe-cl-v1.json","receptor.codDomiciliado","integer","si","Domicilio Fiscal"
+"fe-cl","svfe-json-schemas-new/v2/fe-cl-v2.json","svfe-json-schemas-old/fe-cl-v1.json","receptor.direccion.distrito","string","si","Dirección Distrito (Receptor)"
+"fe-cl","svfe-json-schemas-new/v2/fe-cl-v2.json","svfe-json-schemas-old/fe-cl-v1.json","cuerpoDocumento[].fechaEmision","string","si","Fecha de generación del Documento relacionado"
+"fe-cl","svfe-json-schemas-new/v2/fe-cl-v2.json","svfe-json-schemas-old/fe-cl-v1.json","cuerpoDocumento[].observaciones","string|null","si","Observaciones por ítem"
+"fe-cl","svfe-json-schemas-new/v2/fe-cl-v2.json","svfe-json-schemas-old/fe-cl-v1.json","resumen.exportacion","number","si","Total de Operaciones Exportación"
+"fe-cl","svfe-json-schemas-new/v2/fe-cl-v2.json","svfe-json-schemas-old/fe-cl-v1.json","resumen.observaciones","string|null","si","Observaciones"
+"fe-cr","svfe-json-schemas-new/v2/fe-cr-v2.json","svfe-json-schemas-old/fe-cr-v1.json","identificacion.fusion","string|null","no","Fusiónes y otros"
+"fe-cr","svfe-json-schemas-new/v2/fe-cr-v2.json","svfe-json-schemas-old/fe-cr-v1.json","emisor.direccion.distrito","string","si","Dirección Distrito (Emisor)"
+"fe-cr","svfe-json-schemas-new/v2/fe-cr-v2.json","svfe-json-schemas-old/fe-cr-v1.json","emisor.codEstable","string|null","si","Código del establecimiento asignado por el contribuyente"
+"fe-cr","svfe-json-schemas-new/v2/fe-cr-v2.json","svfe-json-schemas-old/fe-cr-v1.json","emisor.codPuntoVenta","string|null","si","Código del Punto de Venta (Emisor) asignado por el contribuyente"
+"fe-cr","svfe-json-schemas-new/v2/fe-cr-v2.json","svfe-json-schemas-old/fe-cr-v1.json","receptor.direccion.distrito","string","si","Dirección: Distrito (Receptor)"
+"fe-cr","svfe-json-schemas-new/v2/fe-cr-v2.json","svfe-json-schemas-old/fe-cr-v1.json","cuerpoDocumento[].tipoGeneracion","null|integer","si","Tipo de generación del documento relacionado"
+"fe-cr","svfe-json-schemas-new/v2/fe-cr-v2.json","svfe-json-schemas-old/fe-cr-v1.json","resumen.totalIva","number","si","IVA 13%"
+"fe-cr","svfe-json-schemas-new/v2/fe-cr-v2.json","svfe-json-schemas-old/fe-cr-v1.json","resumen.totalIvaRetenido","number","si","Total IVA Retenido"
+"fe-cr","svfe-json-schemas-new/v2/fe-cr-v2.json","svfe-json-schemas-old/fe-cr-v1.json","resumen.totalLetras","null|string","si","Valor en letras"
+"fe-cr","svfe-json-schemas-new/v2/fe-cr-v2.json","svfe-json-schemas-old/fe-cr-v1.json","resumen.observaciones","string|null","si","Observaciones"
+"fe-dcl","svfe-json-schemas-new/v2/fe-dcl-v2.json","svfe-json-schemas-old/fe-dcl-v1.json","emisor.direccion.distrito","string","si","Dirección Distrito (Emisor)"
+"fe-dcl","svfe-json-schemas-new/v2/fe-dcl-v2.json","svfe-json-schemas-old/fe-dcl-v1.json","emisor.puntoVenta","string|null","si","Codigo del punto de venta:(Emisor) asignado por el contribuyente"
+"fe-dcl","svfe-json-schemas-new/v2/fe-dcl-v2.json","svfe-json-schemas-old/fe-dcl-v1.json","receptor.direccion.distrito","string","si","Dirección Distrito (Emisor)"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","identificacion","object","si","Identificación"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","identificacion.version","integer","si","Versión"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","identificacion.ambiente","string","si","Ambiente de destino"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","identificacion.codigoGeneracion","string","si","Código de Generación"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","identificacion.tipoEvento","string","si","Tipo de Evento"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","identificacion.fecEmi","string","si","Fecha del evento"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","identificacion.horEmi","string","si","Hora del evento"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","identificacion.fusion","string|null","si","Fusiones y otros"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","identificacion.tipoMoneda","string","si","Tipo de Moneda"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","emisor","object","si","Información del Emisor"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","emisor.nit","string","si","NIT (Emisor)"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","emisor.nombre","string","si","Nombre (Emisor)"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","emisor.codEstableMH","string","si","Código del establecimiento asignado por el MH"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","emisor.codEstable","string|null","no","Código del establecimiento asignado por el contribuyente (Opcional)"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","emisor.codPuntoVentaMH","string","si","Código del Punto de Venta (Emisor) asignado por el MH"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","emisor.codPuntoVenta","string|null","no","Código del Punto de Venta (Emisor) asignado por el contribuyente (Opcional)"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","documento","object|null","si","Informacion del Documento a aplicar el evento"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","documento.tipoDte","string","si","Tipo de DTE"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","documento.tipoGeneracion","integer","si","Tipo de Generacion del Documento Tributario relacionado"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","documento.numeroDocumento","string","si","Numero de documento tributario relacionado"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","documento.fecEmi","string","si","Fecha del evento"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","documento.numeroDocumentoC","string|null","si","Numero del documento de complemento"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","documento.tipoDocumento","string|null","si","Tipo de documento de identificación (Receptor)"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","documento.numDocumento","string|null","si","Número de documento de Identificación (Receptor)"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","documento.nombre","string|null","si","Nombre (Receptor)"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","documento.telefono","string|null","no","Teléfono (Receptor) (Opcional)"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","documento.correo","string|null","si","Correo electrónico (Receptor)"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","ventaTercero","object|null","si","Ventas por Cuenta de Terceros"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","ventaTercero.nit","string|null","si","NIT por cuenta de Terceros"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","ventaTercero.nombre","string|null","si","Nombre, denominación o razón social del Tercero"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","ventaTercero.codDomiciliado","integer|null","si","Domicilio Fiscal"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","cuerpoDocumento","array","si","Cuerpo del Documento"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","cuerpoDocumento[]","object","si",""
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","cuerpoDocumento[].numItem","integer","si","N° de ítem"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","cuerpoDocumento[].tipoItem","integer","si","Tipo de ítem"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","cuerpoDocumento[].cantidad","number","si","Cantidad"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","cuerpoDocumento[].codigo","string|null","si","codigo"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","cuerpoDocumento[].uniMedida","integer","si","Unidad de Medida"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","cuerpoDocumento[].descripcion","string|null","si","Descripcion"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","cuerpoDocumento[].codigoS","string|null","si","Codigo del bien en sustitución"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","cuerpoDocumento[].descripcionS","string|null","si","Descripcion del bien en sustitución"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","cuerpoDocumento[].precioUni","number","si","Precio Unitario"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","cuerpoDocumento[].montoDescu","number","si","Descuento por ítem"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","cuerpoDocumento[].ventaNoSuj","number","si","Ventas no Sujetas"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","cuerpoDocumento[].ventaExenta","number","si","Ventas Exentas"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","cuerpoDocumento[].ventaGravada","number","si","Ventas Gravadas"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","cuerpoDocumento[].noGravado","number","si","Cargos/Abonos que no afectan la base imponible"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","resumen","object","si","Resumen"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","resumen.totalNoSuj","number","si","Total de Operaciones no Sujetas"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","resumen.totalExenta","number","si","Total de Operaciones exentas"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","resumen.totalGravada","number","si","Suma de Operaciones sin Impuestos"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","resumen.subTotalVentas","number","si","Suma de Operaciones sin Impuestos"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","resumen.seguro","number","si","Seguro"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","resumen.flete","number","si","Flete"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","resumen.subTotal","number","si","Subtotal"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","resumen.totalNoGravado","number","si","Total Cargos/Abonos que no afectan la base imponible"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","resumen.montoTotalOperacion","number","si","Monto Total de la Operación"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","resumen.totalLetras","string|null","si","Valor en Letras"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","resumen.pagos","array|null","si","Pagos"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","resumen.pagos[]","object","si",""
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","resumen.pagos[].plazo","string","si","Plazo"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","resumen.pagos[].periodo","number","si","Período de plazo"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","resumen.fecha","string","si","Fecha de vencimiento de la garantia"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","motivo","object","si","Datos del motivo de Anulacion"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","motivo.tipoAnulacion","integer","si","Tipo de Gestion"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","motivo.motivoAnulacion","string","si","Motivo de anulacion"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","motivo.nombreResponsable","string","si","Nombre de la persona responsable de anular el DTE"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","motivo.tipDocResponsable","integer","si","Tipo documento de identificación: 1 - NIT, 2 - DUI, 3 - Carnet de residente, 4 - PASAPORTE, 5 - OTRO"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","motivo.numDocResponsable","string","si","Número de documento de identificación "
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","motivo.nombreSolicita","string","si","Nombre de la persona que solicita anular el DTE"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","motivo.tipDocSolicita","integer","si","Tipo documento de identificación solicitante: 1 - NIT, 2 - DUI, 3 - Carnet de residente, 4 - PASAPORTE, 5 - OTRO"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","motivo.numDocSolicita","string","si","Número de documento de identificación solicitante."
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","apendice","array|null","si","Apéndice"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","apendice[]","object","si",""
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","apendice[].campo","string","si","Nombre del campo"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","apendice[].etiqueta","string","si","Descripción"
+"fe-eges","svfe-json-schemas-new/v1/fe-eges-v1.json","(sin equivalente old)","apendice[].valor","string","si","Valor/Dato"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","identificacion","object","si","Identificación"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","identificacion.version","integer","si","Versión"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","identificacion.ambiente","string","si","Ambiente de destino"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","identificacion.tipoModelo","integer","si","Modelo de Facturación"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","identificacion.tipoOperacion","integer","si","Tipo de Transmisión"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","identificacion.tipoEvento","string","si","Tipo de evento"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","identificacion.codigoGeneracion","string","si","Código de Generación"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","identificacion.fecEmi","string","si","Fecha del Evento"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","identificacion.horEmi","string","si","Hora del Evento"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","identificacion.tipoMoneda","string","si","Tipo de Moneda"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","emisor","object","si","Información del Emisor"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","emisor.nit","string","si","NIT (Emisor)"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","emisor.nombre","string","si","Nombre (Emisor)"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","cuerpoDocumento","array","si","Cuerpo del Documento"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","cuerpoDocumento[]","object","si",""
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","cuerpoDocumento[].numItem","integer","si","N° de ítem"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","cuerpoDocumento[].codigoGeneracionRef","string|null","si","Código de generación del EOE de Referencia"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","cuerpoDocumento[].tipoDocumento","string","si","Tipo de documento"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","cuerpoDocumento[].numDocumento","string|null","si","Documento origen"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","cuerpoDocumento[].fechaEmision","string|null","si","Fecha documento origen"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","cuerpoDocumento[].cantidad","integer","si","Cantidad"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","cuerpoDocumento[].descripcion","string","si","Descripcion"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","cuerpoDocumento[].docDel","string|null","si","Doc. Del"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","cuerpoDocumento[].docAl","string|null","si","Doc. Al"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","cuerpoDocumento[].precioUni","number","si","Precio Unitario"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","cuerpoDocumento[].ventaNoSuj","number","si","Ventas no Sujetas"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","cuerpoDocumento[].ventaExenta","number","si","Ventas Exentas"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","cuerpoDocumento[].ventaGravada","number","si","Ventas Gravadas"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","cuerpoDocumento[].tributos","array|null","si","Código del Tributo"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","cuerpoDocumento[].tributos[]","string","si",""
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","resumen","object","si","Resumen"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","resumen.totalNoSuj","number","si","Total de Operaciones no Sujetas"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","resumen.totalExenta","number","si","Total de Operaciones exentas"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","resumen.totalGravada","number","si","Suma de Operaciones sin Impuestos"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","resumen.subTotal","number","si","Sub-total"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","resumen.tributos","array|null","si","Resumen Código de Tributo"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","resumen.tributos[]","object","si",""
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","resumen.tributos[].codigo","string","si","Resumen Código de Tributo"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","resumen.tributos[].descripcion","string","si","Nombre del Tributo"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","resumen.tributos[].valor","number","si","Valor del Tributo"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","resumen.total","number","si","Total"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","resumen.totalLetras","string|null","si","Valor en Letras"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","apendice","array|null","si","Apéndice"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","apendice[]","object","si",""
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","apendice[].campo","string","si","Nombre del campo"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","apendice[].etiqueta","string","si","Descripción"
+"fe-eop","svfe-json-schemas-new/v1/fe-eop-v1.json","(sin equivalente old)","apendice[].valor","string","si","Valor/Dato"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","identificacion","object","si","Identificación"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","identificacion.version","integer","si","Versión"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","identificacion.ambiente","string","si","Ambiente de destino"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","identificacion.tipoModelo","number","si","Modelo de Facturación"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","identificacion.tipoOperacion","integer","si","Tipo de Transmisión"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","identificacion.tipoEvento","string","si","Tipo de Evento"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","identificacion.tipoContingencia","integer|null","si","Tipo de Contingencia"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","identificacion.motivoContin","string|null","si","Motivo de Contingencia"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","identificacion.codigoGeneracion","string","si","Código de Generación"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","identificacion.fecEmi","string","si","Fecha de Generación"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","identificacion.horEmi","string","si","Hora de Generación"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","identificacion.fusion","string|null","si","Fusiones y otros"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","identificacion.tipoMoneda","string","si","Tipo de Moneda"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","documentoRelacionado","array","si","Documentos Relacionados"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","documentoRelacionado[]","object","si",""
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","documentoRelacionado[].tipoDocumento","string","si","Tipo de DTE"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","documentoRelacionado[].codigoGeneracion","string","si","Código de Generación del DTE"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","documentoRelacionado[].fechaEmision","string","si","Fecha de Generación del DTE"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","emisor","object","si","Información del Emisor"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","emisor.nit","string","si","NIT (Emisor)"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","emisor.nombre","string","si","Nombre (Emisor)"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","emisor.codEstableMH","string","si","Código del establecimiento asignado por el MH"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","emisor.codEstable","string|null","si","Código del establecimiento asignado por el contribuyente"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","emisor.codPuntoVentaMH","string","si","Código del Punto de Venta (Emisor) asignado por el MH"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","emisor.codPuntoVenta","string|null","si","Código del Punto de Venta (Emisor) asignado por el contribuyente"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","emisor.recintoFiscal","string|null","si","Recinto Fiscal"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","emisor.tipoRegimen","string|null","si","Tipo de Regimen"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","emisor.regimen","string|null","si","Régimen de exportación"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","emisor.tipoItemExpor","integer|null","si","Tipo de exportacion"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","documento","object|null","si","Información del documento"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","documento.tipoDocumento","string|null","si","Tipo de documento de identificación (Receptor)"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","documento.numDocumento","null|string","si","Número de documento de Identificación (Receptor)"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","documento.nombre","null|string","si","Nombre (Receptor)"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","documento.codPais","null|string","si","Código de país (receptor)"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","documento.nombrePais","null|string","si","País destino de la exportación (receptor)"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","documento.telefono","null|string","si","Teléfono (Receptor)"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","documento.correo","null|string","si","Correo electrónico (Receptor)"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","ventaTercero","object|null","si","Ventas por Cuenta de Terceros"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","ventaTercero.nit","string|null","si","NIT por Cuenta de Terceros"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","ventaTercero.nombre","string|null","si","Nombre, denominación o razón social del Tercero"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","ventaTercero.codDomiciliado","integer|null","si","Domicilio Fiscal"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","compraTercero","object|null","si","Información de Compras por cuenta de terceros"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","compraTercero.numDocumento","string|null","si","Número de documento de Identificación del tercero"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","compraTercero.nombre","string|null","si","Nombre del Tercero"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","cuerpoDocumento","array","si","Cuerpo del Documento"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","cuerpoDocumento[]","object","si",""
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","cuerpoDocumento[].numItem","integer","si","N° de ítem"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","cuerpoDocumento[].tipoItem","integer","si","Tipo de ítem"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","cuerpoDocumento[].codigoGeneracion","string","si","Código de Generación del DTE"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","cuerpoDocumento[].cantidad","number","si","Cantidad"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","cuerpoDocumento[].precioUni","number","si","Precio Unitario"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","cuerpoDocumento[].descripcion","string","si","Descripcion"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","cuerpoDocumento[].codigo","string|null","no","Código"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","cuerpoDocumento[].uniMedida","integer","no","Unidad de Medida"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","cuerpoDocumento[].montoDescu","number","si","Descuento por ítem"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","cuerpoDocumento[].codTributo","string|null","si","Tributo sujeto a cálculo de IVA"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","cuerpoDocumento[].ventaNoSuj","number","si","Ventas no Sujetas"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","cuerpoDocumento[].ventaExenta","number","si","Ventas Exentas"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","cuerpoDocumento[].ventaGravada","number","si","Ventas Gravadas"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","cuerpoDocumento[].compra","number","si","Ventas"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","cuerpoDocumento[].tributos","array|null","si","Código del Tributo"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","cuerpoDocumento[].tributos[]","string|null","si",""
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","cuerpoDocumento[].psv","number","si","Precio Sugerido de Venta"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","cuerpoDocumento[].ivaItem","number","si","IVA por ítem"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","cuerpoDocumento[].noGravado","number","si","Cargos/Abonos que no afectan la base imponible"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","cuerpoDocumento[].seguro","number","si","Seguro"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","cuerpoDocumento[].flete","number","si","Flete"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","cuerpoDocumento[].ivaRete","number","si","IVA Retenido"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","cuerpoDocumento[].reteRenta","number","si","Retención Renta"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","resumen","object","si","Resumen"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","resumen.totalNoSuj","number","si","Total de Operaciones no Sujetas"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","resumen.totalExenta","number","si","Total de Operaciones exentas"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","resumen.totalGravada","number","si","Total de Operaciones Gravadas"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","resumen.totalCompraExcluidos","number","si","Total Compras a Sujetos Excluidos "
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","resumen.subTotalVentas","number","si","Suma de Operaciones sin Impuestos"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","resumen.tributos","array|null","si","Resumen Código de Tributo"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","resumen.tributos[]","object","si",""
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","resumen.tributos[].codigo","string","si","Resumen Código de Tributo"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","resumen.tributos[].descripcion","string","si","Nombre del Tributo"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","resumen.tributos[].valor","number","si","Valor del Tributo"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","resumen.totalSeguro","number|null","si","Seguro"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","resumen.totalFlete","number|null","si","Flete"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","resumen.montoTotalOperacion","number","si","Monto Total de la Operación"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","resumen.ivaRete","number","si","IVA Retenido"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","resumen.reteRenta","number|null","si","Retencion Renta"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","resumen.totalNoGravado","number","si","Total Cargos/Abonos que no afectan la base imponible"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","resumen.totalPagar","number","si","Total a Pagar"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","resumen.totalLetras","string|null","si","Valor en Letras"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","resumen.totalNoOnerosas","number","si","Transferencias de bienes no onerosas"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","resumen.totalIva","number","si","IVA 13%"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","resumen.saldoFavor","number","si","Saldo a Favor"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","apendice","array|null","si","Apéndice"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","apendice[]","object","si",""
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","apendice[].campo","string","si","Nombre del campo"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","apendice[].etiqueta","string","si","Descripción"
+"fe-eret","svfe-json-schemas-new/v1/fe-eret-v1.json","(sin equivalente old)","apendice[].valor","string","si","Valor/Dato"
+"fe-f","svfe-json-schemas-new/v2/fe-f-v2.json","svfe-json-schemas-old/fe-fc-v1.json","emisor.direccion.distrito","string","si","Dirección Distrito (Emisor)"
+"fe-f","svfe-json-schemas-new/v2/fe-f-v2.json","svfe-json-schemas-old/fe-fc-v1.json","receptor.direccion.distrito","string","si","Dirección Distrito (Receptor)"
+"fe-f","svfe-json-schemas-new/v2/fe-f-v2.json","svfe-json-schemas-old/fe-fc-v1.json","ventaTercero.codDomiciliado","integer|null","si","Domicilio Fiscal"
+"fe-f","svfe-json-schemas-new/v2/fe-f-v2.json","svfe-json-schemas-old/fe-fc-v1.json","resumen.ivaRete","number","si","IVA Retenido"
+"fe-f","svfe-json-schemas-new/v2/fe-f-v2.json","svfe-json-schemas-old/fe-fc-v1.json","resumen.observaciones","string|null","si","Observaciones"
+"fe-fex","svfe-json-schemas-new/v3/fe-fex-v3.json","svfe-json-schemas-old/fe-fex-v1.json","identificacion.motivoContin","string|null","si","Motivo de Contingencia"
+"fe-fex","svfe-json-schemas-new/v3/fe-fex-v3.json","svfe-json-schemas-old/fe-fex-v1.json","documentoRelacionado","array|null","si","Documentos Relacionados"
+"fe-fex","svfe-json-schemas-new/v3/fe-fex-v3.json","svfe-json-schemas-old/fe-fex-v1.json","documentoRelacionado[]","object","si",""
+"fe-fex","svfe-json-schemas-new/v3/fe-fex-v3.json","svfe-json-schemas-old/fe-fex-v1.json","documentoRelacionado[].tipoDocumento","string","si","Tipo de Documento Relacionado"
+"fe-fex","svfe-json-schemas-new/v3/fe-fex-v3.json","svfe-json-schemas-old/fe-fex-v1.json","documentoRelacionado[].tipoGeneracion","integer","si","Tipo de Generación del Documento relacionado"
+"fe-fex","svfe-json-schemas-new/v3/fe-fex-v3.json","svfe-json-schemas-old/fe-fex-v1.json","documentoRelacionado[].numeroDocumento","string","si","Número de documento relacionado"
+"fe-fex","svfe-json-schemas-new/v3/fe-fex-v3.json","svfe-json-schemas-old/fe-fex-v1.json","documentoRelacionado[].fechaEmision","string","si","Fecha de Generación del Documento Relacionado"
+"fe-fex","svfe-json-schemas-new/v3/fe-fex-v3.json","svfe-json-schemas-old/fe-fex-v1.json","emisor.direccion.distrito","string","si","Dirección Distrito (Emisor)"
+"fe-fex","svfe-json-schemas-new/v3/fe-fex-v3.json","svfe-json-schemas-old/fe-fex-v1.json","emisor.tipoRegimen","string|null","si","Tipo Régimen"
+"fe-fex","svfe-json-schemas-new/v3/fe-fex-v3.json","svfe-json-schemas-old/fe-fex-v1.json","ventaTercero.codDomiciliado","integer|null","si","Domicilio Fiscal"
+"fe-fex","svfe-json-schemas-new/v3/fe-fex-v3.json","svfe-json-schemas-old/fe-fex-v1.json","compraTercero","object|null","si","Compras por cuenta de terceros"
+"fe-fex","svfe-json-schemas-new/v3/fe-fex-v3.json","svfe-json-schemas-old/fe-fex-v1.json","compraTercero.numDocumento","string","si","Número de documento de Identificación del Tercero"
+"fe-fex","svfe-json-schemas-new/v3/fe-fex-v3.json","svfe-json-schemas-old/fe-fex-v1.json","compraTercero.nombre","string","si","Nombre del Tercero"
+"fe-fex","svfe-json-schemas-new/v3/fe-fex-v3.json","svfe-json-schemas-old/fe-fex-v1.json","cuerpoDocumento[].tipoItem","integer","si","Tipo de ítem"
+"fe-fex","svfe-json-schemas-new/v3/fe-fex-v3.json","svfe-json-schemas-old/fe-fex-v1.json","cuerpoDocumento[].numeroDocumento","string|null","si","Número de Documento Relacionado"
+"fe-fex","svfe-json-schemas-new/v3/fe-fex-v3.json","svfe-json-schemas-old/fe-fex-v1.json","cuerpoDocumento[].codTributo","string|null","si","Tributo sujeto a cálculo de IVA"
+"fe-fex","svfe-json-schemas-new/v3/fe-fex-v3.json","svfe-json-schemas-old/fe-fex-v1.json","resumen.descuGravada","number","si","Descuento global a ventas gravadas"
+"fe-fex","svfe-json-schemas-new/v3/fe-fex-v3.json","svfe-json-schemas-old/fe-fex-v1.json","resumen.tributos","array|null","si","Resumen Codigo de Tributos"
+"fe-fex","svfe-json-schemas-new/v3/fe-fex-v3.json","svfe-json-schemas-old/fe-fex-v1.json","resumen.tributos[]","object","si",""
+"fe-fex","svfe-json-schemas-new/v3/fe-fex-v3.json","svfe-json-schemas-old/fe-fex-v1.json","resumen.tributos[].codigo","string","si","Resumen Código de Tributo"
+"fe-fex","svfe-json-schemas-new/v3/fe-fex-v3.json","svfe-json-schemas-old/fe-fex-v1.json","resumen.tributos[].descripcion","string","si","Nombre del Tributo"
+"fe-fex","svfe-json-schemas-new/v3/fe-fex-v3.json","svfe-json-schemas-old/fe-fex-v1.json","resumen.tributos[].valor","number","si","Valor del Tributo"
+"fe-fex","svfe-json-schemas-new/v3/fe-fex-v3.json","svfe-json-schemas-old/fe-fex-v1.json","resumen.totalNoOnerosas","number","si","Transferencias de bienes no onerosas"
+"fe-fex","svfe-json-schemas-new/v3/fe-fex-v3.json","svfe-json-schemas-old/fe-fex-v1.json","resumen.saldoFavor","number","si","Saldo a Favor"
+"fe-fse","svfe-json-schemas-new/v2/fe-fse-v2.json","svfe-json-schemas-old/fe-fse-v1.json","emisor.direccion.distrito","string","si","Dirección Distrito (Emisor)"
+"fe-fse","svfe-json-schemas-new/v2/fe-fse-v2.json","svfe-json-schemas-old/fe-fse-v1.json","receptor","object","si","Sujeto Excluido (Receptor)"
+"fe-fse","svfe-json-schemas-new/v2/fe-fse-v2.json","svfe-json-schemas-old/fe-fse-v1.json","receptor.tipoDocumento","string","si","Tipo de documento de identificación (Receptor)"
+"fe-fse","svfe-json-schemas-new/v2/fe-fse-v2.json","svfe-json-schemas-old/fe-fse-v1.json","receptor.numDocumento","string","si","Número de documento de Identificación (Receptor)"
+"fe-fse","svfe-json-schemas-new/v2/fe-fse-v2.json","svfe-json-schemas-old/fe-fse-v1.json","receptor.nombre","string","si","Nombre (Receptor)"
+"fe-fse","svfe-json-schemas-new/v2/fe-fse-v2.json","svfe-json-schemas-old/fe-fse-v1.json","receptor.codActividad","string|null","si","Código de Actividad Económica (Receptor)"
+"fe-fse","svfe-json-schemas-new/v2/fe-fse-v2.json","svfe-json-schemas-old/fe-fse-v1.json","receptor.descActividad","string|null","si","Actividad Económica (Receptor)"
+"fe-fse","svfe-json-schemas-new/v2/fe-fse-v2.json","svfe-json-schemas-old/fe-fse-v1.json","receptor.direccion","object","si","Dirección (Receptor)"
+"fe-fse","svfe-json-schemas-new/v2/fe-fse-v2.json","svfe-json-schemas-old/fe-fse-v1.json","receptor.direccion.departamento","string","si","Dirección: Departamento (Receptor)"
+"fe-fse","svfe-json-schemas-new/v2/fe-fse-v2.json","svfe-json-schemas-old/fe-fse-v1.json","receptor.direccion.municipio","string","si","Dirección: Municipio (Receptor)"
+"fe-fse","svfe-json-schemas-new/v2/fe-fse-v2.json","svfe-json-schemas-old/fe-fse-v1.json","receptor.direccion.distrito","string","si","Dirección Distrito (Receptor)"
+"fe-fse","svfe-json-schemas-new/v2/fe-fse-v2.json","svfe-json-schemas-old/fe-fse-v1.json","receptor.direccion.complemento","string","si","Dirección: complemento (Receptor)"
+"fe-fse","svfe-json-schemas-new/v2/fe-fse-v2.json","svfe-json-schemas-old/fe-fse-v1.json","receptor.telefono","string|null","si","Teléfono (Receptor)"
+"fe-fse","svfe-json-schemas-new/v2/fe-fse-v2.json","svfe-json-schemas-old/fe-fse-v1.json","receptor.correo","string|null","si","Correo electrónico (Receptor)"
+"fe-nc","svfe-json-schemas-new/v4/fe-nc-v4.json","svfe-json-schemas-old/fe-nc-v3.json","identificacion.fusion","string|null","si","Fusiónes y otros"
+"fe-nc","svfe-json-schemas-new/v4/fe-nc-v4.json","svfe-json-schemas-old/fe-nc-v3.json","emisor.direccion.distrito","string","si","Dirección Distrito (Emisor)"
+"fe-nc","svfe-json-schemas-new/v4/fe-nc-v4.json","svfe-json-schemas-old/fe-nc-v3.json","receptor.tipoDocumento","string","si","Tipo de Documento identificacion (Receptor)"
+"fe-nc","svfe-json-schemas-new/v4/fe-nc-v4.json","svfe-json-schemas-old/fe-nc-v3.json","receptor.numDocumento","string","si","Número de documento de Identificacion (Receptor)"
+"fe-nc","svfe-json-schemas-new/v4/fe-nc-v4.json","svfe-json-schemas-old/fe-nc-v3.json","receptor.direccion.distrito","string","si","Dirección Distrito (Receptor)"
+"fe-nc","svfe-json-schemas-new/v4/fe-nc-v4.json","svfe-json-schemas-old/fe-nc-v3.json","ventaTercero.codDomiciliado","integer|null","si","Domicilio Fiscal"
+"fe-nc","svfe-json-schemas-new/v4/fe-nc-v4.json","svfe-json-schemas-old/fe-nc-v3.json","cuerpoDocumento[].noGravado","number","si","Cargos/Abonos que no afectan la base imponible"
+"fe-nc","svfe-json-schemas-new/v4/fe-nc-v4.json","svfe-json-schemas-old/fe-nc-v3.json","cuerpoDocumento[].ivaPerci","number","si","IVA percibido"
+"fe-nc","svfe-json-schemas-new/v4/fe-nc-v4.json","svfe-json-schemas-old/fe-nc-v3.json","cuerpoDocumento[].totalIva","number","si","IVA 13%"
+"fe-nc","svfe-json-schemas-new/v4/fe-nc-v4.json","svfe-json-schemas-old/fe-nc-v3.json","cuerpoDocumento[].ivaRete","number","si"," IVA retenido"
+"fe-nc","svfe-json-schemas-new/v4/fe-nc-v4.json","svfe-json-schemas-old/fe-nc-v3.json","resumen.ivaPerci","number","si","IVA Percibido"
+"fe-nc","svfe-json-schemas-new/v4/fe-nc-v4.json","svfe-json-schemas-old/fe-nc-v3.json","resumen.totalIva","number","si","IVA 13%"
+"fe-nc","svfe-json-schemas-new/v4/fe-nc-v4.json","svfe-json-schemas-old/fe-nc-v3.json","resumen.ivaRete","number","si","IVA Retenido"
+"fe-nc","svfe-json-schemas-new/v4/fe-nc-v4.json","svfe-json-schemas-old/fe-nc-v3.json","resumen.totalNoGravado","number","si","Total Cargos/Abonos que no afectan la base imponible"
+"fe-nc","svfe-json-schemas-new/v4/fe-nc-v4.json","svfe-json-schemas-old/fe-nc-v3.json","resumen.totalPagar","number","si","Total a Pagar"
+"fe-nc","svfe-json-schemas-new/v4/fe-nc-v4.json","svfe-json-schemas-old/fe-nc-v3.json","resumen.observaciones","string|null","si","Observaciones"
+"fe-nc","svfe-json-schemas-new/v4/fe-nc-v4.json","svfe-json-schemas-old/fe-nc-v3.json","resumen.codigoRetencionMH","string|null","si","Código retención MH"
+"fe-nd","svfe-json-schemas-new/v4/fe-nd-v4.json","svfe-json-schemas-old/fe-nd-v3.json","identificacion.fusion","string|null","si","Fusiónes y otros"
+"fe-nd","svfe-json-schemas-new/v4/fe-nd-v4.json","svfe-json-schemas-old/fe-nd-v3.json","emisor.direccion.distrito","string","si","Dirección Distrito (Emisor)"
+"fe-nd","svfe-json-schemas-new/v4/fe-nd-v4.json","svfe-json-schemas-old/fe-nd-v3.json","receptor.tipoDocumento","string","si","Tipo de documento de identificación (Receptor)"
+"fe-nd","svfe-json-schemas-new/v4/fe-nd-v4.json","svfe-json-schemas-old/fe-nd-v3.json","receptor.numDocumento","string","si","Número de documento de Identificación (Receptor)"
+"fe-nd","svfe-json-schemas-new/v4/fe-nd-v4.json","svfe-json-schemas-old/fe-nd-v3.json","receptor.direccion.distrito","string","si","Dirección Distrito (Receptor)"
+"fe-nd","svfe-json-schemas-new/v4/fe-nd-v4.json","svfe-json-schemas-old/fe-nd-v3.json","ventaTercero.codDomiciliado","integer|null","si","Domicilio Fiscal"
+"fe-nd","svfe-json-schemas-new/v4/fe-nd-v4.json","svfe-json-schemas-old/fe-nd-v3.json","cuerpoDocumento[].","array|null","si","Código del Tributo"
+"fe-nd","svfe-json-schemas-new/v4/fe-nd-v4.json","svfe-json-schemas-old/fe-nd-v3.json","cuerpoDocumento[].[]","string","si",""
+"fe-nd","svfe-json-schemas-new/v4/fe-nd-v4.json","svfe-json-schemas-old/fe-nd-v3.json","cuerpoDocumento[].noGravado","number","si","Cargos/Abonos que no afectan la base imponible"
+"fe-nd","svfe-json-schemas-new/v4/fe-nd-v4.json","svfe-json-schemas-old/fe-nd-v3.json","cuerpoDocumento[].ivaPerci","number","si","IVA percibido"
+"fe-nd","svfe-json-schemas-new/v4/fe-nd-v4.json","svfe-json-schemas-old/fe-nd-v3.json","cuerpoDocumento[].totalIva","number","si","IVA 13%"
+"fe-nd","svfe-json-schemas-new/v4/fe-nd-v4.json","svfe-json-schemas-old/fe-nd-v3.json","cuerpoDocumento[].ivaRete","number","si"," IVA retenido"
+"fe-nd","svfe-json-schemas-new/v4/fe-nd-v4.json","svfe-json-schemas-old/fe-nd-v3.json","resumen.","array|null","si","Resumen de "
+"fe-nd","svfe-json-schemas-new/v4/fe-nd-v4.json","svfe-json-schemas-old/fe-nd-v3.json","resumen.[]","object","si",""
+"fe-nd","svfe-json-schemas-new/v4/fe-nd-v4.json","svfe-json-schemas-old/fe-nd-v3.json","resumen.[].codigo","string","si","Resumen Código de Tributo"
+"fe-nd","svfe-json-schemas-new/v4/fe-nd-v4.json","svfe-json-schemas-old/fe-nd-v3.json","resumen.[].descripcion","string","si","Nombre del Tributo"
+"fe-nd","svfe-json-schemas-new/v4/fe-nd-v4.json","svfe-json-schemas-old/fe-nd-v3.json","resumen.[].valor","number","si","Valor del Tributo"
+"fe-nd","svfe-json-schemas-new/v4/fe-nd-v4.json","svfe-json-schemas-old/fe-nd-v3.json","resumen.ivaPerci","number","si","IVA Percibido"
+"fe-nd","svfe-json-schemas-new/v4/fe-nd-v4.json","svfe-json-schemas-old/fe-nd-v3.json","resumen.totalIva","number","si","IVA 13%"
+"fe-nd","svfe-json-schemas-new/v4/fe-nd-v4.json","svfe-json-schemas-old/fe-nd-v3.json","resumen.ivaRete","number","si","IVA Retenido"
+"fe-nd","svfe-json-schemas-new/v4/fe-nd-v4.json","svfe-json-schemas-old/fe-nd-v3.json","resumen.totalNoGravado","number","si","Total Cargos/Abonos que no afectan la base imponible"
+"fe-nd","svfe-json-schemas-new/v4/fe-nd-v4.json","svfe-json-schemas-old/fe-nd-v3.json","resumen.totalPagar","number","si","Total a Pagar"
+"fe-nd","svfe-json-schemas-new/v4/fe-nd-v4.json","svfe-json-schemas-old/fe-nd-v3.json","resumen.observaciones","string|null","si","Observaciones"
+"fe-nd","svfe-json-schemas-new/v4/fe-nd-v4.json","svfe-json-schemas-old/fe-nd-v3.json","resumen.codigoRetencionMH","string|null","si","Código retención MH"
+"fe-nr","svfe-json-schemas-new/v4/fe-nr-v4.json","svfe-json-schemas-old/fe-nr-v3.json","emisor.direccion.distrito","string","si","Dirección Distrito (Emisor)"
+"fe-nr","svfe-json-schemas-new/v4/fe-nr-v4.json","svfe-json-schemas-old/fe-nr-v3.json","receptor.direccion.distrito","string","si","Dirección Distrito (Emisor)"
+"fe-nr","svfe-json-schemas-new/v4/fe-nr-v4.json","svfe-json-schemas-old/fe-nr-v3.json","ventaTercero.codDomiciliado","integer|null","si","Domicilio Fiscal"
+"fe-nr","svfe-json-schemas-new/v4/fe-nr-v4.json","svfe-json-schemas-old/fe-nr-v3.json","resumen.observaciones","string|null","si","Observaciones"
+"invalidacion-schema","svfe-json-schemas-new/v3/invalidacion-schema-v3.json","svfe-json-schemas-old/anulacion-schema-v2.json","identificacion.fecEmi","string","si","Fecha del Evento "
+"invalidacion-schema","svfe-json-schemas-new/v3/invalidacion-schema-v3.json","svfe-json-schemas-old/anulacion-schema-v2.json","identificacion.horEmi","string","si","Hora del Evento"
+"invalidacion-schema","svfe-json-schemas-new/v3/invalidacion-schema-v3.json","svfe-json-schemas-old/anulacion-schema-v2.json","identificacion.fusion","string|null","si","Fusiónes y otros"

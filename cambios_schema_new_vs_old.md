@@ -1,6 +1,6 @@
 # Cambios de schemas: new vs old
 
-Comparacion de campos existentes, campos agregados y campos eliminados entre los JSON Schema nuevos y antiguos.
+Comparación de campos existentes, campos agregados y campos eliminados entre los JSON Schema nuevos y antiguos.
 
 ## Resumen por tipo de cambio
 
