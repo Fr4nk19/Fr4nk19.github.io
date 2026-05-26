@@ -180,6 +180,46 @@
 
     .load-error { display: none; margin-bottom: 18px; border: 1px solid #efb4a5; border-radius: 8px; background: #fff6f3; color: #78321f; padding: 12px 16px; font-size: 13px; }
 
+    /* CHAT */
+    .chat-container { display: flex; flex-direction: column; height: calc(100vh - 200px); min-height: 500px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); box-shadow: var(--shadow); overflow: hidden; }
+    .chat-messages { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 14px; }
+    .chat-msg { max-width: 85%; padding: 12px 16px; border-radius: 12px; font-size: 14px; line-height: 1.55; word-break: break-word; }
+    .chat-msg.bot { align-self: flex-start; background: var(--soft); border: 1px solid var(--line); border-bottom-left-radius: 4px; }
+    .chat-msg.user { align-self: flex-end; background: var(--brand); color: white; border-bottom-right-radius: 4px; }
+    .chat-msg strong { font-weight: 700; }
+    .chat-msg p { margin: 6px 0; }
+    .chat-msg p:first-child { margin-top: 0; }
+    .chat-msg p:last-child { margin-bottom: 0; }
+    .chat-msg ul, .chat-msg ol { margin: 6px 0; padding-left: 20px; }
+    .chat-msg li { margin-bottom: 3px; }
+    .chat-msg code { background: rgba(0,0,0,0.06); padding: 1px 5px; border-radius: 4px; font-size: 0.9em; }
+    .chat-msg.user code { background: rgba(255,255,255,0.2); }
+    .chat-msg table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 12px; min-width: 0; }
+    .chat-msg table th, .chat-msg table td { border: 1px solid var(--line); padding: 4px 8px; text-align: left; }
+    .chat-msg table th { background: #eef3f7; font-size: 11px; }
+    .chat-input-row { display: flex; gap: 8px; padding: 14px 16px; border-top: 1px solid var(--line); background: #fbfcfe; }
+    .chat-input-row input { flex: 1; min-height: 42px; border: 1px solid var(--line); border-radius: 10px; padding: 8px 14px; font: inherit; font-size: 14px; background: white; }
+    .chat-input-row input:focus { outline: 3px solid rgba(30,107,104,0.2); border-color: var(--brand); }
+    .chat-input-row button { min-width: 90px; }
+    .chat-suggestions { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 16px 14px; }
+    .chat-suggestion { display: inline-flex; padding: 6px 12px; border: 1px solid var(--line); border-radius: 99px; background: white; color: var(--ink); font-size: 12px; cursor: pointer; white-space: nowrap; }
+    .chat-suggestion:hover { border-color: var(--brand); background: var(--brand-light); }
+    .chat-category { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 99px; font-size: 10px; font-weight: 700; text-transform: uppercase; margin-bottom: 6px; }
+    .chat-category.nuevos_eventos { background: #f0e6ff; color: #6b21a8; }
+    .chat-category.invalidacion { background: var(--accent-light); color: var(--accent); }
+    .chat-category.contingencia { background: var(--warn-light); color: var(--warn); }
+    .chat-category.nuevos_campos { background: var(--ok-light); color: var(--ok); }
+    .chat-category.cambios_schemas { background: var(--blue-light); color: var(--blue); }
+    .chat-category.estructura { background: #e8f3f1; color: var(--brand-strong); }
+    .chat-category.general { background: #eef3f7; color: #354154; }
+    .chat-category.terceros { background: #fef3c7; color: #92400e; }
+    .chat-category.campos_especiales { background: #fce7f3; color: #9d174d; }
+    .chat-category.tributos { background: #ecfdf5; color: #065f46; }
+    .chat-category.documentos_relacionados { background: #eff6ff; color: #1e40af; }
+    .chat-related { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); }
+    .chat-related-btn { font-size: 11px; padding: 4px 10px; border: 1px solid var(--line); border-radius: 99px; background: white; color: var(--brand-strong); cursor: pointer; }
+    .chat-related-btn:hover { background: var(--brand-light); border-color: var(--brand); }
+
     @media (max-width: 980px) {
       .workspace { grid-template-columns: 1fr; }
       .sidebar { position: static; }
@@ -224,6 +264,7 @@
       <button class="tab" data-tab="changes" role="tab">Cambios<span class="count" id="tabChangesCount">0</span></button>
       <button class="tab" data-tab="new-fields" role="tab">Campos nuevos<span class="count" id="tabNewCount">0</span></button>
       <button class="tab" data-tab="mapping" role="tab">Mapeo de schemas</button>
+      <button class="tab" data-tab="chat" role="tab">Consultas</button>
     </div>
 
     <!-- TAB: OVERVIEW -->
@@ -445,6 +486,41 @@
         <div class="card-header"><div><h2>Correspondencia de archivos</h2></div></div>
         <div class="card-body">
           <div id="mappingGrid" class="mapping-grid"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: CHAT -->
+    <div id="panel-chat" class="tab-panel">
+      <div class="chat-container">
+        <div id="chatMessages" class="chat-messages">
+          <div class="chat-msg bot">
+            <strong>Asistente DTE</strong>
+            <p>Hola, soy tu asistente de consultas sobre la facturaci&oacute;n electr&oacute;nica de El Salvador. Puedo responder preguntas sobre:</p>
+            <ul>
+              <li>Nuevos eventos (Retorno, Operaciones Especiales, Gesti&oacute;n)</li>
+              <li>Cambios en la Normativa v2.0 vs v1.2</li>
+              <li>Invalidaci&oacute;n, contingencia y plazos</li>
+              <li>Estructura de los DTE y sus secciones</li>
+              <li>Tributos, descuentos, pagos y campos especiales</li>
+              <li>Diferencias en los JSON schemas</li>
+            </ul>
+            <p>Escribe tu pregunta o selecciona una de las sugerencias.</p>
+          </div>
+        </div>
+        <div id="chatSuggestions" class="chat-suggestions">
+          <button class="chat-suggestion" data-q="Cuales son los nuevos eventos en la version 2.0?">Nuevos eventos v2.0</button>
+          <button class="chat-suggestion" data-q="Como funciona el Evento de Retorno?">Evento de Retorno</button>
+          <button class="chat-suggestion" data-q="Que cambio en el Evento de Invalidacion?">Cambios en Invalidaci&oacute;n</button>
+          <button class="chat-suggestion" data-q="Como funciona el Evento de Contingencia?">Contingencia</button>
+          <button class="chat-suggestion" data-q="Que es el campo Fusiones y otros?">Campo Fusiones</button>
+          <button class="chat-suggestion" data-q="Cual es el resumen de cambios entre schemas old y new?">Resumen de cambios</button>
+          <button class="chat-suggestion" data-q="Cuales son los tipos de DTE?">Tipos de DTE</button>
+          <button class="chat-suggestion" data-q="Como se aplica el Catalogo de Tributos?">Cat&aacute;logo Tributos</button>
+        </div>
+        <div class="chat-input-row">
+          <input id="chatInput" type="text" placeholder="Escribe tu pregunta sobre facturaci&oacute;n electr&oacute;nica..." autocomplete="off">
+          <button id="chatSend" class="btn primary" type="button">Enviar</button>
         </div>
       </div>
     </div>
@@ -715,6 +791,189 @@
     }
 
     init();
+  </script>
+  <script src="knowledge-base.js"></script>
+  <script>
+    (function() {
+      const chatMessages = document.getElementById('chatMessages');
+      const chatInput = document.getElementById('chatInput');
+      const chatSend = document.getElementById('chatSend');
+      const chatSuggestions = document.getElementById('chatSuggestions');
+
+      function normalize(text) {
+        return text.toLowerCase()
+          .normalize('NFD').replace(/[̀-ͯ]/g, '')
+          .replace(/[^a-z0-9\s]/g, ' ')
+          .replace(/\s+/g, ' ').trim();
+      }
+
+      function tokenize(text) {
+        const stop = new Set(['que','como','es','el','la','los','las','un','una','de','del','en','por','para','con','se','al','a','y','o','no','si','son','hay','cual','cuales','tiene','tienen']);
+        return normalize(text).split(' ').filter(w => w.length > 1 && !stop.has(w));
+      }
+
+      function scoreEntry(entry, queryTokens) {
+        const kwText = normalize(entry.keywords.join(' '));
+        const qText = normalize(entry.question);
+        const aText = normalize(entry.answer);
+        let score = 0;
+
+        for (const token of queryTokens) {
+          for (const kw of entry.keywords) {
+            const nkw = normalize(kw);
+            if (nkw === token) { score += 10; }
+            else if (nkw.includes(token)) { score += 6; }
+            else if (token.includes(nkw) && nkw.length > 2) { score += 4; }
+          }
+          if (qText.includes(token)) score += 3;
+          if (aText.includes(token)) score += 1;
+        }
+
+        const queryJoined = queryTokens.join(' ');
+        if (kwText.includes(queryJoined)) score += 15;
+        if (qText.includes(queryJoined)) score += 8;
+
+        return score;
+      }
+
+      function search(query) {
+        if (!window.KNOWLEDGE_BASE) return [];
+        const tokens = tokenize(query);
+        if (tokens.length === 0) return [];
+
+        const scored = window.KNOWLEDGE_BASE
+          .map(entry => ({ entry, score: scoreEntry(entry, tokens) }))
+          .filter(s => s.score > 0)
+          .sort((a, b) => b.score - a.score);
+
+        return scored;
+      }
+
+      function findRelated(entry) {
+        if (!window.KNOWLEDGE_BASE) return [];
+        return window.KNOWLEDGE_BASE
+          .filter(e => e.id !== entry.id && e.category === entry.category)
+          .slice(0, 3);
+      }
+
+      function mdToHtml(text) {
+        let html = esc(text);
+        html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+        html = html.replace(/`(.+?)`/g, '<code>$1</code>');
+        html = html.replace(/\n\n/g, '</p><p>');
+        html = html.replace(/\n- /g, '\n<li>');
+        html = html.replace(/\n(\d+)\. /g, '\n<li>');
+
+        if (html.includes('<li>')) {
+          html = html.replace(/(<li>.*?)(?=<\/p>|$)/gs, (match) => {
+            const items = match.split('<li>').filter(Boolean).map(i => '<li>' + i.trim() + '</li>');
+            return '<ul>' + items.join('') + '</ul>';
+          });
+        }
+
+        const tableMatch = html.match(/\|.*\|.*\n?\|[-|\s]*\|.*\n?(\|.*\|.*\n?)+/g);
+        if (tableMatch) {
+          for (const tbl of tableMatch) {
+            const lines = tbl.split('\n').filter(l => l.trim());
+            if (lines.length < 3) continue;
+            const parseRow = line => line.split('|').slice(1, -1).map(c => c.trim());
+            const headers = parseRow(lines[0]);
+            const rows = lines.slice(2).map(parseRow);
+            let tableHtml = '<table><thead><tr>' + headers.map(h => `<th>${h}</th>`).join('') + '</tr></thead><tbody>';
+            for (const row of rows) {
+              tableHtml += '<tr>' + row.map(c => `<td>${c}</td>`).join('') + '</tr>';
+            }
+            tableHtml += '</tbody></table>';
+            html = html.replace(tbl, tableHtml);
+          }
+        }
+
+        return '<p>' + html + '</p>';
+      }
+
+      function categoryLabel(cat) {
+        const labels = {
+          nuevos_eventos: 'Nuevos Eventos',
+          invalidacion: 'Invalidacion',
+          contingencia: 'Contingencia',
+          nuevos_campos: 'Nuevos Campos',
+          cambios_schemas: 'Cambios Schemas',
+          estructura: 'Estructura',
+          general: 'General',
+          terceros: 'Terceros',
+          campos_especiales: 'Campos Especiales',
+          tributos: 'Tributos',
+          documentos_relacionados: 'Docs Relacionados'
+        };
+        return labels[cat] || cat;
+      }
+
+      function addMessage(text, isUser) {
+        const div = document.createElement('div');
+        div.className = 'chat-msg ' + (isUser ? 'user' : 'bot');
+        if (isUser) {
+          div.textContent = text;
+        } else {
+          div.innerHTML = text;
+        }
+        chatMessages.appendChild(div);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        return div;
+      }
+
+      function handleQuery(query) {
+        addMessage(query, true);
+
+        const results = search(query);
+
+        if (results.length === 0) {
+          addMessage('<strong>Asistente DTE</strong><p>No encontre informacion relacionada con tu pregunta. Intenta con otros terminos como: <em>retorno, invalidacion, contingencia, tributos, schemas, NCE, CCFE, descuentos, fusiones</em>.</p>', false);
+          return;
+        }
+
+        const best = results[0];
+        const alsoRelevant = results.slice(1, 3).filter(r => r.score >= best.score * 0.4);
+
+        let html = `<span class="chat-category ${best.entry.category}">${categoryLabel(best.entry.category)}</span>`;
+        html += `<strong>${esc(best.entry.question)}</strong>`;
+        html += mdToHtml(best.entry.answer);
+
+        const related = findRelated(best.entry);
+        if (related.length > 0 || alsoRelevant.length > 0) {
+          html += '<div class="chat-related">';
+          const shown = new Set();
+          for (const r of [...alsoRelevant.map(r=>r.entry), ...related]) {
+            if (shown.has(r.id)) continue;
+            shown.add(r.id);
+            if (shown.size > 4) break;
+            html += `<button class="chat-related-btn" data-q="${esc(r.question)}">${esc(r.question.length > 40 ? r.question.slice(0,37)+'...' : r.question)}</button>`;
+          }
+          html += '</div>';
+        }
+
+        addMessage(html, false);
+      }
+
+      function send() {
+        const q = chatInput.value.trim();
+        if (!q) return;
+        chatInput.value = '';
+        handleQuery(q);
+      }
+
+      chatSend.addEventListener('click', send);
+      chatInput.addEventListener('keydown', e => { if (e.key === 'Enter') send(); });
+
+      chatSuggestions.addEventListener('click', e => {
+        const btn = e.target.closest('[data-q]');
+        if (btn) handleQuery(btn.dataset.q);
+      });
+
+      chatMessages.addEventListener('click', e => {
+        const btn = e.target.closest('[data-q]');
+        if (btn) handleQuery(btn.dataset.q);
+      });
+    })();
   </script>
 </body>
 </html>
