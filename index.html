@@ -271,6 +271,19 @@
       display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px;
       border-radius: 99px; font-size: 11px; font-weight: 700; background: #f0e6ff; color: #6b21a8;
     }
+    .chat-mode-toggle {
+      display: flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; font-size: 12px; font-weight: 600;
+    }
+    .chat-mode-toggle button {
+      padding: 6px 12px; border: none; background: white; color: var(--muted); cursor: pointer; white-space: nowrap;
+    }
+    .chat-mode-toggle button.active { background: var(--brand); color: white; }
+    .chat-mode-toggle button:hover:not(.active) { background: var(--soft); }
+    .chat-mode-bar {
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+      padding: 8px 16px; border-bottom: 1px solid var(--line); background: #fbfcfe; font-size: 12px;
+    }
+    .chat-mode-bar .mode-info { color: var(--muted); font-size: 11px; }
 
     @media (max-width: 980px) {
       .workspace { grid-template-columns: 1fr; }
@@ -545,6 +558,13 @@
     <!-- TAB: CHAT -->
     <div id="panel-chat" class="tab-panel">
       <div class="chat-container">
+        <div class="chat-mode-bar">
+          <div class="chat-mode-toggle">
+            <button id="modeLocal" class="active" type="button">Base Local</button>
+            <button id="modeIA" type="button">IA + Manuales</button>
+          </div>
+          <span class="mode-info" id="modeInfo">Respuestas desde la base de conocimiento local</span>
+        </div>
         <div id="apiKeyBar" class="api-key-bar" style="display:none">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.78 7.78 5.5 5.5 0 0 1 7.78-7.78zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
           <span>API Key de Claude:</span>
@@ -563,7 +583,7 @@
               <li>Tributos, descuentos, pagos y campos especiales</li>
               <li>Diferencias en los JSON schemas</li>
             </ul>
-            <p><strong>Nuevo:</strong> Sube un PDF para que la IA analice y explique su contenido en el contexto de facturaci&oacute;n electr&oacute;nica DTE.</p>
+            <p><strong>Modo IA + Manuales:</strong> Activa el modo "IA + Manuales" para consultas avanzadas usando Claude con el contenido completo del Manual Funcional V2.0 y V1.2 como contexto. Tambi&eacute;n puedes subir un PDF adicional para analizar.</p>
           </div>
         </div>
         <div id="chatSuggestions" class="chat-suggestions">
@@ -866,6 +886,7 @@
     init();
   </script>
   <script src="knowledge-base.js"></script>
+  <script src="manuals-data.js"></script>
   <script>
     (function() {
       const chatMessages = document.getElementById('chatMessages');
@@ -1052,33 +1073,36 @@
 
   <script>
     (function() {
-      // ===== CONFIGURACION =====
-      // Pon tu API key de Anthropic aqui para uso personal:
-      const HARDCODED_API_KEY = '';
-      // Si esta vacio, se mostrara un campo para ingresarla manualmente.
-      // Obtener una key en: https://console.anthropic.com/
-
       const CLAUDE_MODEL = 'claude-sonnet-4-6';
       const MAX_PDF_SIZE_MB = 25;
-      const SYSTEM_PROMPT = `Eres un experto en facturacion electronica DTE de El Salvador (Normativa SVFE v2.0).
-Tu rol es analizar documentos PDF y explicar su contenido de forma clara y estructurada.
 
-Contexto: El usuario trabaja con Documentos Tributarios Electronicos (DTE) del Ministerio de Hacienda de El Salvador.
-Los tipos de DTE incluyen: Factura (FE), Comprobante de Credito Fiscal (CCFE), Nota de Credito (NCE), Nota de Debito (NDE),
-Nota de Remision (NRE), Comprobante de Retencion (CRE), Comprobante de Liquidacion (CLE), DCLE, Factura de Exportacion (FEXE),
-Factura Sujeto Excluido (FSEE), Comprobante de Donacion (CDE), y eventos como Invalidacion, Contingencia, Retorno y Operaciones Especiales.
+      function buildSystemPrompt() {
+        let prompt = `Eres un experto en facturacion electronica DTE de El Salvador.
+Tienes acceso al contenido completo de los Manuales Funcionales del Sistema de Transmision del Ministerio de Hacienda.
 
 Instrucciones:
 - Responde siempre en espanol
-- Estructura tu respuesta con secciones claras
-- Si el PDF contiene informacion sobre schemas JSON, campos, validaciones o reglas de negocio DTE, explicalos en detalle
-- Si el PDF es una normativa o guia tecnica, resume los puntos clave
-- Si el PDF contiene tablas o catalogos, interpreta su contenido
-- Usa terminologia tecnica DTE cuando sea relevante`;
+- Estructura tu respuesta con secciones claras usando markdown
+- Cita las secciones relevantes del manual cuando respondas
+- Si la pregunta involucra plazos, condiciones o procesos, se preciso con las reglas
+- Si el usuario sube un PDF adicional, analiza su contenido en el contexto de facturacion electronica DTE
+- Usa terminologia tecnica DTE: FE, CCFE, NCE, NDE, NRE, CRE, CLE, DCLE, FEXE, FSEE, CDE, EOE, ER
+
+=== MANUAL FUNCIONAL V2.0 (Normativa DTE v2.0 - Mayo 2026) ===
+`;
+        if (window.MANUAL_V2) prompt += window.MANUAL_V2;
+        prompt += `
+
+=== MANUAL FUNCIONAL V1.2 (Version anterior - Octubre 2025) ===
+`;
+        if (window.MANUAL_V1) prompt += window.MANUAL_V1;
+        return prompt;
+      }
 
       let pdfState = { file: null, base64: null, name: '', size: 0 };
       let conversationHistory = [];
       let isProcessing = false;
+      let aiModeActive = false;
 
       const chatMessages = document.getElementById('chatMessages');
       const chatInput = document.getElementById('chatInput');
@@ -1091,23 +1115,42 @@ Instrucciones:
       const apiKeyBar = document.getElementById('apiKeyBar');
       const apiKeyInput = document.getElementById('apiKeyInput');
       const apiKeySave = document.getElementById('apiKeySave');
+      const modeLocal = document.getElementById('modeLocal');
+      const modeIA = document.getElementById('modeIA');
+      const modeInfo = document.getElementById('modeInfo');
 
       function getApiKey() {
-        if (HARDCODED_API_KEY) return HARDCODED_API_KEY;
         return localStorage.getItem('claude_api_key') || '';
       }
 
-      function initApiKeyBar() {
-        if (HARDCODED_API_KEY) return;
-        const saved = localStorage.getItem('claude_api_key');
-        if (!saved) {
+      function setAiMode(active) {
+        aiModeActive = active;
+        modeLocal.classList.toggle('active', !active);
+        modeIA.classList.toggle('active', active);
+        modeInfo.textContent = active
+          ? 'IA Claude con Manual V2.0 y V1.2 como contexto'
+          : 'Respuestas desde la base de conocimiento local';
+        if (active && !getApiKey()) {
           apiKeyBar.style.display = 'flex';
+        } else {
+          apiKeyBar.style.display = 'none';
         }
+        chatInput.placeholder = active
+          ? 'Pregunta sobre DTE, invalidacion, tributos, contingencia...'
+          : 'Escribe tu pregunta sobre facturacion electronica...';
+        updateAiMode();
+      }
+
+      modeLocal.addEventListener('click', () => setAiMode(false));
+      modeIA.addEventListener('click', () => setAiMode(true));
+
+      function initApiKeyBar() {
         apiKeySave.addEventListener('click', () => {
           const key = apiKeyInput.value.trim();
           if (key) {
             localStorage.setItem('claude_api_key', key);
             apiKeyBar.style.display = 'none';
+            addMsg('<strong>Asistente DTE</strong><p>API Key guardada. Ya puedes hacer consultas con IA.</p>', false);
           }
         });
         apiKeyInput.addEventListener('keydown', e => {
@@ -1166,7 +1209,7 @@ Instrucciones:
       }
 
       function updateAiMode() {
-        window.__dteAiMode = !!(pdfState.base64 || conversationHistory.length > 0);
+        window.__dteAiMode = !!(aiModeActive || pdfState.base64 || conversationHistory.length > 0);
       }
 
       pdfUpload.addEventListener('change', e => {
@@ -1220,7 +1263,7 @@ Instrucciones:
           body: JSON.stringify({
             model: CLAUDE_MODEL,
             max_tokens: 4096,
-            system: SYSTEM_PROMPT,
+            system: buildSystemPrompt(),
             stream: true,
             messages
           })
@@ -1273,11 +1316,12 @@ Instrucciones:
         if (isProcessing) return;
         isProcessing = true;
 
-        const isFirstMessage = conversationHistory.length === 0;
-        const hasPdf = pdfState.base64 && isFirstMessage;
+        const isFirstPdfMessage = pdfState.base64 && !conversationHistory.some(m => m.role === 'user' && Array.isArray(m.content) && m.content.some(c => c.type === 'document'));
+        const hasPdf = pdfState.base64 && isFirstPdfMessage;
 
         if (userText) addMsg(userText, true);
         else if (hasPdf) addMsg('Analizar PDF: ' + pdfState.name, true);
+        else if (!userText) { isProcessing = false; return; }
 
         const userContent = [];
 
@@ -1289,7 +1333,7 @@ Instrucciones:
         }
 
         const promptText = userText || (hasPdf
-          ? 'Analiza este PDF y explica su contenido de forma detallada. Si contiene informacion relacionada con facturacion electronica DTE de El Salvador, destaca los puntos mas importantes.'
+          ? 'Analiza este PDF y explica su contenido de forma detallada. Si contiene informacion relacionada con facturacion electronica DTE de El Salvador, destaca los puntos mas importantes y compara con lo que dice el Manual Funcional V2.0.'
           : '');
 
         if (promptText) {
@@ -1315,20 +1359,21 @@ Instrucciones:
             chatInput.placeholder = 'Haz una pregunta de seguimiento sobre el PDF...';
           }
 
-          const resetBtn = document.createElement('button');
-          resetBtn.className = 'chat-suggestion';
-          resetBtn.textContent = 'Nueva conversacion';
-          resetBtn.style.marginTop = '8px';
-          resetBtn.addEventListener('click', () => {
-            pdfState = { file: null, base64: null, name: '', size: 0 };
-            pdfUpload.value = '';
-            pdfAttached.style.display = 'none';
-            conversationHistory = [];
-            chatInput.placeholder = 'Escribe tu pregunta sobre facturacion electronica...';
-            updateAiMode();
-            addMsg('<strong>Asistente DTE</strong><p>Conversacion reiniciada. Puedes hacer preguntas o subir un nuevo PDF.</p>', false);
-          });
-          msgDiv.appendChild(resetBtn);
+          if (conversationHistory.length > 2) {
+            const resetBtn = document.createElement('button');
+            resetBtn.className = 'chat-suggestion';
+            resetBtn.textContent = 'Limpiar conversacion';
+            resetBtn.style.marginTop = '8px';
+            resetBtn.addEventListener('click', () => {
+              pdfState = { file: null, base64: null, name: '', size: 0 };
+              pdfUpload.value = '';
+              pdfAttached.style.display = 'none';
+              conversationHistory = [];
+              updateAiMode();
+              addMsg('<strong>Asistente DTE</strong><p>Conversacion reiniciada. Puedes seguir preguntando.</p>', false);
+            });
+            msgDiv.appendChild(resetBtn);
+          }
         } catch (err) {
           removeTypingIndicator();
           if (err.message === 'API_KEY_MISSING') {
@@ -1345,8 +1390,8 @@ Instrucciones:
       function aiSend() {
         if (!window.__dteAiMode) return;
         const q = chatInput.value.trim();
-        const hasPdf = pdfState.base64 && conversationHistory.length === 0;
-        if (!q && !hasPdf) return;
+        const isFirstPdfMessage = pdfState.base64 && !conversationHistory.some(m => m.role === 'user' && Array.isArray(m.content) && m.content.some(c => c.type === 'document'));
+        if (!q && !isFirstPdfMessage) return;
         chatInput.value = '';
         handleAIQuery(q);
       }
